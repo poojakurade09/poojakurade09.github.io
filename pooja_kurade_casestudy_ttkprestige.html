@@ -581,6 +581,14 @@ h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
 
 <div id="cur"></div>
 
+<!-- ── MOBILE OVERLAY ── -->
+<div id="mob">
+  <button class="mob-x" id="mobX">✕</button>
+  <a href="index.html#work" onclick="cM()">Work</a>
+  <a href="about.html" onclick="cM()">About</a>
+  <a href="mailto:pooja.kurade@gmail.com" onclick="cM()">Contact</a>
+</div>
+
 <!-- ── NAV ── -->
 <nav id="nav">
   <a href="index.html" class="nav-logo">Pooja Kurade <span class="nav-role">Senior Product Designer</span></a>
@@ -591,6 +599,7 @@ h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
     <li><span class="nav-avail"><span class="nav-dot"></span>Available</span></li>
   </ul>
   <a href="pooja_kurade_resume.pdf" download class="nav-cv">Download CV</a>
+  <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span></button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -1391,6 +1400,12 @@ h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
 </footer>
 
 <script>
+// Mobile nav
+const ham = document.getElementById('ham'), mob = document.getElementById('mob'), mobX = document.getElementById('mobX');
+function oM() { mob.classList.add('open') }
+function cM() { mob.classList.remove('open') }
+if (ham && mob && mobX) { ham.addEventListener('click', oM); mobX.addEventListener('click', cM); }
+
 // Custom cursor
 const cur = document.getElementById('cur');
 document.addEventListener('mousemove', e => {

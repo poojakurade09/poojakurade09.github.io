@@ -242,18 +242,25 @@
 
 <div id="cur"></div>
 
+<!-- ── MOBILE OVERLAY ── -->
+<div id="mob">
+  <button class="mob-x" id="mobX">✕</button>
+  <a href="index.html#work" onclick="cM()">Work</a>
+  <a href="about.html" onclick="cM()">About</a>
+  <a href="mailto:pooja.kurade@gmail.com" onclick="cM()">Contact</a>
+</div>
+
 <!-- ── NAV ── -->
-<nav>
+<nav id="nav">
   <a class="nav-logo" href="index.html">Pooja Kurade <span class="nav-role">Senior Product Designer</span></a>
   <ul class="nav-links">
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="mailto:pooja.kurade@gmail.com">Contact</a></li>
+    <li><span class="nav-avail"><span class="nav-dot"></span>Available</span></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:20px;">
-    <span class="nav-avail"><span class="nav-dot"></span>Available</span>
-    <a class="nav-cv" href="pooja_kurade_resume.pdf" download>Download CV</a>
-  </div>
+  <a class="nav-cv" href="pooja_kurade_resume.pdf" download>Download CV</a>
+  <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span></button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -734,6 +741,12 @@
 </footer>
 
 <script>
+// Mobile nav
+const ham = document.getElementById('ham'), mob = document.getElementById('mob'), mobX = document.getElementById('mobX');
+function oM() { mob.classList.add('open') }
+function cM() { mob.classList.remove('open') }
+if (ham && mob && mobX) { ham.addEventListener('click', oM); mobX.addEventListener('click', cM); }
+
   const cur = document.getElementById('cur');
   document.addEventListener('mousemove', e => {
     cur.style.left = e.clientX + 'px';

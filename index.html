@@ -237,14 +237,11 @@ img { display: block; max-width: 100% }
 @media (max-width: 560px) {
   .hero-meta { grid-template-columns: 1fr 1fr; gap: 24px 32px }
 }
-.hero-meta-item { font-family: 'Instrument Sans', var(--ff), sans-serif; transition: transform .2s var(--ease) }
-.hero-meta-item:hover { transform: translateY(-2px) }
+.hero-meta-item { font-family: 'Instrument Sans', var(--ff), sans-serif }
 .hero-meta-item dt {
   font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
   color: rgba(255,255,255,.65); margin-bottom: 8px; font-weight: 400;
-  transition: color .2s var(--ease);
 }
-.hero-meta-item:hover dt { color: var(--teal) }
 .hero-meta-item dd {
   font-size: 16px; font-weight: 400; color: #fdfdfd; line-height: 1.4;
   transition: color .2s var(--ease);
@@ -364,9 +361,7 @@ img { display: block; max-width: 100% }
 @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr } }
 .service-card {
   background: var(--bg-alt); padding: 32px 28px;
-  transition: background .25s var(--ease);
 }
-.service-card:hover { background: var(--bg-raise) }
 .service-num {
   font-family: var(--ff-m); font-size: 10px; color: var(--teal);
   letter-spacing: .06em; margin-bottom: 18px; display: block;
@@ -490,7 +485,6 @@ img { display: block; max-width: 100% }
   transition: color .3s;
   position: relative;
 }
-.brands-track:hover .brand-item:hover { color: rgba(255,255,255,.7) }
 .brand-item::after {
   content: '✦';
   position: absolute; right: 0;
@@ -556,7 +550,7 @@ footer { padding: 32px var(--pad) }
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Pooja Kurade <span class="nav-role">Senior Product Designer</span></a>
+  <a href="index.html" class="nav-logo">Pooja Kurade <span class="nav-role">Senior Product Designer</span></a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
