@@ -84,7 +84,7 @@ img { display: block; max-width: 100% }
 @media (max-width: 640px) { .nav-role { display: none } }
 .nav-links { display: flex; list-style: none; gap: 32px; align-items: center; justify-self: center }
 .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.55); transition: color .2s }
-.nav-links a:hover { color: #fff }
+.nav-links a:hover, .nav-links a.cur-page { color: #fff }
 .nav-right { display: flex; align-items: center; gap: 22px; justify-self: end }
 .nav-cv {
   display: inline-flex; align-items: center; gap: 6px;
@@ -558,7 +558,7 @@ footer { padding: 32px var(--pad) }
 <nav id="nav">
   <a href="index.html" class="nav-logo">Pooja Kurade <span class="nav-role">Senior Product Designer</span></a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html" class="cur-page">Home</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="pooja_kurade_resume.pdf" target="_blank" rel="noopener">Resume</a></li>

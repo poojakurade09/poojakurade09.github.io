@@ -112,6 +112,7 @@ img { display: block; max-width: 100% }
 /* ── PROFILE / NARRATIVE (matches Figma layout) ── */
 #profile { padding-top: 58px }
 .about-split {
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -128,11 +129,12 @@ img { display: block; max-width: 100% }
 }
 .about-split-text-inner { max-width: 480px }
 .about-back {
+  position: absolute; top: 24px; left: clamp(24px, 6vw, 96px); z-index: 5;
   display: inline-flex; align-items: center; gap: 6px;
   font-family: var(--ff-m); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--mid); margin-bottom: 28px; transition: color .2s;
+  color: #fff; transition: color .2s;
 }
-.about-back:hover { color: var(--teal) }
+.about-back:hover { color: #fff; opacity: .78 }
 .narrative-heading {
   font-family: 'Newsreader', serif;
   font-size: clamp(30px, 3.8vw, 40px); font-weight: 300;
