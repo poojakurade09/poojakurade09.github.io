@@ -33,7 +33,7 @@ img { display: block; max-width: 100% }
   transition: width .2s var(--ease), height .2s var(--ease);
   will-change: left, top;
 }
-#cur.big { width: 32px; height: 32px; background: transparent; border: 1.5px solid var(--teal) }
+#cur.big { width: 32px; height: 32px; background: transparent; border: 1.5px solid var(--teal); mix-blend-mode: normal }
 @media(hover:none) { #cur { display: none } body { cursor: auto } }
 
 /* ─────────────────────────────────────────────
