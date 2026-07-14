@@ -117,6 +117,13 @@ nav {
   text-shadow: 0 1px 6px rgba(0,0,0,.4);
 }
 .cs-hero-img .cs-back:hover { color: #fff; opacity: .78 }
+/* Wide banner collage images (multiple app screens side by side) crop badly
+   with object-fit:cover on tall/narrow mobile viewports — let them keep their
+   natural aspect ratio instead so nothing overlaps or gets cut off. */
+@media (max-width: 820px) {
+  .cs-hero-img { height: auto; min-height: 0; max-height: none; }
+  .cs-hero-img img { height: auto; object-fit: contain; }
+}
 .cs-hero-content h1 {
   font-size: clamp(32px, 5vw, 64px); font-weight: 700;
   color: var(--dark); letter-spacing: -2px; line-height: 1.0; margin: 0;
@@ -189,8 +196,12 @@ h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
   font-size: 18px; color: rgba(0,0,0,.15); justify-content: center; width: 32px; flex-shrink: 0;
 }
 @media(max-width: 720px) {
-  .proc-steps { grid-template-columns: 1fr; gap: 24px; }
+  .proc-steps { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
   .proc-arrow { display: none; }
+}
+@media(max-width: 420px) {
+  .proc-steps { grid-template-columns: repeat(2, 1fr); gap: 28px 14px; }
+  .proc-icon { width: 44px; height: 44px; }
 }
 
 /* ─────────────────────────────────────────────
