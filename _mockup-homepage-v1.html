@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direction mockup — homepage v1 (not the live site)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark:     #081812;
+  --bg:       #0D2B1E;
+  --bg-alt:   #0A2119;
+  --bg-raise: #123528;
+  --mid:      rgba(253,253,253,.56);
+  --white:    #FDFDFD;
+  --teal:     #2FBE8E;
+  --teal-l:   rgba(47,190,142,.14);
+  --yellow:   #E8B84B;
+  --border:   rgba(255,255,255,.10);
+  --paper:    #F2EFE8;
+  --ink:      #12241C;
+  --ink-mid:  rgba(18,36,28,.62);
+  --border-l: rgba(18,36,28,.12);
+  --ff:  'Inter', system-ui, sans-serif;
+  --ff-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  --pad: clamp(24px, 6vw, 96px);
+  --max-w: 1160px;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--ff); background: var(--bg); color: var(--white); -webkit-font-smoothing: antialiased; }
+.note { background: #1a1a1a; color: #fff; text-align: center; font-family: var(--ff); font-size: 13px; padding: 10px; letter-spacing: .02em; }
+.note b { color: var(--yellow); }
+img { display: block; max-width: 100%; }
+
+/* NAV */
+nav { display: flex; align-items: center; justify-content: space-between; padding: 22px var(--pad); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: var(--ff-display); font-size: 17px; font-weight: 700; }
+.nav-links { display: flex; gap: 32px; list-style: none; font-size: 14px; color: var(--mid); }
+.avail { font-size: 12px; color: var(--yellow); display: flex; align-items: center; gap: 6px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); }
+
+/* HERO */
+.hero { padding: 90px var(--pad) 70px; max-width: var(--max-w); margin: 0 auto; }
+.eyebrow { font-size: 13px; color: var(--mid); margin-bottom: 22px; letter-spacing: .01em; }
+h1.headline {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 5.4vw, 68px); font-weight: 600; line-height: 1.08;
+  letter-spacing: -.02em; max-width: 16ch; margin-bottom: 26px;
+}
+h1.headline em { font-style: italic; color: var(--teal); font-weight: 500; }
+.hero-sub { font-size: 17px; color: var(--mid); max-width: 46ch; line-height: 1.7; margin-bottom: 36px; }
+.hero-meta { display: flex; gap: 48px; flex-wrap: wrap; }
+.hm-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+.hm-value { font-size: 15px; font-weight: 500; }
+
+/* SECTION LABEL */
+.section-label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; font-weight: 600; }
+.section-heading { font-family: var(--ff-display); font-size: clamp(26px, 3vw, 36px); font-weight: 600; letter-spacing: -.01em; margin-bottom: 12px; }
+.section-sub { font-size: 15px; color: var(--mid); max-width: 56ch; line-height: 1.7; }
+
+/* WORK */
+.work { padding: 70px var(--pad) 90px; max-width: var(--max-w); margin: 0 auto; border-top: 1px solid var(--border); }
+.work-head { margin-bottom: 48px; }
+.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.card {
+  position: relative; border-radius: 20px; overflow: hidden; background: var(--bg-raise);
+  border: 1px solid var(--border); text-decoration: none; color: inherit; display: block;
+  transition: border-color .35s var(--ease), transform .35s var(--ease);
+}
+.card:hover { border-color: rgba(47,190,142,.4); transform: translateY(-4px); }
+.card-media { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #12241c; }
+.card-media img, .card-media .cover-abstract {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform .6s var(--ease);
+}
+.card:hover .card-media img, .card:hover .card-media .cover-abstract { transform: scale(1.06); }
+.card-media::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(8,24,18,.92) 100%);
+}
+.card-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 24px;
+  transform: translateY(6px); opacity: .96; transition: transform .35s var(--ease);
+}
+.card:hover .card-overlay { transform: translateY(0); }
+.card-cat { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--yellow); margin-bottom: 8px; font-weight: 600; }
+.card-title { font-family: var(--ff-display); font-size: 21px; font-weight: 600; margin-bottom: 8px; letter-spacing: -.01em; }
+.card-summary {
+  font-size: 13.5px; color: rgba(255,255,255,.72); line-height: 1.55; max-width: 42ch;
+  max-height: 0; opacity: 0; overflow: hidden; transition: max-height .35s var(--ease), opacity .3s var(--ease);
+}
+.card:hover .card-summary { max-height: 80px; opacity: 1; margin-top: 4px; }
+.card-role { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 8px; }
+.cover-abstract {
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,.14), transparent 45%),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.05) 0 2px, transparent 2px 26px),
+    linear-gradient(135deg, #1338BE, #0C2680);
+  display: flex; align-items: center; justify-content: center;
+}
+.cover-abstract span { font-family: var(--ff-display); font-size: 15px; color: rgba(255,255,255,.5); letter-spacing: .04em; }
+.card--ai { border-color: rgba(232,184,75,.35); }
+.card--ai .card-cat { color: var(--yellow); }
+.ai-badge {
+  position: absolute; top: 16px; right: 16px; font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; background: rgba(8,24,18,.7);
+  color: var(--yellow); padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(232,184,75,.35);
+}
+@media (max-width: 760px) { .work-grid { grid-template-columns: 1fr; } }
+
+/* AI SECTION — visually distinct: paper/cream inverted block */
+.ai-section { background: var(--paper); color: var(--ink); padding: 90px var(--pad); }
+.ai-inner { max-width: var(--max-w); margin: 0 auto; }
+.ai-top { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: end; margin-bottom: 56px; }
+.ai-eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #1338BE; font-weight: 700; margin-bottom: 16px; }
+.ai-h { font-family: var(--ff-display); font-size: clamp(30px, 3.6vw, 46px); font-weight: 600; letter-spacing: -.02em; line-height: 1.08; }
+.ai-h em { font-style: italic; color: #1338BE; font-weight: 500; }
+.ai-sub { font-size: 15.5px; color: var(--ink-mid); line-height: 1.75; }
+.ai-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ai-tile { background: #fff; border: 1px solid var(--border-l); border-radius: 16px; padding: 26px 22px; }
+.ai-tile-num { font-family: var(--ff-display); font-size: 13px; color: #1338BE; font-weight: 700; margin-bottom: 14px; }
+.ai-tile-title { font-family: var(--ff-display); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.ai-tile-desc { font-size: 13px; color: var(--ink-mid); line-height: 1.6; }
+.ai-cta { margin-top: 40px; display: inline-flex; align-items: center; gap: 8px; font-family: var(--ff-display); font-size: 14px; font-weight: 600; color: #1338BE; }
+@media (max-width: 900px) { .ai-top { grid-template-columns: 1fr; gap: 24px; } .ai-grid { grid-template-columns: 1fr 1fr; } }
+
+/* FOOTER */
+footer { padding: 40px var(--pad); border-top: 1px solid var(--border); }
+.ft { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.ft-logo { font-family: var(--ff-display); font-size: 15px; font-weight: 700; }
+.ft-links { display: flex; gap: 28px; align-items: center; }
+.ft-links a { color: var(--mid); text-decoration: none; font-size: 14px; }
+.ft-email { color: var(--white) !important; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="note">Direction mockup for review — real fonts, real photos and screenshots from your project folder, real palette. Not the live site. <b>Nothing here is published.</b></div>
+
+<nav>
+  <span class="nav-logo">Pooja Kurade</span>
+  <ul class="nav-links"><li>Home</li><li>Work</li><li>About</li><li>Resume</li></ul>
+  <span class="avail"><span class="dot"></span>Available</span>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Senior Product Designer · Berlin</div>
+  <h1 class="headline">I design products <em>end to end</em>, from research to final pixel.</h1>
+  <p class="hero-sub">Eight years across mobile, enterprise, automotive and fintech. I like projects messy enough to need real research and structure enough to actually ship.</p>
+  <div class="hero-meta">
+    <div><div class="hm-label">Based</div><div class="hm-value">Berlin, Germany</div></div>
+    <div><div class="hm-label">Focus</div><div class="hm-value">Product UX/UI, design systems</div></div>
+    <div><div class="hm-label">Open for</div><div class="hm-value">Full time roles</div></div>
+  </div>
+</section>
+
+<section class="work">
+  <div class="work-head">
+    <div class="section-label">Selected work</div>
+    <div class="section-heading">Four projects, four different problems</div>
+    <div class="section-sub">Hover a card for the story behind it. Each one opens into a full case study.</div>
+  </div>
+  <div class="work-grid">
+
+    <a class="card" href="#">
+      <div class="card-media">
+        <img src="images/jiobp-05-dashboard.jpg" alt="JIO-BP dashboard screen">
+        <div class="card-overlay">
+          <div class="card-cat">Mobile App</div>
+          <div class="card-title">JIO-BP Fuel Booking</div>
+          <div class="card-summary">A fuel booking app for one of India's largest fuel retailers, redesigned to make booking fuel as easy as ordering food.</div>
+          <div class="card-role">Lead Product Designer · 2024</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card-media">
+        <div class="cover-abstract"><span>DAM System</span></div>
+        <div class="card-overlay">
+          <div class="card-cat">Enterprise UX</div>
+          <div class="card-title">DAM Asset Discovery</div>
+          <div class="card-summary">An audit of a broken asset library used by 40+ teams, turned into a system people actually want to use.</div>
+          <div class="card-role">UX Researcher &amp; Designer · 2025</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card-media">
+        <img src="images/ttk-design-homepage.jpg" alt="TTK Prestige homepage design">
+        <div class="card-overlay">
+          <div class="card-cat">E-commerce</div>
+          <div class="card-title">TTK Prestige Revamp</div>
+          <div class="card-summary">A full storefront redesign for a 60 year old kitchenware brand, built for its first real push online.</div>
+          <div class="card-role">Product Designer · 2024</div>
+        </div>
+      </div>
+    </a>
+
+    <a class="card card--ai" href="#">
+      <div class="card-media">
+        <div class="cover-abstract" style="background: radial-gradient(circle at 30% 30%, rgba(232,184,75,.35), transparent 50%), linear-gradient(135deg, #0D2B1E, #123528);"><span style="color: var(--yellow)">Designing with AI</span></div>
+        <div class="ai-badge">Exploration</div>
+        <div class="card-overlay">
+          <div class="card-cat">AI &amp; Product Design</div>
+          <div class="card-title">Rebuilding My Own Portfolio</div>
+          <div class="card-summary">How I used AI as a thinking partner to rebuild this site, faster and sharper than I could have alone.</div>
+          <div class="card-role">Designer, AI assisted workflow · 2026</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="ai-section">
+  <div class="ai-inner">
+    <div class="ai-top">
+      <div>
+        <div class="ai-eyebrow">Designing with AI</div>
+        <h2 class="ai-h">AI is part of how I <em>think</em>, not just what I ship.</h2>
+      </div>
+      <p class="ai-sub">I use AI the way I'd use a sharp collaborator: to move faster through research, stress test ideas earlier, and spend more of my time on the judgment calls that actually need a designer. Here's where it shows up in my process.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-tile">
+        <div class="ai-tile-num">01</div>
+        <div class="ai-tile-title">Research</div>
+        <div class="ai-tile-desc">Synthesizing interviews and competitive scans in hours, not days, so I can spend that time talking to more real users.</div>
+      </div>
+      <div class="ai-tile">
+        <div class="ai-tile-num">02</div>
+        <div class="ai-tile-title">Ideation</div>
+        <div class="ai-tile-desc">Using AI to generate rougher, weirder first drafts I can react to, instead of staring at a blank page.</div>
+      </div>
+      <div class="ai-tile">
+        <div class="ai-tile-num">03</div>
+        <div class="ai-tile-title">Prototyping</div>
+        <div class="ai-tile-desc">Going from idea to a clickable, real feeling prototype in the same afternoon I had the idea.</div>
+      </div>
+      <div class="ai-tile">
+        <div class="ai-tile-num">04</div>
+        <div class="ai-tile-title">Problem solving</div>
+        <div class="ai-tile-desc">Treating AI as a second opinion on tradeoffs, then making the final call myself.</div>
+      </div>
+    </div>
+    <a class="ai-cta" href="#">See how I rebuilt this site with AI →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <span class="ft-logo">Pooja Kurade.</span>
+    <div class="ft-links">
+      <span>Berlin, Germany</span>
+      <a href="mailto:pooja.kurade@gmail.com" class="ft-email">pooja.kurade@gmail.com</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
