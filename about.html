@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Pooja Kurade, Senior Product Designer</title>
+<title>About | Pooja Kurade, Senior Product Designer</title>
 <meta name="description" content="Senior Product Designer based in Berlin with 8 years of experience across mobile, enterprise, automotive and fintech.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
@@ -70,7 +70,7 @@ img { display: block; max-width: 100% }
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border);
 }
-.nav-logo { font-family: var(--ff-display); font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -.01em; display: flex; align-items: center; gap: 10px; justify-self: start }
+.nav-logo { font-family: var(--ff); font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -.01em; display: flex; align-items: center; gap: 10px; justify-self: start }
 .nav-role { font-size: 13px; font-weight: 400; color: rgba(255,255,255,.45); letter-spacing: 0 }
 @media (max-width: 640px) { .nav-role { display: none } }
 .nav-links { display: flex; list-style: none; gap: 28px; align-items: center; justify-self: center }
@@ -174,7 +174,7 @@ footer { padding: 32px var(--pad) }
   flex-wrap: wrap; gap: 14px;
   border-top: 1px solid var(--border); padding-top: 28px;
 }
-.ft-logo { font-family: var(--ff-display); font-size: 16px; font-weight: 700; color: var(--white) }
+.ft-logo { font-family: var(--ff); font-size: 16px; font-weight: 700; color: var(--white) }
 .ft-loc {
   font-family: var(--ff-m); font-size: 10px; letter-spacing: .08em;
   text-transform: uppercase; color: var(--mid);
@@ -316,9 +316,9 @@ document.querySelectorAll('.rv').forEach(el => obs.observe(el));
     sample.width = W; sample.height = H;
     var sctx = sample.getContext('2d');
 
-    var cropW = img.height * (W / H) * 0.68;
+    var cropW = Math.min(img.height * (W / H) * 0.68, img.width);
     var cx = img.width / 2;
-    var sx = Math.max(0, cx - cropW / 2);
+    var sx = Math.max(0, Math.min(cx - cropW / 2, img.width - cropW));
     var sy = 0;
     var sh = img.height * 0.56;
     var sw = cropW;

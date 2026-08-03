@@ -1,5 +1,5 @@
 /*
- * interactions.css — Pooja Kurade Portfolio
+ * interactions.css - Pooja Kurade Portfolio
  * Additive micro-interaction polish ONLY.
  * - Uses existing class names and CSS custom properties (--teal, --ease, etc.)
  * - transform/opacity/box-shadow only → no layout thrash, no reflow
@@ -11,7 +11,7 @@
 :root { --mi-ease: var(--ease, cubic-bezier(0.4,0,0.2,1)); }
 
 /* ─────────────────────────────────────────────
-   1 · BUTTONS & CTAs — hover lift + press feedback
+   1 · BUTTONS & CTAs: hover lift + press feedback
 ───────────────────────────────────────────── */
 .nav-cv, .profile-cta, .ds-proto-btn, .cs-back, .about-back, .htag, .sk {
   transition: background .2s var(--mi-ease), color .2s var(--mi-ease),
@@ -25,11 +25,11 @@
 .nav-cv:active, .profile-cta:active, .ds-proto-btn:active { transform: translateY(1px) scale(.985); }
 .cs-back:active, .about-back:active { transform: translateX(-2px); }
 
-/* Chips / skill pills — gentle nudge on hover (they're interactive-feeling) */
+/* Chips / skill pills: gentle nudge on hover (they're interactive-feeling) */
 .htag:hover, .sk:hover, .pill:hover { transform: translateY(-1px); }
 
 /* ─────────────────────────────────────────────
-   2 · NAV LINKS — underline-grow
+   2 · NAV LINKS: underline-grow
 ───────────────────────────────────────────── */
 .nav-links a { position: relative; }
 .nav-links a::after {
@@ -42,7 +42,7 @@
 .nav-links a.cur-page::after { transform: scaleX(1); }
 
 /* ─────────────────────────────────────────────
-   3 · CARDS — subtle lift + soft shadow on hover
+   3 · CARDS: subtle lift + soft shadow on hover
 ───────────────────────────────────────────── */
 .service-card, .cs-insight-card, .persona-card, .ref-item, .mgr-card,
 .flow-step, .sg-type-block, .vision-col, .outcome-card, .ai-card, .prompt-card {
@@ -58,7 +58,7 @@
 .prompt-card:hover  { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(8,24,18,.28); }
 
 /* ─────────────────────────────────────────────
-   4 · IMAGES — smooth zoom inside their (overflow-hidden) container
+   4 · IMAGES: smooth zoom inside their (overflow-hidden) container
 ───────────────────────────────────────────── */
 .hero-photo, .profile-photo-col, .about-split-photo,
 .cs-hero-img, .design-screen-card, .fd-viewport, .fd-viewport-feat { overflow: hidden; }
@@ -73,11 +73,11 @@
 .cs-hero-img:hover img, .design-screen-card:hover img,
 .fd-viewport:hover img, .fd-viewport-feat:hover img { transform: scale(1.045); }
 
-/* Project list rows — arrow already animates; add a soft trailing glow */
+/* Project list rows: arrow already animates; add a soft trailing glow */
 .proj-item { transition: background .3s var(--mi-ease); }
 
 /* ─────────────────────────────────────────────
-   5 · STICKY NAV — fade a stronger shadow in on scroll
+   5 · STICKY NAV: fade a stronger shadow in on scroll
 ───────────────────────────────────────────── */
 nav, #nav { transition: box-shadow .3s var(--mi-ease), background .3s var(--mi-ease); }
 nav.scrolled, #nav.scrolled { box-shadow: 0 6px 26px rgba(0,0,0,.22); }
@@ -103,7 +103,7 @@ nav.scrolled, #nav.scrolled { box-shadow: 0 6px 26px rgba(0,0,0,.22); }
 @media (hover:none) { .back-to-top { width: 44px; height: 44px; } }
 
 /* ─────────────────────────────────────────────
-   7 · TOOLTIP (data-tooltip) — used by back-to-top; opt-in elsewhere
+   7 · TOOLTIP (data-tooltip): used by back-to-top; opt-in elsewhere
 ───────────────────────────────────────────── */
 [data-tooltip] { position: relative; }
 [data-tooltip]::before {
@@ -118,7 +118,7 @@ nav.scrolled, #nav.scrolled { box-shadow: 0 6px 26px rgba(0,0,0,.22); }
 [data-tooltip]:hover::before { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ─────────────────────────────────────────────
-   8 · FORM interaction states (styles ready for any future contact form —
+   8 · FORM interaction states (styles ready for any future contact form,
        adds nothing visible until a form exists on the page)
 ───────────────────────────────────────────── */
 .form-field input, .form-field textarea, .form-field select {
@@ -142,7 +142,7 @@ button.is-success { background: #16A34A !important; }
 @keyframes mi-spin { to { transform: rotate(360deg); } }
 
 /* ─────────────────────────────────────────────
-   9 · REDUCED MOTION — respect the user's OS setting
+   9 · REDUCED MOTION: respect the user's OS setting
 ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

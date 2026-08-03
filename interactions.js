@@ -1,5 +1,5 @@
 /*
- * interactions.js — Pooja Kurade Portfolio
+ * interactions.js - Pooja Kurade Portfolio
  * Minimal JS for interactions CSS can't do alone:
  *   - Toggle a "scrolled" state on the sticky nav (via IntersectionObserver, no scroll listener)
  *   - Inject an accessible back-to-top button that appears once you scroll down
