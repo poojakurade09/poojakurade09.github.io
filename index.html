@@ -226,6 +226,7 @@ img { display: block; max-width: 100% }
   border-radius: 0;
   position: relative;
   overflow: hidden; background: var(--dark);
+  background-size: cover; background-position: center 15%;
   opacity: 0; animation: up .55s var(--ease) .35s forwards;
 }
 .hero-photo canvas {
@@ -527,6 +528,28 @@ img { display: block; max-width: 100% }
   top: 50%; transform: translateY(-50%);
 }
 
+/* ── CLOSING CTA ── */
+#cta { padding: 96px var(--pad); border-top: 1px solid var(--border); text-align: center }
+.cta-headline {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(44px, 8vw, 92px); letter-spacing: -.02em; color: #fdfdfd; line-height: 1;
+  margin-bottom: 40px;
+}
+.cta-say {
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 14px;
+}
+.cta-email {
+  display: inline-block; font-family: var(--ff-display); font-size: clamp(20px, 3vw, 30px);
+  color: var(--teal); border-bottom: 1px solid transparent; transition: opacity .2s, border-color .2s;
+}
+.cta-email-wrap { margin-bottom: 26px }
+.cta-email:hover { opacity: .82; border-color: var(--teal) }
+.cta-status {
+  font-family: var(--ff-m); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--yellow); display: inline-flex; align-items: center; gap: 8px;
+}
+
 /* ── FOOTER ── */
 footer { padding: 32px var(--pad) }
 .ft {
@@ -788,13 +811,20 @@ footer { padding: 32px var(--pad) }
   </div>
 </section>
 
+<!-- CLOSING CTA -->
+<section id="cta">
+  <h2 class="cta-headline rv">Let's Collaborate!</h2>
+  <div class="cta-say rv">Say hello</div>
+  <div class="cta-email-wrap rv"><a href="mailto:pooja.kurade@gmail.com" class="cta-email">pooja.kurade@gmail.com</a></div>
+  <div class="cta-status rv"><span class="nav-dot"></span>Available for work in Germany (open to relocation)</div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="ft">
     <span class="ft-logo">Pooja Kurade.</span>
     <span class="ft-loc"><span class="nav-dot"></span>Berlin, Germany</span>
     <div class="ft-links">
-      <a href="mailto:pooja.kurade@gmail.com">Email</a>
       <a href="https://linkedin.com/in/pooja-kurade" target="_blank">LinkedIn</a>
     </div>
   </div>
@@ -847,52 +877,26 @@ updateNav();
   if (!canvas) return;
   var img = new Image();
   img.onload = function(){ render(img); };
-  img.onerror = function(){ canvas.parentElement.style.background = 'var(--teal)'; };
+  img.onerror = function(){ canvas.parentElement.style.backgroundImage = "url('images/pooja-photo-edited.jpg')"; };
   img.src = 'images/pooja-photo-edited.jpg';
 
   function render(img){
     var box = canvas.parentElement.getBoundingClientRect();
     var W = Math.round(box.width), H = Math.round(box.height);
-    if (!W || !H) return;
+    if (!W || !H) { canvas.parentElement.style.backgroundImage = "url('images/pooja-photo-edited.jpg')"; return; }
     var dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
     var ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
 
-    var sample = document.createElement('canvas');
-    sample.width = W; sample.height = H;
-    var sctx = sample.getContext('2d');
-
-    var cropW = img.height * (W / H) * 0.62;
+    var cropW = Math.min(img.height * (W / H) * 0.62, img.width);
     var cx = img.width / 2;
-    var sx = Math.max(0, cx - cropW / 2);
+    var sx = Math.max(0, Math.min(cx - cropW / 2, img.width - cropW));
     var sy = img.height * 0.02;
     var sh = img.height * 0.60;
     var sw = cropW;
-    sctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
-
-    var data;
-    try { data = sctx.getImageData(0, 0, W, H).data; }
-    catch (e) { canvas.parentElement.style.background = 'var(--teal)'; return; }
-
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--dark') || '#081812';
-    ctx.fillRect(0, 0, W, H);
-
-    var cell = 5;
-    for (var y = 0; y < H; y += cell) {
-      for (var x = 0; x < W; x += cell) {
-        var i = (y * W + x) * 4;
-        var lum = (data[i] * 0.3 + data[i+1] * 0.59 + data[i+2] * 0.11) / 255;
-        var inv = Math.pow(1 - lum, 1.15);
-        var r = (cell / 2) * inv * 0.95;
-        if (r < 0.5) continue;
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(253,253,253,' + (0.4 + inv * 0.6).toFixed(2) + ')';
-        ctx.arc(x + cell/2, y + cell/2, r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
   }
   window.addEventListener('resize', function(){ if (img.complete && img.naturalWidth) render(img); });
 })();

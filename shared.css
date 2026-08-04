@@ -362,4 +362,28 @@ h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 14px;
 .cs-wf-screen:nth-child(6){transition-delay:.35s}
 .cs-wf-screen img { width: 100%; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
 .cs-wf-label { font-family: var(--ff-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); text-align: center; }
+
+/* ─────────────────────────────────────────────
+   CLOSING CTA
+───────────────────────────────────────────── */
+#cta { padding: 96px var(--pad); border-top: 1px solid var(--border); text-align: center; background: #fff; }
+.cta-headline {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(44px, 8vw, 92px); letter-spacing: -.02em; color: var(--dark); line-height: 1;
+  margin-bottom: 40px;
+}
+.cta-say {
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 14px;
+}
+.cta-email {
+  display: inline-block; font-family: var(--ff-display); font-size: clamp(20px, 3vw, 30px);
+  color: var(--teal); border-bottom: 1px solid transparent; transition: opacity .2s, border-color .2s;
+}
+.cta-email-wrap { margin-bottom: 26px }
+.cta-email:hover { opacity: .82; border-color: var(--teal) }
+.cta-status {
+  font-family: var(--ff-m); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--yellow); display: inline-flex; align-items: center; gap: 8px;
+}
 @media(max-width: 700px) { .cs-wf-grid { grid-template-columns: repeat(2, 1fr); } }

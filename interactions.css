@@ -60,18 +60,20 @@
 /* ─────────────────────────────────────────────
    4 · IMAGES: smooth zoom inside their (overflow-hidden) container
 ───────────────────────────────────────────── */
-.hero-photo, .profile-photo-col, .about-split-photo,
+.hero-photo, .profile-photo-col, .about-split-photo, .ab-photo,
 .cs-hero-img, .design-screen-card, .fd-viewport, .fd-viewport-feat { overflow: hidden; }
 
 .hero-photo img, .profile-photo-col > img, .about-split-photo img,
 .cs-hero-img img, .design-screen-card img,
-.fd-viewport img, .fd-viewport-feat img {
+.fd-viewport img, .fd-viewport-feat img,
+.ab-photo img, .ab-photo canvas {
   transition: transform .4s var(--mi-ease);
   will-change: transform;
 }
 .hero-photo:hover img, .profile-photo-col:hover > img, .about-split-photo:hover img,
 .cs-hero-img:hover img, .design-screen-card:hover img,
-.fd-viewport:hover img, .fd-viewport-feat:hover img { transform: scale(1.045); }
+.fd-viewport:hover img, .fd-viewport-feat:hover img,
+.ab-photo:hover img, .ab-photo:hover canvas { transform: scale(1.06); }
 
 /* Project list rows: arrow already animates; add a soft trailing glow */
 .proj-item { transition: background .3s var(--mi-ease); }
@@ -154,6 +156,7 @@ button.is-success { background: #16A34A !important; }
   .hero-photo:hover img, .profile-photo-col:hover > img, .about-split-photo:hover img,
   .cs-hero-img:hover img, .design-screen-card:hover img,
   .fd-viewport:hover img, .fd-viewport-feat:hover img,
+  .ab-photo:hover img, .ab-photo:hover canvas,
   .service-card:hover, .cs-insight-card:hover, .persona-card:hover, .ref-item:hover,
   .mgr-card:hover, .flow-step:hover, .sg-type-block:hover, .vision-col:hover,
   .outcome-card:hover, .prompt-card:hover, .ai-card:hover,

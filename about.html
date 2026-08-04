@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About | Pooja Kurade, Senior Product Designer</title>
-<meta name="description" content="Senior Product Designer based in Berlin with 8 years of experience across mobile, enterprise, automotive and fintech.">
+<meta name="description" content="The story behind Pooja Kurade's path into UX design, from Kolhapur to Berlin, how she works, and how to get in touch.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
@@ -48,6 +48,9 @@ body {
 }
 a { color: inherit; text-decoration: none }
 img { display: block; max-width: 100% }
+::selection { background: var(--teal); color: #06140f }
+
+@keyframes up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
 #cur {
   width: 8px; height: 8px; background: #fff;
@@ -108,25 +111,6 @@ img { display: block; max-width: 100% }
 #mob a:hover { color: var(--teal) }
 .mob-x { position: absolute; top: 18px; right: var(--pad); font-size: 22px; background: none; border: none; cursor: none; color: var(--white) }
 
-/* ── PROFILE / NARRATIVE (matches Figma layout) ── */
-#profile { padding-top: 58px }
-.about-split {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 64px;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 clamp(24px, 6vw, 96px);
-  min-height: calc(100vh - 58px);
-}
-.about-split-text {
-  flex: 1;
-  min-width: 0;
-  padding: 130px 0 60px 0;
-}
-.about-split-text-inner { max-width: 480px }
 .about-back {
   position: absolute; top: 24px; left: clamp(24px, 6vw, 96px); z-index: 5;
   display: inline-flex; align-items: center; gap: 6px;
@@ -134,36 +118,199 @@ img { display: block; max-width: 100% }
   color: #fff; transition: color .2s;
 }
 .about-back:hover { color: #fff; opacity: .78 }
-.narrative-heading {
-  font-family: var(--ff-display);
-  font-size: clamp(30px, 3.8vw, 40px); font-weight: 500;
-  color: #fdfdfd; letter-spacing: -.02em; line-height: 1.2;
-  margin-bottom: 32px; max-width: 20ch;
+
+/* ── HERO / INTRO ── */
+#about-hero {
+  position: relative;
+  padding: 140px var(--pad) 64px;
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
 }
-.narrative-p { font-size: 16px; color: #fdfdfd; line-height: 1.8; margin-bottom: 20px }
-.about-split-photo {
-  position: relative; overflow: visible; background: transparent;
-  flex-shrink: 0;
-  width: 500px; aspect-ratio: 483 / 723;
-  margin-top: 60px;
+.ab-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 22px;
+  opacity: 0; animation: up .45s var(--ease) .1s forwards;
 }
-.about-split-photo canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
-  /* Feather all four edges so the photo dissolves into the page background */
-  -webkit-mask-image:
-    linear-gradient(to right,  transparent 0%, #000 20%, #000 80%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
-          mask-image:
-    linear-gradient(to right,  transparent 0%, #000 20%, #000 80%, transparent 100%),
-    linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
-  -webkit-mask-composite: source-in;
-          mask-composite: intersect;
+.ab-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); display: inline-block }
+.ab-headline {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(22px, 5.6vw, 76px); line-height: 1.06; letter-spacing: -.02em;
+  color: #fdfdfd; white-space: nowrap; margin: 0 auto 26px;
+  opacity: 0; animation: up .6s var(--ease) .2s forwards;
 }
-@media(max-width: 900px) {
-  .about-split { flex-direction: column; gap: 0; min-height: 0; padding: 0 clamp(24px, 6vw, 96px) }
-  .about-split-photo { width: 100%; aspect-ratio: auto; min-height: 320px; margin-top: 24px }
-  .about-split-text { padding-top: 48px; order: 1 }
-  .about-split-photo { order: 0 }
+.ab-subline {
+  max-width: 560px; margin: 0 auto 52px;
+  opacity: 0; animation: up .55s var(--ease) .32s forwards;
+}
+.ab-subline p { font-size: clamp(14px, 1.6vw, 17px); color: rgba(255,255,255,.55); line-height: 1.75; font-weight: 400 }
+.ab-photo-wrap {
+  position: relative; width: 168px; margin: 0 auto 44px;
+}
+.ab-photo {
+  position: relative; width: 100%; aspect-ratio: 1 / 1; border-radius: 50%;
+  overflow: hidden; border: 3px solid var(--teal);
+  box-shadow: 0 0 0 6px rgba(47,190,142,.14), 0 12px 30px rgba(0,0,0,.35);
+  background-size: cover; background-position: center 15%;
+  opacity: 0; animation: up .6s var(--ease) .42s forwards;
+}
+.ab-photo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block }
+.ab-badge {
+  position: absolute; z-index: 2; opacity: 0;
+  font-family: var(--ff-m); font-size: 10.5px; font-weight: 600;
+  padding: 6px 14px; border-radius: 999px; white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+.ab-badge::after {
+  content: ''; position: absolute; width: 34px; height: 1px;
+  background: currentColor; opacity: .55; z-index: -1;
+}
+.ab-badge--hi {
+  top: -20px; left: 50%; background: var(--teal); color: #06140f;
+  animation: badgeInCenter .5s var(--ease) .78s forwards;
+}
+.ab-badge--hi::after { top: 100%; left: 50%; height: 16px; width: 1px; transform: translateX(-50%) rotate(8deg); color: var(--teal) }
+.ab-badge--a {
+  top: 6%; left: -64px; background: var(--yellow); color: var(--dark);
+  animation: badgeInLeft .5s var(--ease) .9s forwards;
+}
+.ab-badge--a::after { top: 50%; left: 100%; transform: rotate(18deg); transform-origin: left center; color: var(--yellow) }
+.ab-badge--b {
+  bottom: 14%; right: -58px; background: #fdfdfd; color: var(--dark);
+  animation: badgeInRight .5s var(--ease) 1.02s forwards;
+}
+.ab-badge--b::after { top: 50%; right: 100%; transform: rotate(-14deg); transform-origin: right center; color: #fdfdfd }
+.ab-badge--c {
+  bottom: -34px; left: 50%; background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.28); color: #fdfdfd;
+  animation: badgeInCenter2 .5s var(--ease) 1.14s forwards;
+}
+.ab-badge--c::after { bottom: 100%; left: 50%; height: 18px; width: 1px; transform: translateX(-50%) rotate(-6deg); color: rgba(255,255,255,.4) }
+@keyframes badgeInCenter  { from{opacity:0; transform:translateX(-50%) translateY(8px) scale(.9) rotate(-3deg)} to{opacity:1; transform:translateX(-50%) translateY(0) scale(1) rotate(-3deg)} }
+@keyframes badgeInCenter2 { from{opacity:0; transform:translateX(-50%) translateY(8px) scale(.9) rotate(2deg)}  to{opacity:1; transform:translateX(-50%) translateY(0) scale(1) rotate(2deg)} }
+@keyframes badgeInLeft    { from{opacity:0; transform:translateY(8px) scale(.9) rotate(-4deg)} to{opacity:1; transform:translateY(0) scale(1) rotate(-4deg)} }
+@keyframes badgeInRight   { from{opacity:0; transform:translateY(8px) scale(.9) rotate(3deg)}  to{opacity:1; transform:translateY(0) scale(1) rotate(3deg)} }
+@media (max-width: 640px) {
+  .ab-photo-wrap { width: 140px }
+  .ab-badge { font-size: 9px; padding: 5px 11px }
+  .ab-badge::after { display: none }
+  .ab-badge--a { left: -14px; top: 2% }
+  .ab-badge--b { right: -14px; bottom: 10% }
+  .ab-badge--c { bottom: -30px }
+}
+.ab-scroll {
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0; animation: up .5s var(--ease) .55s forwards;
+}
+.ab-scroll::after {
+  content: ''; width: 1px; height: 30px;
+  background: linear-gradient(var(--teal), transparent);
+  animation: scrollLine 1.8s ease infinite;
+}
+@keyframes scrollLine {
+  0%   { opacity: 0; transform: scaleY(.4); transform-origin: top }
+  50%  { opacity: 1; transform: scaleY(1);  transform-origin: top }
+  100% { opacity: 0; transform: scaleY(.4); transform-origin: bottom }
+}
+/* ── SHARED SECTION HEADING (Journey / Process) ── */
+.sec-head { text-align: center; max-width: 640px; margin: 0 auto 56px }
+.sec-eyebrow {
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 16px;
+}
+.sec-title {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(28px, 4vw, 44px); letter-spacing: -.02em; color: #fdfdfd;
+}
+.sec-desc { margin-top: 18px; font-size: 16px; line-height: 1.8; color: var(--mid) }
+
+/* ── JOURNEY ── */
+#journey { padding: 96px var(--pad); border-top: 1px solid var(--border) }
+.journey-list { position: relative; max-width: var(--max-w); margin: 0 auto }
+.journey-list::before {
+  content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: var(--border); transform: translateX(-50%);
+}
+.journey-progress {
+  position: absolute; left: 50%; top: 0; width: 1px; height: 0;
+  background: linear-gradient(var(--teal), var(--teal) 85%, transparent);
+  transform: translateX(-50%); z-index: 1;
+  box-shadow: 0 0 8px rgba(47,190,142,.6);
+}
+.journey-item {
+  position: relative; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0 72px; padding: 44px 0;
+}
+.journey-item:first-child { padding-top: 0 }
+.journey-item:last-child { padding-bottom: 0 }
+.journey-dot {
+  position: absolute; left: 50%; top: 6px; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--teal); transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 6px var(--bg);
+}
+.journey-content { max-width: 420px }
+.journey-item:nth-child(odd)  .journey-content { grid-column: 2 }
+.journey-item:nth-child(even) .journey-content { grid-column: 1; margin-left: auto }
+.journey-num {
+  display: block; font-family: var(--ff-m); font-size: 11px; letter-spacing: .1em;
+  color: var(--teal); margin-bottom: 12px;
+}
+.journey-title {
+  font-family: var(--ff-display); font-weight: 600; font-size: 21px;
+  text-transform: uppercase; letter-spacing: -.005em;
+  color: var(--white); margin-bottom: 14px;
+}
+.journey-p { font-size: 15px; line-height: 1.8; color: var(--mid) }
+@media (max-width: 820px) {
+  .journey-list::before, .journey-progress { left: 6px }
+  .journey-item { grid-template-columns: 1fr; padding: 0 0 48px 34px }
+  .journey-item:last-child { padding-bottom: 0 }
+  .journey-item .journey-content { grid-column: 1 !important; margin-left: 0; max-width: none }
+  .journey-dot { left: 6px; top: 6px }
+}
+
+/* ── PROCESS ── */
+#process { padding: 96px var(--pad); border-top: 1px solid var(--border); background: var(--bg-alt) }
+.process-intro { max-width: 560px; margin: 0 auto 56px; text-align: center; font-size: 16px; line-height: 1.8; color: var(--mid) }
+.process-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden; max-width: var(--max-w); margin: 0 auto;
+}
+@media (max-width: 760px) { .process-grid { grid-template-columns: 1fr } }
+.process-card { background: var(--bg-raise); padding: 32px 30px }
+.process-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--teal-l); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.process-icon svg { width: 20px; height: 20px }
+.process-title { font-family: var(--ff-display); font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 12px }
+.process-desc { font-size: 14px; line-height: 1.7; color: var(--mid) }
+
+/* ── CLOSING CTA ── */
+#cta { padding: 96px var(--pad); border-top: 1px solid var(--border); text-align: center }
+.cta-headline {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(44px, 8vw, 92px); letter-spacing: -.02em; color: #fdfdfd; line-height: 1;
+  margin-bottom: 40px;
+}
+.cta-say {
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 14px;
+}
+.cta-email {
+  display: inline-block; font-family: var(--ff-display); font-size: clamp(20px, 3vw, 30px);
+  color: var(--teal); border-bottom: 1px solid transparent; transition: opacity .2s, border-color .2s;
+}
+.cta-email-wrap { margin-bottom: 26px }
+.cta-email:hover { opacity: .82; border-color: var(--teal) }
+.cta-status {
+  font-family: var(--ff-m); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--yellow); display: inline-flex; align-items: center; gap: 8px;
 }
 
 /* ── FOOTER ── */
@@ -183,6 +330,11 @@ footer { padding: 32px var(--pad) }
 .ft-links { display: flex; gap: 24px }
 .ft-links a { font-size: 14px; font-weight: 500; color: var(--mid); transition: color .2s }
 .ft-links a:hover { color: var(--teal) }
+.ft-copy {
+  max-width: var(--max-w); margin: 18px auto 0;
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .05em;
+  color: var(--mid-dim); text-align: center;
+}
 
 .rv { opacity: 0; transform: translateY(18px); transition: opacity .5s var(--ease), transform .5s var(--ease) }
 .rv.in { opacity: 1; transform: translateY(0) }
@@ -223,35 +375,128 @@ footer { padding: 32px var(--pad) }
   </div>
 </nav>
 
-<!-- PROFILE / NARRATIVE (two-column split) -->
-<section id="profile">
-  <div class="about-split rv">
-    <div class="about-split-text">
-      <div class="about-split-text-inner">
-        <a href="index.html" class="about-back">← Back home</a>
-        <h1 class="narrative-heading">It's me, Pooja - and it's nice to see you here!</h1>
+<!-- HERO / INTRO -->
+<section id="about-hero">
+  <a href="index.html" class="about-back">← Back home</a>
 
-        <p class="narrative-p">
-          I'm a Senior Product Designer originally from India, now based in Berlin. My path here wasn't traditional: I taught myself UX from the ground up, later formalising it with a CUA certification from Human Factors International.
-        </p>
-        <p class="narrative-p">
-          I'm a curious creative at heart, always exploring new ideas and possibilities, balanced with a grounded, practical side that cares about what actually works and what it takes to get there.
-        </p>
-        <p class="narrative-p">
-          Over 8+ years, I've worked across mobile, enterprise, automotive and fintech, bringing both visual craft and structured UX thinking to every project I take on.
-        </p>
-        <p class="narrative-p">
-          What I care about most is building products that are clear, useful, and genuinely easy to live with, ones that hold up in the real world, not just in a mockup.
-        </p>
-        <p class="narrative-p">
-          Outside of work, I'm just as curious, always planning the next trip or trying something new in the kitchen.
-        </p>
-      </div>
-    </div>
-    <div class="about-split-photo">
+  <div class="ab-eyebrow"><span class="dot"></span>About Me</div>
+  <h1 class="ab-headline">Hey! Thanks for stopping by</h1>
+  <div class="ab-subline">
+    <p>Designing with Empathy, Building with Intention</p>
+    <p>Turning Everyday Problems into Meaningful Experiences</p>
+  </div>
+
+  <div class="ab-photo-wrap">
+    <div class="ab-photo">
       <canvas id="about-halftone" role="img" aria-label="Portrait of Pooja Kurade"></canvas>
     </div>
+    <span class="ab-badge ab-badge--hi">Hi! 👋</span>
+    <span class="ab-badge ab-badge--a">Product Designer</span>
+    <span class="ab-badge ab-badge--b">AI-Augmented Design</span>
+    <span class="ab-badge ab-badge--c">Design Systems</span>
   </div>
+
+  <div class="ab-scroll">Scroll</div>
+</section>
+
+<!-- MY JOURNEY TO DESIGN -->
+<section id="journey">
+  <div class="sec-head rv">
+    <div class="sec-eyebrow">The Story</div>
+    <h2 class="sec-title">My Journey to Design</h2>
+  </div>
+
+  <div class="journey-list">
+    <div class="journey-progress" id="journeyProgress"></div>
+    <div class="journey-item rv">
+      <span class="journey-dot"></span>
+      <div class="journey-content">
+        <span class="journey-num">01</span>
+        <h3 class="journey-title">Roots in Kolhapur, India</h3>
+        <p class="journey-p">I was born in Kolhapur, a small city in Maharashtra, India, where people take pride in doing things by hand. I didn't grow up around design studios, but around craft and community, and that instinct has never left me.</p>
+      </div>
+    </div>
+
+    <div class="journey-item rv">
+      <span class="journey-dot"></span>
+      <div class="journey-content">
+        <span class="journey-num">02</span>
+        <h3 class="journey-title">Chasing the Image</h3>
+        <p class="journey-p">After my 10th, I left for Mumbai to study animation, drawn to how a single frame could hold emotion. That leap taught me to chase what I love, and to care about <em>how</em> something makes people feel, not just how it looks.</p>
+      </div>
+    </div>
+
+    <div class="journey-item rv">
+      <span class="journey-dot"></span>
+      <div class="journey-content">
+        <span class="journey-num">03</span>
+        <h3 class="journey-title">Learning Widely</h3>
+        <p class="journey-p">I've never liked staying in one lane. Alongside my creative training, I completed a degree in Business Economics and a Master's in English, in parallel. Looking back, I was quietly assembling the exact toolkit a designer needs: art, logic, and empathy.</p>
+      </div>
+    </div>
+
+    <div class="journey-item rv">
+      <span class="journey-dot"></span>
+      <div class="journey-content">
+        <span class="journey-num">04</span>
+        <h3 class="journey-title">Four Years in Post-Production</h3>
+        <p class="journey-p">I spent four years in post-production and loved the craft, but felt my growth slowing down. There was a whole side of making I hadn't touched yet. That restlessness was uncomfortable, but honest, and it pushed me toward what came next.</p>
+      </div>
+    </div>
+
+    <div class="journey-item rv">
+      <span class="journey-dot"></span>
+      <div class="journey-content">
+        <span class="journey-num">05</span>
+        <h3 class="journey-title">Finding UX Through People</h3>
+        <p class="journey-p">With almost no UX courses around me, I found one online: the Interaction Design Foundation. Everything clicked there, understanding why people do what they do. UX wasn't a career switch so much as a homecoming.</p>
+      </div>
+    </div>
+
+    <div class="journey-item rv">
+      <span class="journey-dot"></span>
+      <div class="journey-content">
+        <span class="journey-num">06</span>
+        <h3 class="journey-title">Where I Am Now</h3>
+        <p class="journey-p">In 2024, I earned my Certified User Analyst (CUA) certification from HFI. Today I'm a UX designer shaped by animation, economics, and hands-on craft. After everything this journey has taught me, I moved to Germany to push my career to its next level.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK / DESIGN PROCESS -->
+<section id="process">
+  <div class="sec-head rv">
+    <div class="sec-eyebrow">How I Work</div>
+    <h2 class="sec-title">Design Process</h2>
+  </div>
+  <p class="process-intro rv">Rooted in empathy, curiosity, and iteration, my process turns real user insights into clear, intuitive solutions that people enjoy using and that move the business forward.</p>
+
+  <div class="process-grid rv">
+    <div class="process-card">
+      <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.2" y2="16.2"></line></svg></div>
+      <div class="process-title">Discover</div>
+      <div class="process-desc">Every project starts with listening. Through research, audits, and honest conversation, I uncover the real goals, user needs, and friction points hiding beneath the surface.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></div>
+      <div class="process-title">Design</div>
+      <div class="process-desc">From insight to interface, I shape ideas into wireframes, prototypes, and polished visuals, making every decision with clarity, intention, and close collaboration.</div>
+    </div>
+    <div class="process-card">
+      <div class="process-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></div>
+      <div class="process-title">Deliver</div>
+      <div class="process-desc">Focused and launch-ready. I hand off scalable, well-documented design and stay close through build, so good ideas actually make it to real people.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section id="cta">
+  <h2 class="cta-headline rv">Let's Collaborate!</h2>
+  <div class="cta-say rv">Say hello</div>
+  <div class="cta-email-wrap rv"><a href="mailto:pooja.kurade@gmail.com" class="cta-email">pooja.kurade@gmail.com</a></div>
+  <div class="cta-status rv"><span class="nav-dot"></span>Available for work in Germany (open to relocation)</div>
 </section>
 
 <!-- FOOTER -->
@@ -260,10 +505,10 @@ footer { padding: 32px var(--pad) }
     <span class="ft-logo">Pooja Kurade.</span>
     <span class="ft-loc"><span class="nav-dot"></span>Berlin, Germany</span>
     <div class="ft-links">
-      <a href="mailto:pooja.kurade@gmail.com">Email</a>
       <a href="https://linkedin.com/in/pooja-kurade" target="_blank">LinkedIn</a>
     </div>
   </div>
+  <div class="ft-copy">©2026 Pooja Kurade. All rights reserved.</div>
 </footer>
 
 <script>
@@ -293,58 +538,53 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.06 });
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
+// Journey timeline: line grows as you scroll through it
+(function(){
+  var list = document.querySelector('.journey-list');
+  var line = document.getElementById('journeyProgress');
+  if (!list || !line) return;
+  var ticking = false;
+  function update(){
+    var rect = list.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var total = rect.height;
+    var scrolled = (vh * 0.75) - rect.top;
+    var pct = total > 0 ? Math.max(0, Math.min(1, scrolled / total)) : 0;
+    line.style.height = (pct * 100) + '%';
+    ticking = false;
+  }
+  document.addEventListener('scroll', function(){
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
 // Halftone portrait
 (function(){
   var canvas = document.getElementById('about-halftone');
   if (!canvas) return;
+  var PHOTO_SRC = 'images/about-photo-new.jpg';
   var img = new Image();
   img.onload = function(){ render(img); };
-  img.onerror = function(){ canvas.parentElement.style.background = 'var(--teal)'; };
-  img.src = 'images/about-photo.jpg';
+  img.onerror = function(){ canvas.parentElement.style.backgroundImage = "url('" + PHOTO_SRC + "')"; };
+  img.src = PHOTO_SRC;
 
   function render(img){
     var box = canvas.parentElement.getBoundingClientRect();
     var W = Math.round(box.width), H = Math.round(box.height);
-    if (!W || !H) return;
+    if (!W || !H) { canvas.parentElement.style.backgroundImage = "url('" + PHOTO_SRC + "')"; return; }
     var dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr; canvas.height = H * dpr;
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
     var ctx = canvas.getContext('2d');
     ctx.scale(dpr, dpr);
 
-    var sample = document.createElement('canvas');
-    sample.width = W; sample.height = H;
-    var sctx = sample.getContext('2d');
-
-    var cropW = Math.min(img.height * (W / H) * 0.68, img.width);
-    var cx = img.width / 2;
-    var sx = Math.max(0, Math.min(cx - cropW / 2, img.width - cropW));
-    var sy = 0;
-    var sh = img.height * 0.56;
-    var sw = cropW;
-    sctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
-
-    var data;
-    try { data = sctx.getImageData(0, 0, W, H).data; }
-    catch (e) { canvas.parentElement.style.background = 'var(--teal)'; return; }
-
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--dark') || '#081812';
-    ctx.fillRect(0, 0, W, H);
-
-    var cell = 5;
-    for (var y = 0; y < H; y += cell) {
-      for (var x = 0; x < W; x += cell) {
-        var i = (y * W + x) * 4;
-        var lum = (data[i] * 0.3 + data[i+1] * 0.59 + data[i+2] * 0.11) / 255;
-        var inv = Math.pow(1 - lum, 1.15);
-        var r = (cell / 2) * inv * 0.95;
-        if (r < 0.5) continue;
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(253,253,253,' + (0.4 + inv * 0.6).toFixed(2) + ')';
-        ctx.arc(x + cell/2, y + cell/2, r, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+    var sw = Math.min(img.width * 0.40, img.width, img.height);
+    var sh = sw;
+    var sx = Math.max(0, Math.min(img.width * 0.168, img.width - sw));
+    var sy = Math.max(0, Math.min(img.height * 0.195, img.height - sh));
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
   }
   window.addEventListener('resize', function(){ if (img.complete && img.naturalWidth) render(img); });
 })();
