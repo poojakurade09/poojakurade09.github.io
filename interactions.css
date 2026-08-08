@@ -29,17 +29,10 @@
 .htag:hover, .sk:hover, .pill:hover { transform: translateY(-1px); }
 
 /* ─────────────────────────────────────────────
-   2 · NAV LINKS: underline-grow
+   2 · NAV LINKS: color fade only (no underline)
 ───────────────────────────────────────────── */
-.nav-links a { position: relative; }
-.nav-links a::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -5px;
-  height: 1.5px; background: currentColor; border-radius: 2px;
-  transform: scaleX(0); transform-origin: left center;
-  transition: transform .22s var(--mi-ease);
-}
-.nav-links a:hover::after,
-.nav-links a.cur-page::after { transform: scaleX(1); }
+.nav-links a { transition: color .2s var(--mi-ease), opacity .2s var(--mi-ease); }
+.nav-links a:hover { opacity: .85 }
 
 /* ─────────────────────────────────────────────
    3 · CARDS: subtle lift + soft shadow on hover
@@ -161,7 +154,6 @@ button.is-success { background: #16A34A !important; }
   .mgr-card:hover, .flow-step:hover, .sg-type-block:hover, .vision-col:hover,
   .outcome-card:hover, .prompt-card:hover, .ai-card:hover,
   .back-to-top, .back-to-top.show, .back-to-top:hover { transform: none !important; }
-  .nav-links a::after { transition: none !important; }
   .back-to-top.show { opacity: 1; }
   button.is-loading::after { animation: none; }
 }
