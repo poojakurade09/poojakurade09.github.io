@@ -259,35 +259,31 @@ img { display: block; max-width: 100% }
 .hero-top a:hover { color: var(--teal); border-color: var(--teal) }
 
 .hero-grid {
-  display: flex; flex-direction: row; align-items: flex-end; gap: 64px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
 }
-.hero-grid-text { min-width: 0; flex: 1; padding-bottom: 8px }
-.hero-photo {
-  flex-shrink: 0; align-self: flex-end;
-  width: 420px;
-  aspect-ratio: 619 / 748;
-  border-radius: 0;
-  position: relative;
-  overflow: hidden; background: var(--dark);
-  background-size: cover; background-position: center 15%;
-  opacity: 0; animation: up .55s var(--ease) .35s forwards;
+.hero-grid-text { min-width: 0; max-width: 900px; display: flex; flex-direction: column; align-items: center }
+
+.hero-headline-plain .hw {
+  display: inline-block;
+  opacity: 0; filter: blur(6px); transform: translateY(28px);
+  animation: heroWordIn .85s var(--ease) forwards;
 }
-.hero-photo canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-}
-@media (max-width: 900px) {
-  .hero-grid { flex-direction: column; gap: 40px }
-  .hero-photo { order: -1; width: 60%; max-width: 300px; margin: 0 auto; align-self: center }
-}
+@keyframes heroWordIn { to { opacity: 1; filter: blur(0); transform: translateY(0) } }
+
 .hero-meta {
   display: grid; grid-template-columns: repeat(2, minmax(180px, 270px));
-  gap: 40px 60px; margin-top: 72px;
-  opacity: 0; animation: up .55s var(--ease) .35s forwards;
+  gap: 40px 60px; margin-top: 56px;
+  justify-content: center;
 }
 @media (max-width: 560px) {
   .hero-meta { grid-template-columns: 1fr 1fr; gap: 24px 32px }
 }
-.hero-meta-item { font-family: var(--ff) }
+.hero-meta-item {
+  font-family: var(--ff); text-align: center;
+  opacity: 0; transform: translateY(18px);
+  animation: up .6s var(--ease) forwards;
+}
 .hero-meta-item dt {
   font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
   color: rgba(255,255,255,.65); margin-bottom: 8px; font-weight: 400;
@@ -698,12 +694,12 @@ footer { padding: 32px var(--pad) }
     <div class="hero-grid">
       <div class="hero-grid-text">
         <!-- Headline -->
-        <h1 class="hero-headline hero-headline-plain">
+        <h1 class="hero-headline hero-headline-plain" id="heroHeadline">
           I turn complex problems into products that feel simple and easy to use.
         </h1>
 
         <!-- Meta list -->
-        <dl class="hero-meta">
+        <dl class="hero-meta" id="heroMeta">
           <div class="hero-meta-item">
             <dt>Experience</dt>
             <dd>8+ years · Senior Product Designer</dd>
@@ -721,11 +717,6 @@ footer { padding: 32px var(--pad) }
             <dd>Valid German Work Visa</dd>
           </div>
         </dl>
-      </div>
-
-      <!-- Photo (placeholder, swap with your headshot) -->
-      <div class="hero-photo">
-        <canvas id="hero-halftone" role="img" aria-label="Portrait of Pooja Kurade"></canvas>
       </div>
     </div>
   </div>
@@ -988,34 +979,23 @@ window.addEventListener('scroll', updateNav, { passive: true });
 window.addEventListener('resize', updateNav);
 updateNav();
 
-// Halftone portrait
+// Hero: split headline into words for a staggered blur-reveal on load
 (function(){
-  var canvas = document.getElementById('hero-halftone');
-  if (!canvas) return;
-  var img = new Image();
-  img.onload = function(){ render(img); };
-  img.onerror = function(){ canvas.parentElement.style.backgroundImage = "url('images/pooja-photo-edited.jpg')"; };
-  img.src = 'images/pooja-photo-edited.jpg';
+  var h1 = document.getElementById('heroHeadline');
+  if (!h1) return;
+  var words = h1.textContent.trim().split(/\s+/);
+  h1.innerHTML = words.map(function(w, i){
+    return '<span class="hw" style="animation-delay:' + (0.12 + i * 0.045).toFixed(3) + 's">' + w + '</span>';
+  }).join(' ');
 
-  function render(img){
-    var box = canvas.parentElement.getBoundingClientRect();
-    var W = Math.round(box.width), H = Math.round(box.height);
-    if (!W || !H) { canvas.parentElement.style.backgroundImage = "url('images/pooja-photo-edited.jpg')"; return; }
-    var dpr = window.devicePixelRatio || 1;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
-    var ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
-
-    var cropW = Math.min(img.height * (W / H) * 0.62, img.width);
-    var cx = img.width / 2;
-    var sx = Math.max(0, Math.min(cx - cropW / 2, img.width - cropW));
-    var sy = img.height * 0.02;
-    var sh = img.height * 0.60;
-    var sw = cropW;
-    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, W, H);
+  var headlineEnd = 0.12 + words.length * 0.045 + 0.85;
+  var meta = document.getElementById('heroMeta');
+  if (meta) {
+    var items = meta.querySelectorAll('.hero-meta-item');
+    items.forEach(function(el, i){
+      el.style.animationDelay = (headlineEnd + i * 0.1).toFixed(3) + 's';
+    });
   }
-  window.addEventListener('resize', function(){ if (img.complete && img.naturalWidth) render(img); });
 })();
 </script>
 <script src="interactions.js" defer></script>
