@@ -271,6 +271,19 @@ img { display: block; max-width: 100% }
 }
 @keyframes heroWordIn { to { opacity: 1; filter: blur(0); transform: translateY(0) } }
 
+.hero-typed-wrap {
+  display: inline-flex; align-items: baseline;
+  opacity: 0; animation: up .5s var(--ease) forwards;
+}
+.hero-typed { color: var(--teal); font-style: italic }
+.hero-cursor {
+  display: inline-block; width: 3px; height: .82em; margin-left: 4px;
+  background: var(--teal); border-radius: 1px;
+  animation: heroCaret .85s steps(1) infinite;
+  transform: translateY(.08em);
+}
+@keyframes heroCaret { 50% { opacity: 0 } }
+
 .hero-meta {
   display: grid; grid-template-columns: repeat(2, minmax(180px, 270px));
   gap: 40px 60px; margin-top: 56px;
@@ -694,8 +707,9 @@ footer { padding: 32px var(--pad) }
     <div class="hero-grid">
       <div class="hero-grid-text">
         <!-- Headline -->
-        <h1 class="hero-headline hero-headline-plain" id="heroHeadline">
-          I turn complex problems into products that feel simple and easy to use.
+        <h1 class="hero-headline hero-headline-plain">
+          <span id="heroPrefix">I turn complex problems into products that feel</span>
+          <span class="hero-typed-wrap"><span id="heroTyped"></span><span class="hero-cursor"></span></span>
         </h1>
 
         <!-- Meta list -->
@@ -979,23 +993,47 @@ window.addEventListener('scroll', updateNav, { passive: true });
 window.addEventListener('resize', updateNav);
 updateNav();
 
-// Hero: split headline into words for a staggered blur-reveal on load
+// Hero: split prefix into words for a staggered blur-reveal, then type the rotating adjective
 (function(){
-  var h1 = document.getElementById('heroHeadline');
-  if (!h1) return;
-  var words = h1.textContent.trim().split(/\s+/);
-  h1.innerHTML = words.map(function(w, i){
+  var prefix = document.getElementById('heroPrefix');
+  if (!prefix) return;
+  var words = prefix.textContent.trim().split(/\s+/);
+  prefix.innerHTML = words.map(function(w, i){
     return '<span class="hw" style="animation-delay:' + (0.12 + i * 0.045).toFixed(3) + 's">' + w + '</span>';
   }).join(' ');
 
   var headlineEnd = 0.12 + words.length * 0.045 + 0.85;
+
+  var typedWrap = document.querySelector('.hero-typed-wrap');
+  if (typedWrap) typedWrap.style.animationDelay = headlineEnd.toFixed(3) + 's';
+
   var meta = document.getElementById('heroMeta');
   if (meta) {
     var items = meta.querySelectorAll('.hero-meta-item');
     items.forEach(function(el, i){
-      el.style.animationDelay = (headlineEnd + i * 0.1).toFixed(3) + 's';
+      el.style.animationDelay = (headlineEnd + 0.3 + i * 0.1).toFixed(3) + 's';
     });
   }
+
+  var typedEl = document.getElementById('heroTyped');
+  if (!typedEl) return;
+  var adjectives = ['simple.', 'easy to use.', 'intuitive.', 'delightful.'];
+  var wi = 0, ci = 0, deleting = false;
+  function tick(){
+    var word = adjectives[wi];
+    if (!deleting) {
+      ci++;
+      typedEl.textContent = word.slice(0, ci);
+      if (ci === word.length) { deleting = true; setTimeout(tick, 1500); return; }
+      setTimeout(tick, 55);
+    } else {
+      ci--;
+      typedEl.textContent = word.slice(0, ci);
+      if (ci === 0) { deleting = false; wi = (wi + 1) % adjectives.length; setTimeout(tick, 350); return; }
+      setTimeout(tick, 28);
+    }
+  }
+  setTimeout(tick, headlineEnd * 1000 + 200);
 })();
 </script>
 <script src="interactions.js" defer></script>
