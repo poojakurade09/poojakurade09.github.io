@@ -41,30 +41,52 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--ff-display); }
    NAVIGATION
 ───────────────────────────────────────────── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-  padding: 0 var(--pad); height: 60px;
-  background: rgba(13,43,30,.92);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,.07);
+  position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 100;
+  width: calc(100% - 48px); max-width: 1240px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 10px 0 12px; height: 64px;
+  background: rgba(13,43,30,.85);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px;
+  box-shadow: 0 10px 34px rgba(0,0,0,.28);
   transition: background .3s;
 }
-.nav-logo { font-family: var(--ff); font-size: 17px; font-weight: 700; letter-spacing: -.01em; color: #fff; display: flex; align-items: center; gap: 10px; justify-self: start; }
-.nav-role { font-size: 13px; font-weight: 400; letter-spacing: 0; color: rgba(255,255,255,.45); }
-@media (max-width: 640px) { .nav-role { display: none; } }
-.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; justify-self: center; }
-.nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.55); transition: color .2s }
+.nav-logo { font-family: var(--ff); font-size: 16px; font-weight: 500; letter-spacing: -.01em; color: #fff; display: flex; align-items: center; gap: 10px; }
+.nav-role { display: none; }
+.nav-right-cluster { display: flex; align-items: center; gap: 28px; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 15px; font-weight: 400; color: rgba(255,255,255,.65); transition: color .2s }
 .nav-links a:hover { color: #fff }
-.nav-right { display: flex; align-items: center; gap: 22px; justify-self: end; }
-.nav-avail {
-  font-family: var(--ff-m); font-size: 10px; letter-spacing: .08em;
-  color: var(--yellow); display: flex; align-items: center; gap: 6px;
-}
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.nav-divider { width: 1px; height: 20px; background: rgba(255,255,255,.2); flex-shrink: 0; }
 .nav-dot {
   width: 6px; height: 6px; border-radius: 50%; background: var(--yellow);
   display: inline-block; animation: nav-pulse 2.5s ease infinite; flex-shrink: 0;
 }
 @keyframes nav-pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.nav-avatar {
+  position: relative;
+  width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+  flex-shrink: 0;
+}
+.nav-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center 18% }
+.nav-avatar::after {
+  content: ''; position: absolute; right: 0; bottom: 0;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #3DDC7A; border: 2px solid #0D2B1E;
+  animation: nav-pulse 2.5s ease infinite;
+}
+.nav-icons { display: flex; align-items: center; gap: 8px }
+.nav-icon-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; transition: transform .2s var(--ease), filter .2s;
+}
+.nav-icon-btn:hover { transform: translateY(-2px); filter: brightness(1.1) }
+.nav-icon-btn.linkedin { background: #0A66C2 }
+.nav-icon-btn.email { background: #E8503A }
+.nav-icon-btn svg { width: 16px; height: 16px }
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: none; padding: 4px;
@@ -82,8 +104,12 @@ nav {
 @media(max-width: 820px) {
   .nav-links { display: none }
   .nav-cv { display: none }
-  .nav-avail { display: none }
+  .nav-divider { display: none }
   .hamburger { display: flex }
+}
+@media(max-width: 480px) {
+  nav { top: 10px; width: calc(100% - 24px); padding: 0 6px 0 10px }
+  .nav-avatar { width: 38px; height: 38px }
 }
 .nav-cv {
   display: inline-flex; align-items: center; gap: 6px;
@@ -97,7 +123,7 @@ nav {
 /* ─────────────────────────────────────────────
    CASE STUDY HERO
 ───────────────────────────────────────────── */
-.cs-hero { margin-top: 60px; }
+.cs-hero { margin-top: 96px; }
 .cs-hero-img {
   width: 100%; height: 52vh; max-height: 520px; min-height: 280px;
   overflow: hidden; background: var(--dark); position: relative;
