@@ -264,12 +264,11 @@ img { display: block; max-width: 100% }
 }
 .hero-grid-text { min-width: 0; max-width: 900px; display: flex; flex-direction: column; align-items: center }
 
-.hero-headline-plain .hw {
+#heroPrefix {
   display: inline-block;
-  opacity: 0; filter: blur(6px); transform: translateY(28px);
-  animation: heroWordIn .85s var(--ease) forwards;
+  opacity: 0; transform: translateY(14px);
+  animation: up .7s var(--ease) .1s forwards;
 }
-@keyframes heroWordIn { to { opacity: 1; filter: blur(0); transform: translateY(0) } }
 
 .hero-typed-wrap {
   display: inline-flex; align-items: baseline;
@@ -993,16 +992,9 @@ window.addEventListener('scroll', updateNav, { passive: true });
 window.addEventListener('resize', updateNav);
 updateNav();
 
-// Hero: split prefix into words for a staggered blur-reveal, then type the rotating adjective
+// Hero: fade the headline in once (no per-word motion), then type the rotating adjective
 (function(){
-  var prefix = document.getElementById('heroPrefix');
-  if (!prefix) return;
-  var words = prefix.textContent.trim().split(/\s+/);
-  prefix.innerHTML = words.map(function(w, i){
-    return '<span class="hw" style="animation-delay:' + (0.12 + i * 0.045).toFixed(3) + 's">' + w + '</span>';
-  }).join(' ');
-
-  var headlineEnd = 0.12 + words.length * 0.045 + 0.85;
+  var headlineEnd = 0.85;
 
   var typedWrap = document.querySelector('.hero-typed-wrap');
   if (typedWrap) typedWrap.style.animationDelay = headlineEnd.toFixed(3) + 's';
