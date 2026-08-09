@@ -460,10 +460,13 @@ img { display: block; max-width: 100% }
 .service-card {
   background: var(--bg-alt); padding: 32px 28px;
 }
-.service-num {
-  font-family: var(--ff-m); font-size: 10px; color: var(--teal);
-  letter-spacing: .06em; margin-bottom: 18px; display: block;
+.service-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--teal-l); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
 }
+.service-icon svg { width: 20px; height: 20px }
 .service-title {
   font-family: var(--ff-display);
   font-size: 19px; font-weight: 600; color: var(--white);
@@ -843,32 +846,32 @@ footer { padding: 32px var(--pad) }
     <div class="services-label rv">What I do</div>
     <div class="services-grid rv">
       <div class="service-card">
-        <span class="service-num">01</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"></path><path d="m2 17 10 5 10-5"></path><path d="m2 12 10 5 10-5"></path></svg></div>
         <div class="service-title">Product design</div>
         <div class="service-desc">End-to-end UX and UI for digital products: research, flows, and interfaces that hold up once real users and edge cases show up.</div>
       </div>
       <div class="service-card">
-        <span class="service-num">02</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
         <div class="service-title">Design systems</div>
         <div class="service-desc">Scalable component libraries and documentation that keep teams consistent long after the initial handoff.</div>
       </div>
       <div class="service-card">
-        <span class="service-num">03</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></div>
         <div class="service-title">Enterprise &amp; fintech UX</div>
         <div class="service-desc">Dashboards, platforms, and workflows for complex, data-heavy products across enterprise, automotive, and fintech.</div>
       </div>
       <div class="service-card">
-        <span class="service-num">04</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"></rect><line x1="11" y1="18" x2="13" y2="18"></line></svg></div>
         <div class="service-title">Mobile &amp; app design</div>
         <div class="service-desc">Native and cross-platform app experiences designed for clarity first, polish second, never the other way around.</div>
       </div>
       <div class="service-card">
-        <span class="service-num">05</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.2" y2="16.2"></line></svg></div>
         <div class="service-title">UX research &amp; strategy</div>
         <div class="service-desc">Grounding decisions in real user behavior, not assumptions, from discovery through validation.</div>
       </div>
       <div class="service-card">
-        <span class="service-num">06</span>
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
         <div class="service-title">Design advisory</div>
         <div class="service-desc">UX audits and hands-on reviews for teams that need a sharp outside perspective on an existing product.</div>
       </div>
