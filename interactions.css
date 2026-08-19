@@ -37,12 +37,12 @@
 /* ─────────────────────────────────────────────
    3 · CARDS: subtle lift + soft shadow on hover
 ───────────────────────────────────────────── */
-.service-card, .cs-insight-card, .persona-card, .ref-item, .mgr-card,
+.cs-insight-card, .persona-card, .ref-item, .mgr-card,
 .flow-step, .sg-type-block, .vision-col, .outcome-card, .ai-card, .prompt-card {
   transition: transform .25s var(--mi-ease), box-shadow .25s var(--mi-ease);
   will-change: transform;
 }
-.service-card:hover, .cs-insight-card:hover, .persona-card:hover, .ref-item:hover,
+.cs-insight-card:hover, .persona-card:hover, .ref-item:hover,
 .mgr-card:hover, .flow-step:hover, .sg-type-block:hover, .vision-col:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0,0,0,.09);
@@ -150,7 +150,7 @@ button.is-success { background: #16A34A !important; }
   .cs-hero-img:hover img, .design-screen-card:hover img,
   .fd-viewport:hover img, .fd-viewport-feat:hover img,
   .ab-photo:hover img, .ab-photo:hover canvas,
-  .service-card:hover, .cs-insight-card:hover, .persona-card:hover, .ref-item:hover,
+  .cs-insight-card:hover, .persona-card:hover, .ref-item:hover,
   .mgr-card:hover, .flow-step:hover, .sg-type-block:hover, .vision-col:hover,
   .outcome-card:hover, .prompt-card:hover, .ai-card:hover,
   .back-to-top, .back-to-top.show, .back-to-top:hover { transform: none !important; }

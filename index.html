@@ -441,24 +441,23 @@ img { display: block; max-width: 100% }
 
 /* ── WHAT I DO ── */
 #services {
-  background: var(--bg);
+  background: var(--paper);
   padding: 96px var(--pad);
-  border-top: 1px solid var(--border);
 }
 .services-inner { max-width: var(--max-w); margin: 0 auto }
 .services-label {
   font-family: var(--ff-m); font-size: 10px; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--mid); margin-bottom: 40px;
+  text-transform: uppercase; color: var(--ink-mid); margin-bottom: 40px;
 }
 .services-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  gap: 1px; background: var(--border-l);
+  border: 1px solid var(--border-l); border-radius: 4px; overflow: hidden;
 }
 @media (max-width: 860px) { .services-grid { grid-template-columns: repeat(2, 1fr) } }
 @media (max-width: 560px) { .services-grid { grid-template-columns: 1fr } }
 .service-card {
-  background: var(--bg-alt); padding: 32px 28px;
+  background: var(--paper); padding: 32px 28px;
 }
 .service-icon {
   width: 44px; height: 44px; border-radius: 50%;
@@ -469,12 +468,31 @@ img { display: block; max-width: 100% }
 .service-icon svg { width: 20px; height: 20px }
 .service-title {
   font-family: var(--ff-display);
-  font-size: 19px; font-weight: 600; color: var(--white);
+  font-size: 19px; font-weight: 600; color: var(--ink);
   letter-spacing: -.01em; margin-bottom: 10px;
 }
 .service-desc {
-  font-size: 14px; line-height: 1.65; color: var(--mid);
+  font-size: 14px; line-height: 1.65; color: var(--ink-mid);
 }
+
+/* ── AI-ASSISTED DESIGN PROCESS ── */
+#ai-showcase {
+  background: var(--bg);
+  padding: 96px var(--pad) 100px;
+  border-top: 1px solid var(--border);
+}
+.ai-showcase-inner { max-width: var(--max-w); margin: 0 auto }
+.ai-showcase-label {
+  font-family: var(--ff-m); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 18px;
+}
+.ai-showcase-head { max-width: 620px; margin-bottom: 44px }
+.ai-showcase-head h2 {
+  font-family: var(--ff-display); font-weight: 600;
+  font-size: clamp(26px, 3.4vw, 38px); color: var(--white);
+  letter-spacing: -.01em; line-height: 1.2; margin-bottom: 12px;
+}
+.ai-showcase-head p { font-size: 15px; line-height: 1.7; color: var(--mid) }
 
 /* ── PROFILE ── */
 #profile {
@@ -663,6 +681,151 @@ footer { padding: 32px var(--pad) }
   .hero-foot { flex-direction: column; align-items: flex-start }
   .stat-n { font-size: 36px }
 }
+
+
+/* ── SELECTED WORK: pinned horizontal rail ── */
+#work { padding:0 !important; background:var(--paper) !important; position:relative; height:340vh }
+.wr-pin { position:sticky; top:0; height:100vh; overflow:hidden; display:grid; grid-template-columns:minmax(260px,28%) minmax(0,1fr); gap:clamp(28px,4vw,56px); align-items:center }
+.wr-intro { padding-left:clamp(24px,6vw,96px) }
+.wr-eyebrow { display:flex; align-items:center; gap:10px; font-family:var(--ff-m); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mid); margin-bottom:28px }
+.wr-eyebrow i { width:7px; height:7px; border-radius:50%; background:var(--teal) }
+.wr-h { font-family:var(--ff-display); font-size:clamp(40px,6vw,76px); font-weight:500; letter-spacing:-.03em; line-height:1; color:var(--ink); margin-bottom:22px }
+.wr-p { font-size:16px; line-height:1.85; color:var(--ink-mid); margin-bottom:44px; max-width:34ch; text-wrap:pretty }
+.wr-scroll { display:flex; align-items:center; gap:10px; font-family:var(--ff-m); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:rgba(18,36,28,.45) }
+.wr-scroll span { display:inline-block; animation:wrNudge 1.8s ease-in-out infinite }
+@keyframes wrNudge { 0%,100%{transform:translateX(0)} 50%{transform:translateX(6px)} }
+.wr-rail { overflow:hidden }
+.wr-track { display:flex; gap:clamp(28px,4vw,64px); width:max-content; padding:0 clamp(24px,6vw,96px) 0 4px; will-change:transform }
+.wr-card { display:block; width:clamp(320px,46vw,660px); flex-shrink:0; color:inherit; cursor:none }
+@media (max-height:760px){
+  .wr-card { width:clamp(300px,38vw,520px) }
+  .wr-title { font-size:clamp(22px,2.4vw,30px); margin:22px 0 10px }
+  .wr-desc { font-size:14px; line-height:1.65; margin-bottom:16px }
+  .wr-tags span { padding:6px 14px }
+}
+.wr-card .pw-thumb { aspect-ratio:16/10; border-radius:4px; background:var(--bg-alt); border:1px solid var(--border-l) }
+.wr-card:hover .pw-thumb { transform:none; box-shadow:0 26px 60px rgba(8,24,18,.22) }
+.wr-card .pw-phone { width:20%; border-radius:22px }
+.wr-card .pw-app { inset:clamp(20px,3vw,40px) }
+.wr-card .pw-web { left:6%; right:6%; top:10% }
+.wr-title { font-family:var(--ff-display); font-size:clamp(26px,3.2vw,42px); font-weight:500; letter-spacing:-.025em; color:var(--ink); line-height:1.1; margin:34px 0 14px; transition:color .3s var(--ease) }
+.wr-card:hover .wr-title { color:#0F6E56 }
+.wr-desc { font-size:15px; line-height:1.8; color:var(--ink-mid); margin-bottom:22px; max-width:44ch }
+.wr-tags { display:flex; flex-wrap:wrap; gap:8px }
+.wr-tags span { font-family:var(--ff-m); font-size:12px; color:rgba(18,36,28,.62); border:1px solid rgba(18,36,28,.16); border-radius:999px; padding:7px 18px }
+@media (max-width:820px){
+  #work { height:auto }
+  .wr-pin { position:static; height:auto; grid-template-columns:1fr; padding:88px 0 96px }
+  .wr-rail { overflow-x:auto; scrollbar-width:none }
+  .wr-track { transform:none !important }
+}
+
+/* ── SELECTED WORK: animated thumbnail cards (new) ── */
+.pw-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; padding-top:8px }
+@media (max-width:900px){ .pw-grid { grid-template-columns:repeat(2,minmax(0,1fr)) } }
+@media (max-width:600px){ .pw-grid { grid-template-columns:1fr } }
+
+.pw-thumb {
+  position:relative; aspect-ratio:4/3; border-radius:14px; overflow:hidden;
+  background:var(--bg); border:1px solid var(--border-l);
+  transition:box-shadow .35s var(--ease), transform .35s var(--ease);
+}
+.pw-card:hover .pw-thumb { box-shadow:0 18px 44px rgba(8,24,18,.24); transform:translateY(-3px) }
+.pw-glow { position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 0%, rgba(47,190,142,.16), transparent 70%) }
+.pw-phone {
+  position:absolute; left:50%; top:52%; transform:translate(-50%,-50%);
+  width:32%; aspect-ratio:9/19.5; border-radius:18px; overflow:hidden;
+  border:1px solid rgba(255,255,255,.16); box-shadow:0 18px 44px rgba(0,0,0,.5); background:var(--bg-alt);
+}
+.pw-phone img, .pw-web img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+.pw-fade { animation:pwFade 9.2s linear infinite }
+.pw-fade--2 { opacity:0; animation:pwFade 9.2s linear infinite; animation-delay:-6.13s }
+.pw-fade--3 { opacity:0; animation:pwFade 9.2s linear infinite; animation-delay:-3.07s }
+@keyframes pwFade { 0%{opacity:0} 3%{opacity:1} 30%{opacity:1} 34%{opacity:0} 100%{opacity:0} }
+.pw-cursor, .pw-ring { position:absolute; left:58%; top:80%; pointer-events:none; border-radius:50% }
+.pw-cursor { width:8px; height:8px; background:#FDFDFD; animation:pwTap 9.2s var(--ease) infinite }
+.pw-ring { width:26px; height:26px; border:1.5px solid var(--teal); animation:pwTap 9.2s var(--ease) infinite, pwRipple 9.2s linear infinite }
+@keyframes pwTap {
+  0%{left:58%;top:80%;transform:translate(-50%,-50%) scale(1)}
+  7%{left:40%;top:58%} 10%{transform:translate(-50%,-50%) scale(.6)} 14%{transform:translate(-50%,-50%) scale(1)}
+  33%{left:72%;top:36%} 37%{transform:translate(-50%,-50%) scale(.6)} 41%{transform:translate(-50%,-50%) scale(1)}
+  66%{left:46%;top:86%} 70%{transform:translate(-50%,-50%) scale(.6)} 74%{transform:translate(-50%,-50%) scale(1)}
+  100%{left:58%;top:80%;transform:translate(-50%,-50%) scale(1)}
+}
+@keyframes pwRipple {
+  0%,8%{opacity:0;transform:translate(-50%,-50%) scale(.3)} 11%{opacity:.55;transform:translate(-50%,-50%) scale(1)}
+  18%,32%{opacity:0;transform:translate(-50%,-50%) scale(2)} 35%{opacity:.55;transform:translate(-50%,-50%) scale(1)}
+  42%,66%{opacity:0;transform:translate(-50%,-50%) scale(2)} 69%{opacity:.55;transform:translate(-50%,-50%) scale(1)}
+  76%,100%{opacity:0;transform:translate(-50%,-50%) scale(2)}
+}
+.pw-app { position:absolute; inset:22px; border-radius:10px; background:var(--bg); border:1px solid rgba(255,255,255,.09); overflow:hidden; display:grid; grid-template-columns:24% 1fr }
+.pw-app-side { border-right:1px solid rgba(255,255,255,.07); padding:14px 10px; display:grid; gap:8px; align-content:start }
+.pw-app-side span { height:5px; border-radius:3px; background:rgba(253,253,253,.16) }
+.pw-app-side span:first-child { height:6px; width:70%; background:rgba(47,190,142,.6) }
+.pw-app-side span:nth-child(3){ width:80% } .pw-app-side span:nth-child(4){ width:60%; background:rgba(253,253,253,.1) }
+.pw-app-main { padding:14px; display:grid; grid-template-rows:auto 1fr; gap:12px; min-height:0 }
+.pw-search { display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:7px; padding:7px 9px }
+.pw-search i { width:7px; height:7px; border-radius:50%; border:1.5px solid var(--teal); flex-shrink:0 }
+.pw-search b { font-family:var(--ff-m); font-weight:400; font-size:9.5px; color:rgba(253,253,253,.85); white-space:nowrap; overflow:hidden; animation:pwType 9.2s steps(17,end) infinite }
+.pw-search u { width:1.5px; height:10px; background:var(--teal); animation:pwCaret .85s steps(1) infinite }
+@keyframes pwType { 0%{width:0} 22%{width:17ch} 78%{width:17ch} 90%,100%{width:0} }
+@keyframes pwCaret { 50%{opacity:0} }
+.pw-tiles { display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,1fr); gap:8px; min-height:0 }
+.pw-tiles div { border-radius:5px; background:rgba(255,255,255,.09); animation:pwTile 9.2s ease infinite }
+.pw-tiles div:nth-child(1){ background:linear-gradient(160deg,rgba(47,190,142,.28),rgba(47,190,142,.06)) }
+.pw-tiles div:nth-child(2){ animation-delay:.18s } .pw-tiles div:nth-child(3){ animation-delay:.36s }
+.pw-tiles div:nth-child(4){ animation-delay:.54s }
+.pw-tiles div:nth-child(5){ background:linear-gradient(160deg,rgba(232,184,75,.3),rgba(232,184,75,.06)); animation-delay:.72s }
+.pw-tiles div:nth-child(6){ animation-delay:.9s }
+@keyframes pwTile { 0%,20%{opacity:0;transform:translateY(14px)} 34%{opacity:1;transform:translateY(0)} 84%{opacity:1;transform:translateY(0)} 94%,100%{opacity:0;transform:translateY(-8px)} }
+.pw-web { position:absolute; left:8%; right:8%; top:14%; bottom:0; border-radius:10px 10px 0 0; overflow:hidden; background:var(--dark); border:1px solid rgba(255,255,255,.1); box-shadow:0 18px 44px rgba(0,0,0,.5) }
+.pw-chrome { display:flex; align-items:center; gap:4px; padding:8px 10px; background:var(--dark); border-bottom:1px solid rgba(255,255,255,.08) }
+.pw-chrome i { width:5px; height:5px; border-radius:50% }
+.pw-chrome i:nth-child(1){ background:#E8503A } .pw-chrome i:nth-child(2){ background:var(--yellow) } .pw-chrome i:nth-child(3){ background:var(--teal) }
+.pw-chrome span { margin-left:8px; font-family:var(--ff-m); font-size:8px; color:rgba(253,253,253,.5); background:rgba(255,255,255,.06); padding:2px 7px; border-radius:5px }
+.pw-shots { position:absolute; left:0; right:0; top:27px; bottom:0; overflow:hidden }
+.pw-shots img { object-position:top }
+.pw-shots .pw-fade { animation:pwFade 9.2s linear infinite, pwScroll 9.2s ease-in-out infinite }
+@keyframes pwScroll { 0%,10%{transform:translateY(0)} 45%,55%{transform:translateY(-34%)} 90%,100%{transform:translateY(0)} }
+.pw-meta { padding-top:16px; border-top:1px solid var(--border-l); margin-top:16px }
+.pw-title-row { display:flex; align-items:baseline; gap:10px; margin-bottom:6px }
+.pw-index { font-family:var(--ff-m); font-size:11px; color:#0F6E56 }
+.pw-title { font-family:var(--ff-display); font-size:21px; font-weight:600; color:var(--ink); letter-spacing:-.015em; line-height:1.2; transition:color .3s var(--ease) }
+.pw-card:hover .pw-title { color:#0F6E56 }
+.pw-tags { display:flex; align-items:center; gap:7px; font-family:var(--ff-m); font-size:11px; letter-spacing:.04em; color:var(--ink-mid) }
+.pw-tags .sep { opacity:.35 } .pw-tags .yr { opacity:.6 }
+
+/* ── BEHIND THE SCENES: prompt → result (static, single card) ── */
+.bts-simple {
+  display: grid; grid-template-columns: minmax(0,.82fr) minmax(0,1.18fr);
+  gap: clamp(28px,4vw,48px); align-items: center;
+  background: var(--bg-raise); border: 1px solid var(--border); border-radius: 16px;
+  padding: clamp(28px,4vw,40px);
+  text-decoration: none; cursor: none;
+  transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.bts-simple:hover { border-color: var(--teal); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.28); }
+@media (max-width:820px){ .bts-simple { grid-template-columns: 1fr } }
+.bts-simple-prompt { border-left: 2px solid var(--teal); padding-left: 20px }
+.bts-simple-label {
+  display: block; font-family: var(--ff-m); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mid); margin-bottom: 12px;
+}
+.bts-simple-prompt p {
+  font-family: var(--ff-m); font-size: 15px; line-height: 1.6; color: var(--white); margin-bottom: 20px;
+}
+.bts-simple-cta { font-family: var(--ff-m); font-size: 13px; font-weight: 600; color: var(--teal) }
+
+.bts-simple-screen { border-radius: 12px; overflow: hidden; background: var(--bg); border: 1px solid rgba(255,255,255,.12) }
+.bts-chrome { display: flex; align-items: center; gap: 5px; padding: 10px 15px; background: var(--dark); border-bottom: 1px solid rgba(255,255,255,.08) }
+.bts-chrome i { width: 6px; height: 6px; border-radius: 50%; background: rgba(253,253,253,.22) }
+.bts-chrome span { margin-left: 10px; font-family: var(--ff-m); font-size: 9.5px; color: rgba(253,253,253,.42) }
+.bts-simple-page { padding: clamp(22px,3.5vw,32px) clamp(22px,3.5vw,30px) }
+.bts-new-nav { display: flex; align-items: center; gap: 9px; margin-bottom: 22px }
+.bts-new-nav img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; object-position: center 18% }
+.bts-new-nav b { font-family: var(--ff-display); font-size: 11px; font-weight: 600; color: var(--white) }
+.bts-new-h { font-family: var(--ff-display); font-size: clamp(16px,2.2vw,22px); font-weight: 500; color: var(--white); line-height: 1.35; max-width: 92% }
+.bts-new-h em { font-style: italic; color: var(--yellow) }
 </style>
 <link rel="stylesheet" href="interactions.css">
 </head>
@@ -765,77 +928,92 @@ footer { padding: 32px var(--pad) }
   </div>
 </section>
 
-<!-- WORK -->
+<!-- WORK: pinned horizontal rail -->
 <section id="work">
-  <div class="container">
-    <div class="work-label rv">Selected work</div>
-    <ul class="proj-list">
+  <div class="wr-pin">
+    <div class="wr-intro">
+      <div class="wr-eyebrow"><i></i>Selected work</div>
+      <h2 class="wr-h">Case studies</h2>
+      <p class="wr-p">Three products shipped across mobile, enterprise and e-commerce. Research, flows and interfaces that held up with real users.</p>
+      <div class="wr-scroll">Scroll <span>→</span></div>
+    </div>
 
-      <!-- 01 JIO-BP -->
-      <li class="proj-item rv d1">
-        <a href="pooja_kurade_casestudy_jiobp.html" class="proj-link">
-          <div class="proj-title-row">
-            <span class="proj-index">01</span>
-            <div class="proj-title">JIO-BP Fuel Booking App</div>
+    <div class="wr-rail">
+      <div class="wr-track">
+      <a href="pooja_kurade_casestudy_jiobp.html" class="wr-card">
+        <div class="pw-thumb">
+          <span class="pw-glow"></span>
+          <div class="pw-phone">
+            <img class="pw-fade" src="images/jiobp-12-home-screen.png" alt="JIO-BP home screen">
+            <img class="pw-fade--2" src="images/jiobp-14-nearby-stations.png" alt="Nearby fuel stations">
+            <img class="pw-fade--3" src="images/jiobp-16-fuel-booking.png" alt="Fuel booking">
           </div>
-          <div class="proj-meta">
-            <span>Product Design</span><span class="proj-meta-sep">·</span>
-            <span>Mobile</span><span class="proj-meta-sep">·</span>
-            <span class="proj-year">2024</span>
+          <span class="pw-ring"></span><span class="pw-cursor"></span>
+        </div>
+        <h3 class="wr-title">JIO-BP Fuel Booking App</h3>
+        <p class="wr-desc">Booking fuel in three taps: nearby stations, live slots and a payment flow drivers could finish one-handed at the pump.</p>
+        <div class="wr-tags"><span>Product Design</span><span>Mobile App</span></div>
+      </a>
+      <a href="pooja_kurade_casestudy_dam.html" class="wr-card">
+        <div class="pw-thumb">
+          <div class="pw-app">
+            <div class="pw-app-side"><span></span><span></span><span></span><span></span></div>
+            <div class="pw-app-main">
+              <div class="pw-search"><i></i><b>packaging q4 apac</b><u></u></div>
+              <div class="pw-tiles"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
           </div>
-          <span class="proj-arrow">→</span>
-        </a>
-      </li>
+          <span class="pw-ring"></span><span class="pw-cursor"></span>
+        </div>
+        <h3 class="wr-title">Asset Discovery Platform: DAM</h3>
+        <p class="wr-desc">An audit of the asset lifecycle in a global DAM ecosystem, turning scattered libraries into search people actually trust.</p>
+        <div class="wr-tags"><span>UX Research</span><span>B2B Enterprise</span></div>
+      </a>
+      <a href="pooja_kurade_casestudy_ttkprestige.html" class="wr-card">
+        <div class="pw-thumb">
+          <div class="pw-web">
+            <div class="pw-chrome"><i></i><i></i><i></i><span>ttkprestige.com</span></div>
+            <div class="pw-shots">
+              <img class="pw-fade" src="images/ttk-design-homepage.jpg" alt="TTK Prestige homepage">
+              <img class="pw-fade--2" src="images/ttk-design-landing.jpg" alt="TTK listing page">
+              <img class="pw-fade--3" src="images/ttk-design-pdp.jpg" alt="TTK product detail page">
+            </div>
+          </div>
+          <span class="pw-ring"></span><span class="pw-cursor"></span>
+        </div>
+        <h3 class="wr-title">TTK Prestige Website Revamp</h3>
+        <p class="wr-desc">A kitchen-appliance storefront rebuilt from wireframes up: buying guides, clearer PDPs and a checkout that stopped losing carts.</p>
+        <div class="wr-tags"><span>UI/UX Design</span><span>E-commerce</span></div>
+      </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- 02 DAM -->
-      <li class="proj-item rv d2">
-        <a href="pooja_kurade_casestudy_dam.html" class="proj-link">
-          <div class="proj-title-row">
-            <span class="proj-index">02</span>
-            <div class="proj-title">Asset Discovery Platform: DAM</div>
-          </div>
-          <div class="proj-meta">
-            <span>UX Research</span><span class="proj-meta-sep">·</span>
-            <span>B2B Enterprise</span><span class="proj-meta-sep">·</span>
-            <span class="proj-year">2025</span>
-          </div>
-          <span class="proj-arrow">→</span>
-        </a>
-      </li>
+<!-- BEHIND THE SCENES: AI case study (separate section) -->
+<section id="ai-showcase">
+  <div class="ai-showcase-inner">
+    <div class="ai-showcase-label rv">Behind the scenes</div>
+    <div class="ai-showcase-head rv">
+      <h2>How I used AI to redesign this portfolio</h2>
+      <p>Not another opinion on AI — the actual prompt and the actual result, on the page you're reading right now. Every keep-or-kill decision after the draft was still mine.</p>
+    </div>
 
-      <!-- 03 TTK -->
-      <li class="proj-item rv d3">
-        <a href="pooja_kurade_casestudy_ttkprestige.html" class="proj-link">
-          <div class="proj-title-row">
-            <span class="proj-index">03</span>
-            <div class="proj-title">TTK Prestige Website Revamp</div>
-          </div>
-          <div class="proj-meta">
-            <span>UI/UX Design</span><span class="proj-meta-sep">·</span>
-            <span>E-commerce</span><span class="proj-meta-sep">·</span>
-            <span class="proj-year">2024</span>
-          </div>
-          <span class="proj-arrow">→</span>
-        </a>
-      </li>
+    <a class="bts-simple rv" href="pooja_kurade_casestudy_ai.html">
+      <div class="bts-simple-prompt">
+        <span class="bts-simple-label">Prompt</span>
+        <p>"Redesign my portfolio into a calm, editorial system for senior product design roles."</p>
+        <span class="bts-simple-cta">See the full process →</span>
+      </div>
 
-      <!-- 04 AI Portfolio -->
-      <li class="proj-item rv d4">
-        <a href="pooja_kurade_casestudy_ai.html" class="proj-link">
-          <div class="proj-title-row">
-            <span class="proj-index">04</span>
-            <div class="proj-title">Portfolio Redesign with AI</div>
-          </div>
-          <div class="proj-meta">
-            <span>Process</span><span class="proj-meta-sep">·</span>
-            <span>AI-assisted</span><span class="proj-meta-sep">·</span>
-            <span class="proj-year">2026</span>
-          </div>
-          <span class="proj-arrow">→</span>
-        </a>
-      </li>
-
-    </ul>
+      <div class="bts-simple-screen">
+        <div class="bts-chrome"><i></i><i></i><i></i><span>poojakurade.github.io</span></div>
+        <div class="bts-simple-page">
+          <div class="bts-new-nav"><img src="images/pooja-photo-edited.jpg" alt=""><b>Pooja Kurade.</b></div>
+          <div class="bts-new-h">I turn complex problems into products that feel <em>simple.</em></div>
+        </div>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -934,11 +1112,11 @@ const curLabel = document.getElementById('cur-label');
 let cx = 0, cy = 0, tx = 0, ty = 0;
 document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY });
 document.querySelectorAll('a, button').forEach(el => {
-  if (el.classList.contains('proj-link')) return;
+  if (el.classList.contains('proj-link') || el.classList.contains('wr-card')) return;
   el.addEventListener('mouseenter', () => cur.classList.add('big'));
   el.addEventListener('mouseleave', () => cur.classList.remove('big'));
 });
-document.querySelectorAll('.proj-link').forEach(el => {
+document.querySelectorAll('.proj-link, .wr-card').forEach(el => {
   el.addEventListener('mouseenter', () => { cur.classList.add('view'); curLabel.textContent = 'View'; });
   el.addEventListener('mouseleave', () => { cur.classList.remove('view'); curLabel.textContent = ''; });
 });
@@ -959,6 +1137,31 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target) } });
 }, { threshold: 0.06 });
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+
+// Work rail: vertical scroll drives the pinned cards sideways, eased
+(function(){
+  const section = document.getElementById('work');
+  const rail = document.querySelector('.wr-rail');
+  const track = document.querySelector('.wr-track');
+  if (!section || !rail || !track) return;
+  if (window.matchMedia('(max-width:820px)').matches) return;
+  let cur = 0;
+  const distance = () => Math.max(0, track.scrollWidth - rail.clientWidth);
+  const target = () => {
+    const r = section.getBoundingClientRect();
+    const span = r.height - window.innerHeight;
+    if (span <= 0) return 0;
+    return Math.max(0, Math.min(1, -r.top / span)) * distance();
+  };
+  (function tick(){
+    const t = target();
+    cur += (t - cur) * 0.16;
+    if (Math.abs(t - cur) < 0.3) cur = t;
+    track.style.transform = 'translate3d(' + (-cur).toFixed(2) + 'px,0,0)';
+    requestAnimationFrame(tick);
+  })();
+})();
 
 // Hero: fade + parallax out as you scroll past it
 (function(){
