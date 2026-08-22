@@ -1,885 +1,802 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Redesign with AI | Pooja Kurade</title>
-<meta name="description" content="An end-to-end case study on how I redesigned my Senior Product Designer portfolio using an AI-assisted workflow, from audit to design system, storytelling, build and deploy.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building this portfolio with AI — Pooja Kurade</title>
+<meta name="description" content="I built this portfolio with AI. The design decisions were mine: one system across five pages, colour and type held by hand, and what each call cost.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
 <link rel="icon" href="images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,470;8..60,600;8..60,700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ── */
-:root {
-  --dark:     #12241C;
-  --mid:      #55655C;
-  --light:    #EDF1EE;
-  --cream:    #F5F8F5;
-  --white:    #FFFFFF;
-  --teal:     #0F6E56;
-  --teal-dk:  #0A5C44;
-  --teal-l:   #E3F2EC;
-  --yellow:   #E8B84B;
-  --yellow-l: #FBF3DE;
-  --border:   rgba(0,0,0,0.08);
-  --ff:       'Inter', system-ui, sans-serif;
-  --ff-m:     'Inter', system-ui, sans-serif;
-  --ff-display: 'Source Serif 4', Georgia, serif;
-  --ff-s:     'Newsreader', Georgia, serif;
-  --pad:      clamp(24px, 6vw, 96px);
-  --max-w:    1060px;
-  --ease:     cubic-bezier(0.4,0,0.2,1);
-}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
-html { scroll-behavior: smooth }
-body {
-  font-family: var(--ff); background: #fff; color: var(--dark);
-  cursor: none; overflow-x: hidden; -webkit-font-smoothing: antialiased;
-}
-a { text-decoration: none; color: inherit }
-img { display: block; max-width: 100% }
+  body { margin:0; background:#F2EFE8; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased }
+  a { color:#0F6E56; text-decoration:none }
+  a:hover { color:#12241C }
+  img { display:block }
+  @keyframes aiType { 0%{width:0} 22%{width:100%} 92%{width:100%} 100%{width:100%} }
+  @keyframes aiCaret { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes aiStep { 0%,24%{opacity:.28} 30%{opacity:1} 62%{opacity:1} 68%,100%{opacity:.28} }
+  @keyframes aiSwap { 0%,30%{opacity:0} 38%{opacity:1} 92%{opacity:1} 100%{opacity:0} }
+  @keyframes aiFrom { 0%,30%{opacity:1} 38%,100%{opacity:0} }
+  @keyframes aiGlow { 0%,100%{opacity:.5} 50%{opacity:1} }
+  @keyframes aiChip { 0%,68%{opacity:0; transform:translateY(6px)} 76%{opacity:1; transform:translateY(0)} 94%{opacity:1; transform:translateY(0)} 100%{opacity:0; transform:translateY(0)} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none !important} }
 
-/* ── CURSOR ── */
-#cur {
-  width: 8px; height: 8px; background: #fff; mix-blend-mode: difference;
-  border-radius: 50%; position: fixed; top: 0; left: 0;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
-  transition: width .2s var(--ease), height .2s var(--ease);
-  will-change: left, top;
-}
-#cur.big { width: 32px; height: 32px; background: transparent; border: 1.5px solid var(--teal); mix-blend-mode: normal }
-@media(hover:none) { #cur { display: none } body { cursor: auto } }
-
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 var(--pad); height: 60px;
-  background: rgba(13,43,30,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border); transition: background .3s;
-}
-.nav-logo { font-size: 17px; font-weight: 700; letter-spacing: -.02em; color: #fff; display: flex; align-items: center; gap: 10px; }
-.nav-role { font-size: 13px; font-weight: 400; letter-spacing: 0; color: rgba(255,255,255,.45); }
-@media (max-width: 640px) { .nav-role { display: none; } }
-.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-.nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.55); transition: color .2s }
-.nav-links a:hover { color: #fff }
-.nav-right { display: flex; align-items: center; gap: 22px; }
-.nav-avail {
-  font-family: var(--ff-m); font-size: 10px; letter-spacing: .08em;
-  color: var(--yellow); display: flex; align-items: center; gap: 6px;
-}
-.nav-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--yellow);
-  display: inline-block; animation: pulse 2.5s ease infinite; flex-shrink: 0;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
-.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 4px; }
-.hamburger span { display: block; width: 20px; height: 1.5px; background: rgba(255,255,255,.7); border-radius: 2px }
-#mob { display: none; position: fixed; inset: 0; z-index: 190; background: #0D2B1E; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
-#mob.open { display: flex }
-#mob a { font-size: 40px; font-weight: 700; color: #fff; transition: color .2s }
-#mob a:hover { color: var(--teal) }
-.mob-x { position: absolute; top: 18px; right: var(--pad); font-size: 22px; background: none; border: none; cursor: none; color: #fff }
-@media(max-width: 820px) { .nav-links { display: none } .nav-avail { display: none } .hamburger { display: flex } }
-
-/* ── HERO ── */
-.cs-hero { margin-top: 60px; }
-.cs-hero-img {
-  width: 100%; height: 52vh; max-height: 520px; min-height: 280px;
-  overflow: hidden; background: #0D2B1E; position: relative;
-}
-.cs-hero-ph {
-  width: 100%; height: 100%; position: relative;
-  background:
-    radial-gradient(120% 120% at 82% 12%, rgba(47,190,142,.28) 0%, transparent 45%),
-    radial-gradient(90% 90% at 12% 92%, rgba(232,184,75,.18) 0%, transparent 50%),
-    linear-gradient(135deg, #081812 0%, #0D2B1E 55%, #123528 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
-  overflow: hidden;
-}
-.cs-hero-ph-grid {
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(120% 80% at 50% 50%, #000 30%, transparent 80%);
-}
-.cs-hero-ph-tag {
-  font-family: var(--ff-m); font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--yellow); position: relative; z-index: 1;
-}
-.cs-hero-ph-title {
-  font-family: var(--ff-s); font-style: italic; font-weight: 300;
-  font-size: clamp(30px, 6vw, 66px); color: #fff; line-height: 1.05;
-  text-align: center; max-width: 16ch; position: relative; z-index: 1; letter-spacing: -.01em;
-}
-.cs-hero-ph-title b { font-style: normal; font-weight: 700; color: var(--teal); }
-.cs-hero-head { background: #fff; padding: 36px var(--pad) 0; }
-.cs-hero-content { max-width: var(--max-w); margin: 0 auto; }
-.cs-back {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--ff-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(15,14,23,.28); margin-bottom: 16px; transition: color .2s;
-}
-.cs-back:hover { color: var(--dark) }
-.cs-hero-img .cs-back {
-  position: absolute; top: 24px; left: var(--pad); z-index: 5; color: #fff; margin-bottom: 0;
-  text-shadow: 0 1px 6px rgba(0,0,0,.4);
-}
-.cs-hero-content h1 {
-  font-size: clamp(32px, 5vw, 60px); font-weight: 700;
-  color: var(--dark); letter-spacing: -2px; line-height: 1.02; margin: 0;
-}
-.cs-hero-cols { background: #fff; padding: 40px var(--pad) 52px; border-bottom: 1px solid var(--border); }
-.cs-hero-cols-inner {
-  max-width: var(--max-w); margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 340px; gap: 72px; align-items: start;
-}
-.cs-overview-lbl { font-family: var(--ff-m); font-size: 9px; letter-spacing: .15em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 14px; }
-.cs-overview-body { font-size: 15px; color: var(--mid); line-height: 1.75; }
-.cs-overview-body p + p { margin-top: 14px; }
-.cs-hero-meta-col { display: flex; flex-direction: column; gap: 22px; }
-.cs-hmeta-label { font-family: var(--ff-m); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 5px; }
-.cs-hmeta-value { font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.45; }
-@media(max-width: 680px) { .cs-hero-cols-inner { grid-template-columns: 1fr; gap: 36px; } }
-
-/* ── SECTIONS ── */
-.cs-section { padding: 80px var(--pad); border-bottom: 1px solid var(--border); }
-.cs-section--alt { background: var(--cream); }
-.cs-section-inner { max-width: var(--max-w); margin: 0 auto; }
-.cs-section-label { font-family: var(--ff-m); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; display: block; }
-h2 { font-size: clamp(28px, 3vw, 40px); font-weight: 700; letter-spacing: -1px; color: var(--dark); line-height: 1.15; margin: 0 0 20px; }
-h3 { font-size: 20px; font-weight: 700; color: var(--dark); margin: 0 0 14px; }
-.cs-section p { font-size: 16px; color: var(--mid); line-height: 1.8; max-width: 720px; margin-bottom: 16px; }
-.cs-section p strong { color: var(--dark); font-weight: 600; }
-.cs-subsection { margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--border); }
-.cs-lead {
-  font-family: var(--ff-s); font-style: italic; font-weight: 300;
-  font-size: clamp(19px, 2.2vw, 24px); color: var(--dark); line-height: 1.5; max-width: 760px;
-  margin-bottom: 28px;
-}
-
-/* ── PROCESS STEPS ── */
-.proc-steps-wrap { margin-top: 48px; }
-.proc-steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr; align-items: start; gap: 0; }
-.proc-step { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 0 8px; }
-.proc-icon {
-  width: 52px; height: 52px; border-radius: 50%; background: var(--teal-l); color: var(--teal);
-  display: flex; align-items: center; justify-content: center; margin-bottom: 16px; flex-shrink: 0;
-  border: 1.5px solid rgba(0,0,0,.05);
-}
-.proc-num { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--teal); font-family: var(--ff-m); margin-bottom: 6px; }
-.proc-title { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-.proc-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
-.proc-arrow { display: flex; align-items: flex-start; padding-top: 26px; font-size: 18px; color: rgba(0,0,0,.15); justify-content: center; width: 32px; flex-shrink: 0; }
-@media(max-width: 720px) { .proc-steps { grid-template-columns: 1fr; gap: 24px; } .proc-arrow { display: none; } }
-
-/* ── INSIGHT CARDS ── */
-.cs-insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
-.cs-insight-card { background: var(--light); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-.cs-insight-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--teal-l); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--teal); }
-.cs-insight-icon svg { width: 20px; height: 20px; stroke: currentColor; fill: none; }
-.cs-insight-num { font-family: var(--ff-m); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
-.cs-insight-title { font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.4; margin-bottom: 8px; }
-.cs-insight-desc { font-size: 13.5px; color: var(--mid); line-height: 1.7; }
-@media(max-width:768px){ .cs-insights-grid { grid-template-columns: 1fr; } }
-
-/* ── QUOTE ── */
-.cs-quote { background: var(--teal-l); border-left: 4px solid var(--teal); border-radius: 0 12px 12px 0; padding: 24px 28px; margin: 32px 0 0; max-width: 720px; }
-.cs-quote p { font-size: 17px; font-style: italic; color: var(--dark); line-height: 1.65; margin: 0 0 10px; }
-.cs-quote cite { font-size: 13px; color: var(--mid); font-style: normal; }
-
-/* ── AI STAGE GRID ── */
-.ai-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
-.ai-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 26px 26px 24px; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
-.ai-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.07); }
-.ai-card-tag { font-family: var(--ff-m); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); display: inline-block; margin-bottom: 10px; }
-.ai-card h4 { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-.ai-card p { font-size: 13.5px; color: var(--mid); line-height: 1.7; margin: 0; max-width: none; }
-.ai-card .ai-human { margin-top: 12px; font-size: 12.5px; color: var(--dark); line-height: 1.6; padding-top: 12px; border-top: 1px dashed var(--border); }
-.ai-card .ai-human b { color: var(--teal); font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
-@media(max-width:640px){ .ai-grid { grid-template-columns: 1fr; } }
-
-/* ── STYLEGUIDE ── */
-.sg-swatches { display: flex; gap: 20px; margin-top: 32px; flex-wrap: wrap; align-items: flex-start; }
-.sg-swatch-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.sg-swatch { width: 68px; height: 68px; border-radius: 50%; border: 1px solid rgba(0,0,0,.07); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-.sg-swatch-label { font-family: var(--ff-m); font-size: 8.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--mid); text-align: center; line-height: 1.6; }
-.sg-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px; }
-.sg-type-block { padding: 28px 24px; background: var(--cream); border-radius: 14px; border: 1px solid var(--border); }
-.sg-type-spec { font-family: var(--ff-m); font-size: 10px; color: var(--mid); }
-@media(max-width: 640px) { .sg-type-grid { grid-template-columns: 1fr; } }
-
-/* ── BEFORE / AFTER ── */
-.ia-change { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; margin-top: 28px; }
-.ia-change-label { font-family: var(--ff-m); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; display: block; }
-.ia-change-intro { font-size: 14px; color: var(--mid); line-height: 1.65; max-width: 640px; margin-bottom: 0; }
-.ia-change-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 20px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-.ia-change-col { padding: 22px 24px; }
-.ia-change-col--before { background: #FBF3F1; border-right: 1px solid #EAD4CE; }
-.ia-change-col--after  { background: #F0FDF7; }
-.ia-change-col h4 { font-family: var(--ff-m); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 14px; }
-.ia-change-col--before h4 { color: #B4472E; }
-.ia-change-col--after  h4 { color: #16A34A; }
-.ia-change-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--dark); line-height: 1.55; margin-bottom: 10px; }
-.ia-change-item:last-child { margin-bottom: 0; }
-.ia-change-item::before { flex-shrink: 0; margin-top: 2px; font-size: 12px; font-weight: 700; }
-.ia-change-col--before .ia-change-item::before { content: '✕'; color: #B4472E; }
-.ia-change-col--after  .ia-change-item::before { content: '✓'; color: #16A34A; }
-@media(max-width: 640px) { .ia-change-grid { grid-template-columns: 1fr; } .ia-change-col--before { border-right: none; border-bottom: 1px solid var(--border); } }
-
-/* ── PROMPT CARDS ── */
-.prompt-card { background: #0D2B1E; border-radius: 16px; padding: 26px 28px; margin-top: 20px; overflow: hidden; }
-.prompt-card-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
-.prompt-goal { font-size: 14px; font-weight: 700; color: #fff; }
-.prompt-badge { font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--yellow); background: rgba(232,184,75,.14); padding: 3px 10px; border-radius: 20px; }
-.prompt-body { font-family: var(--ff-m); font-size: 12.5px; line-height: 1.75; color: rgba(255,255,255,.72); background: rgba(0,0,0,.22); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 16px 18px; white-space: pre-wrap; }
-.prompt-why { margin-top: 14px; font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.65; }
-.prompt-why b { color: var(--teal); }
-
-/* ── FLOW STEPS ── */
-.flow { display: flex; align-items: stretch; gap: 0; margin-top: 40px; flex-wrap: wrap; }
-.flow-step { flex: 1; min-width: 150px; background: var(--cream); border: 1px solid var(--border); border-radius: 14px; padding: 20px 18px; margin: 6px; }
-.flow-step .flow-n { font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; color: var(--teal); text-transform: uppercase; margin-bottom: 8px; }
-.flow-step h4 { font-size: 14.5px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-.flow-step p { font-size: 12.5px; color: var(--mid); line-height: 1.6; margin: 0; max-width: none; }
-
-/* ── OUTCOMES ── */
-.outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 40px 0; }
-.outcome-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-top: 3px solid var(--teal); }
-.outcome-metric { font-size: 44px; font-weight: 800; color: var(--teal); font-family: var(--ff-m); line-height: 1; }
-.outcome-metric span { font-size: 26px; }
-.outcome-label { margin-top: 10px; font-size: 14px; color: var(--mid); line-height: 1.4; }
-.outcome-before { font-size: 11px; color: var(--mid); font-style: italic; display: block; margin-bottom: 12px; line-height: 1.4; }
-@media(max-width: 640px) { .outcomes-grid { grid-template-columns: 1fr; } }
-
-/* ── LEARNINGS ── */
-.outcome-learnings { margin-top: 40px; padding: 32px; background: var(--cream); border-radius: 20px; border: 1px solid var(--border); }
-.outcome-learnings h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: var(--dark); }
-.outcome-learning-item { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
-.outcome-learning-item:last-child { margin-bottom: 0; }
-.ol-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: var(--ff-m); flex-shrink: 0; margin-top: 2px; }
-.ol-text { font-size: 14.5px; color: var(--mid); line-height: 1.7; }
-.ol-text strong { color: var(--dark); font-weight: 600; }
-
-/* ── REFERENCE LIST ── */
-.ref-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
-.ref-item { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 22px 24px; }
-.ref-item h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-.ref-item .ref-src { font-family: var(--ff-m); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); display: block; margin-bottom: 10px; }
-.ref-item p { font-size: 13px; color: var(--mid); line-height: 1.65; margin: 0; max-width: none; }
-@media(max-width:640px){ .ref-grid { grid-template-columns: 1fr; } }
-
-/* ── MANAGER REVIEW ── */
-.mgr-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
-.mgr-card { background: var(--cream); border: 1px solid var(--border); border-left: 3px solid var(--teal); border-radius: 12px; padding: 22px 24px; }
-.mgr-card h4 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.mgr-card p { font-size: 13.5px; color: var(--mid); line-height: 1.7; margin: 0; max-width: none; }
-@media(max-width:640px){ .mgr-grid { grid-template-columns: 1fr; } }
-
-/* ── PILL LIST ── */
-.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
-.pill { font-family: var(--ff-m); font-size: 10px; letter-spacing: .04em; padding: 6px 14px; border-radius: 999px; background: var(--teal-l); color: var(--teal); border: 1px solid rgba(15,110,86,.16); }
-
-/* ── CASE NAV ── */
-.cs-case-nav { padding: 60px var(--pad); background: var(--cream); border-top: 1px solid var(--border); }
-.cs-case-nav-inner { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.cs-case-nav a { font-family: var(--ff-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); transition: color .2s; display: flex; align-items: center; gap: 8px; }
-.cs-case-nav a:hover { color: var(--dark); }
-
-/* ── FOOTER ── */
-footer { padding: 32px var(--pad); background: #0D2B1E; }
-.ft { max-width: var(--max-w); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
-.ft-logo { font-family: var(--ff); font-size: 16px; font-weight: 700; color: #fff }
-.ft-loc { font-family: var(--ff-m); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: 6px; }
-.ft-links { display: flex; gap: 24px }
-.ft-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.55); transition: color .2s }
-.ft-links a:hover { color: var(--teal) }
-
-/* ── SCROLL REVEAL ── */
-.rv { opacity: 0; transform: translateY(24px); transition: opacity .55s var(--ease), transform .55s var(--ease); }
-.rv.visible { opacity: 1; transform: none; }
+.h1:hover{color:#0F6E56 !important}
+.h2:hover{color:#0F6E56 !important}
+.h3:hover{color:#0F6E56 !important}
+.h4:hover{color:#0F6E56 !important}
+.h5:hover{color:#0F6E56 !important}
+.h6:hover{color:#0F6E56 !important}
 </style>
-<link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="interactions.css">
 </head>
 <body>
+<div style="background:#F2EFE8; color:#12241C">
 
-<div id="cur"></div>
-
-<!-- MOBILE OVERLAY -->
-<div id="mob">
-  <button class="mob-x" id="mobX">✕</button>
-  <a href="index.html" onclick="cM()">Home</a>
-  <a href="index.html#work" onclick="cM()">Work</a>
-  <a href="about.html" onclick="cM()">About</a>
-</div>
-
-<!-- NAV -->
-<nav id="nav">
-  <a href="index.html" class="nav-logo"><span class="nav-avatar"><img src="images/pooja-photo-edited.jpg" alt=""></span>Pooja Kurade.</a>
-  <div class="nav-right-cluster">
-    <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="Resume_Pooja_Kurade.pdf" target="_blank" rel="noopener">Resume</a></li>
-  </ul>
-    <span class="nav-divider"></span>
-    <div class="nav-right">
-      <div class="nav-icons">
-      <a href="https://www.linkedin.com/in/poojakurade/" target="_blank" rel="noopener" class="nav-icon-btn linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"></path></svg></a>
+  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.92); backdrop-filter:blur(10px); border-bottom:1px solid rgba(18,36,28,.1)">
+    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:0%; background:#0F6E56"></div></div>
+    <div style="max-width:1180px; margin:0 auto; padding:12px clamp(20px,5vw,56px); display:flex; align-items:center; gap:clamp(14px,2vw,28px)">
+      <a href="index.html" style="display:flex; align-items:center; gap:10px; color:inherit; white-space:nowrap">
+        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
+        <span style="font-family:'Source Serif 4',Georgia,serif; font-size:16px; font-weight:600; letter-spacing:-.01em">Pooja Kurade.</span>
+      </a>
+      <div style="width:1px; height:20px; background:rgba(18,36,28,.16); flex-shrink:0"></div>
+      <span style="font-size:13px; color:rgba(18,36,28,.6); white-space:nowrap">This portfolio</span>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:clamp(14px,1.6vw,24px)">
+        <div style="display:none; gap:clamp(12px,1.4vw,20px); font-size:12px; letter-spacing:.02em; color:rgba(18,36,28,.55); white-space:nowrap" data-nav="1">
+          <a href="#brief" data-spy="brief" style="color:inherit; transition:color .2s" class="h1">Brief</a>
+          <a href="#constraint" data-spy="constraint" style="color:inherit; transition:color .2s" class="h2">Constraint</a>
+          <a href="#decisions" data-spy="decisions" style="color:inherit; transition:color .2s" class="h3">Decisions</a>
+          <a href="#system" data-spy="system" style="color:inherit; transition:color .2s" class="h4">System</a>
+          <a href="#outcome" data-spy="outcome" style="color:inherit; transition:color .2s" class="h5">Outcome</a>
+        </div>
+        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="h6">All work</a>
       </div>
-      <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="cs-hero">
-  <div class="cs-hero-img">
-    <a href="index.html#work" class="cs-back">← Back to Work</a>
-    <div class="cs-hero-ph">
-      <div class="cs-hero-ph-grid"></div>
-      <span class="cs-hero-ph-tag">Process · AI-assisted · 2026</span>
-      <div class="cs-hero-ph-title">Redesigning my portfolio, <b>with AI as a collaborator</b></div>
     </div>
   </div>
 
-  <div class="cs-hero-head">
-    <div class="cs-hero-content">
-      <h1>Portfolio Redesign:<br>An AI-Assisted Design Process</h1>
+  <!-- ══ HERO ══ -->
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vw,88px) clamp(20px,5vw,56px) 0">
+    <div style="display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(18,36,28,.55); margin-bottom:26px">
+      <span>Case study 04</span><span style="width:22px; height:1px; background:rgba(18,36,28,.25)"></span><span>Web · Self-directed</span>
     </div>
-  </div>
+    <h1 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(38px,6.4vw,76px); font-weight:500; letter-spacing:-.03em; line-height:1.02; margin:0 0 24px; max-width:22ch; text-wrap:pretty">I built this portfolio with AI. The design decisions were mine.</h1>
+    <p style="font-size:clamp(17px,1.6vw,21px); line-height:1.65; color:rgba(18,36,28,.68); margin:0 0 44px; max-width:58ch; text-wrap:pretty">You are reading the product. I had three case studies designed in Figma and no website, because building one was a job I kept losing to. A hiring manager gives you about four minutes; my Figma boards needed forty. So I treated my own portfolio as a design problem, with a real user and no engineer.</p>
 
-  <div class="cs-hero-cols">
-    <div class="cs-hero-cols-inner">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
       <div>
-        <span class="cs-overview-lbl">Overview</span>
-        <div class="cs-overview-body">
-          <p>My portfolio is my most important product. It's the one screen a recruiter judges before they ever meet me. The old version showed nice screens but told weak stories, mixed three visual styles, and made hiring managers work to understand my impact.</p>
-          <p>This is the end-to-end case study of how I rebuilt it: a full audit, a single design system, rewritten case-study narratives, and a hand-coded, deployed site, using AI as a research partner, writing editor and critique loop, while keeping every design decision my own.</p>
-        </div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Role</div>
+        <div style="font-size:14px; font-weight:600">Designer, and the client</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Nobody to hand it to</div>
       </div>
-      <div class="cs-hero-meta-col">
-        <div><span class="cs-hmeta-label">Role</span><div class="cs-hmeta-value">Product Designer: end to end (research, UX, UI, build)</div></div>
-        <div><span class="cs-hmeta-label">Timeline</span><div class="cs-hmeta-value">7 days</div></div>
-        <div><span class="cs-hmeta-label">Tools</span><div class="cs-hmeta-value">Figma · Claude &amp; ChatGPT · VS Code · GitHub Pages</div></div>
-        <div><span class="cs-hmeta-label">Deliverable</span><div class="cs-hmeta-value">Responsive portfolio + 3 rewritten case studies</div></div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Constraint</div>
+        <div style="font-size:14px; font-weight:600">No developer, evenings only</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Which made AI a design decision</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Shipped</div>
+        <div style="font-size:14px; font-weight:600">Five pages, live</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">After two years of not shipping</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">The real test</div>
+        <div style="font-size:14px; font-weight:600">Skim in two, read for twenty</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Every layout call answers to this</div>
       </div>
     </div>
-  </div>
+
+    <!-- animated banner -->
+    <div style="position:relative; border-radius:6px; overflow:hidden; background:#1F1A17; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
+      <div style="position:absolute; inset:0; background:radial-gradient(90% 70% at 78% 20%, rgba(217,119,87,.26), transparent 68%); animation:aiGlow 9s ease-in-out infinite; pointer-events:none"></div>
+
+      <div style="position:relative">
+        <div style="font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(253,253,253,.5); margin-bottom:22px">How a change actually happened</div>
+
+        <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:6px; padding:13px 15px; margin-bottom:26px">
+          <div style="font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(217,119,87,.9); margin-bottom:9px">My instruction</div>
+          <div style="display:flex; align-items:baseline; gap:2px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12.5px; line-height:1.6; color:rgba(253,253,253,.9)">
+            <span style="display:inline-block; overflow:hidden; white-space:nowrap; animation:aiType 11s steps(46,end) infinite">the greens don't match, unify them</span>
+            <span style="width:6px; height:14px; background:#D97757; animation:aiCaret 1s step-end infinite; flex-shrink:0"></span>
+          </div>
+        </div>
+
+        <div style="position:relative; display:grid; gap:20px; padding-left:26px">
+          <span style="position:absolute; left:4.5px; top:8px; bottom:8px; width:1px; background:rgba(253,253,253,.14)"></span>
+          <div style="position:relative; animation:aiStep 11s linear infinite">
+            <span style="position:absolute; left:-26px; top:6px; width:10px; height:10px; border-radius:50%; background:#D97757"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; font-weight:500; color:#FDFDFD; letter-spacing:-.01em">I spot it across five pages</div>
+          </div>
+          <div style="position:relative; animation:aiStep 11s linear infinite; animation-delay:3.6s">
+            <span style="position:absolute; left:-26px; top:6px; width:10px; height:10px; border-radius:50%; background:#D97757"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; font-weight:500; color:#FDFDFD; letter-spacing:-.01em">The build happens in seconds</div>
+          </div>
+          <div style="position:relative; animation:aiStep 11s linear infinite; animation-delay:7.2s">
+            <span style="position:absolute; left:-26px; top:6px; width:10px; height:10px; border-radius:50%; background:#D97757"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; font-weight:500; color:#FDFDFD; letter-spacing:-.01em">I decide whether it is right</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative; display:flex; justify-content:center">
+        <div style="position:relative; width:100%; max-width:330px; background:#171310; border:1px solid rgba(255,255,255,.14); border-radius:10px; overflow:hidden; box-shadow:0 26px 60px rgba(0,0,0,.45)">
+          <div style="display:flex; align-items:center; gap:6px; padding:10px 13px; border-bottom:1px solid rgba(255,255,255,.08)">
+            <span style="width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.22)"></span>
+            <span style="width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.22)"></span>
+            <span style="margin-left:8px; font-size:10px; color:rgba(255,255,255,.35)">five pages</span>
+          </div>
+          <div style="padding:18px 20px 22px">
+            <div style="font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:14px">Accent, per page</div>
+            <div style="position:relative; height:52px; margin-bottom:18px">
+              <div style="position:absolute; inset:0; display:flex; gap:8px; animation:aiFrom 11s linear infinite">
+                <span style="flex:1; border-radius:5px; background:#2FBE8E"></span>
+                <span style="flex:1; border-radius:5px; background:#3DDC7A"></span>
+                <span style="flex:1; border-radius:5px; background:#6EDBB8"></span>
+              </div>
+              <div style="position:absolute; inset:0; display:flex; gap:8px; opacity:0; animation:aiSwap 11s linear infinite">
+                <span style="flex:1; border-radius:5px; background:#2FBE8E"></span>
+                <span style="flex:1; border-radius:5px; background:#2FBE8E"></span>
+                <span style="flex:1; border-radius:5px; background:#2FBE8E"></span>
+              </div>
+            </div>
+            <div style="display:grid; gap:8px">
+              <span style="height:8px; width:78%; border-radius:4px; background:rgba(255,255,255,.14)"></span>
+              <span style="height:8px; width:54%; border-radius:4px; background:rgba(255,255,255,.1)"></span>
+              <span style="height:8px; width:64%; border-radius:4px; background:rgba(255,255,255,.1)"></span>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); display:flex; align-items:center; gap:9px; background:rgba(23,19,16,.94); border:1px solid rgba(217,119,87,.5); border-radius:999px; padding:9px 16px; white-space:nowrap; animation:aiChip 11s linear infinite">
+          <span style="width:7px; height:7px; border-radius:50%; background:#D97757"></span>
+          <span style="font-size:12px; font-weight:600; color:#FDFDFD">One palette, five pages</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 01 BRIEF ══ -->
+  <section id="brief" data-sec="1" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">01 The brief</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">The work existed. It was just unreadable.</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 20px; max-width:68ch">My user here is a hiring manager with a stack of applications and a few minutes each. That is the whole brief. Everything else follows from it.</p>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">What I had instead was three Figma boards. Each one designed carefully, each one a different accent colour and a different idea of what a case study contains, and all of them living in a file that required a link, a login and forty minutes of scrolling.</p>
+
+        <div style="margin-bottom:34px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">Where I started, three Figma boards</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:20px">
+            <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(18,36,28,.12); background:#FDFDFD; height:260px">
+              <img src="images/old-figma-jiobp-sm.jpg" alt="Old Figma board, JIO-BP" style="width:100%; height:auto">
+            </div>
+            <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(18,36,28,.12); background:#FDFDFD; height:260px">
+              <img src="images/old-figma-ttk-sm.jpg" alt="Old Figma board, TTK Prestige" style="width:100%; height:auto">
+            </div>
+            <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(18,36,28,.12); background:#FDFDFD; height:260px">
+              <img src="images/old-figma-dam-sm.jpg" alt="Old Figma board, DAM audit" style="width:100%; height:auto">
+            </div>
+          </div>
+          <p style="font-size:15px; line-height:1.75; color:rgba(18,36,28,.65); margin:0; max-width:66ch">Presentable one at a time, in a meeting, with me talking over them. Useless to someone deciding on their own in four minutes.</p>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:26px 28px; margin-bottom:24px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">The test I wrote down first</div>
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2.2vw,26px); font-weight:500; font-style:italic; line-height:1.45; color:#12241C; margin:0 0 14px; max-width:34ch">Skimmable in two minutes. Worth reading for twenty.</p>
+          <p style="font-size:15px; line-height:1.75; color:rgba(18,36,28,.65); margin:0; max-width:66ch">Two audiences, one page. A recruiter scanning for relevance and a design lead looking for reasoning. Every structural decision on this site is that sentence being applied.</p>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:26px 28px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:16px">What the reframe changed</div>
+          <div style="display:grid; gap:12px">
+            <div style="display:grid; grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr); gap:12px; align-items:center">
+              <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.6); background:#F2EFE8; border-radius:5px; padding:11px 13px">Background, process, insight, wireframes, styleguide, design</div>
+              <div style="text-align:center; color:rgba(18,36,28,.3); font-size:14px">→</div>
+              <div style="font-size:14px; line-height:1.6; color:#12241C; font-weight:500; background:rgba(15,110,86,.07); border:1px solid rgba(15,110,86,.25); border-radius:5px; padding:11px 13px">Brief, users, structure, decisions, flows, foundations</div>
+            </div>
+            <div style="display:grid; grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr); gap:12px; align-items:center">
+              <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.6); background:#F2EFE8; border-radius:5px; padding:11px 13px">A five step process diagram on every board</div>
+              <div style="text-align:center; color:rgba(18,36,28,.3); font-size:14px">→</div>
+              <div style="font-size:14px; line-height:1.6; color:#12241C; font-weight:500; background:rgba(15,110,86,.07); border:1px solid rgba(15,110,86,.25); border-radius:5px; padding:11px 13px">Cut. Nobody was ever going to ask about it</div>
+            </div>
+            <div style="display:grid; grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr); gap:12px; align-items:center">
+              <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.6); background:#F2EFE8; border-radius:5px; padding:11px 13px">A wall of screens with captions</div>
+              <div style="text-align:center; color:rgba(18,36,28,.3); font-size:14px">→</div>
+              <div style="font-size:14px; line-height:1.6; color:#12241C; font-weight:500; background:rgba(15,110,86,.07); border:1px solid rgba(15,110,86,.25); border-radius:5px; padding:11px 13px">Decisions, each with what it cost</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 THE CONSTRAINT ══ -->
+  <section id="constraint" data-sec="2" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">02 The constraint</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">No engineer, so I designed in words</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">Every previous attempt died in the build. Handing that part to AI was not a novelty, it was the only way the project had a chance of existing. What it changed is where my hours went.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-bottom:34px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:16px">Before</div>
+            <div style="display:grid; gap:10px">
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px"><span style="color:rgba(18,36,28,.7)">Building</span><span style="color:rgba(18,36,28,.45)">most of it</span></div>
+                <div style="height:8px; border-radius:4px; background:rgba(18,36,28,.1); overflow:hidden"><span style="display:block; width:82%; height:100%; background:rgba(18,36,28,.35)"></span></div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px"><span style="color:rgba(18,36,28,.7)">Deciding</span><span style="color:rgba(18,36,28,.45)">what was left</span></div>
+                <div style="height:8px; border-radius:4px; background:rgba(18,36,28,.1); overflow:hidden"><span style="display:block; width:18%; height:100%; background:rgba(18,36,28,.35)"></span></div>
+              </div>
+            </div>
+            <p style="font-size:13.5px; line-height:1.65; color:rgba(18,36,28,.6); margin:16px 0 0">Which is why it never shipped.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(15,110,86,.3); border-radius:6px; padding:24px 26px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:16px">After</div>
+            <div style="display:grid; gap:10px">
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px"><span style="color:rgba(18,36,28,.7)">Building</span><span style="color:rgba(18,36,28,.45)">near zero</span></div>
+                <div style="height:8px; border-radius:4px; background:rgba(15,110,86,.12); overflow:hidden"><span style="display:block; width:12%; height:100%; background:#0F6E56"></span></div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px"><span style="color:rgba(18,36,28,.7)">Deciding and correcting</span><span style="color:rgba(18,36,28,.45)">nearly all</span></div>
+                <div style="height:8px; border-radius:4px; background:rgba(15,110,86,.12); overflow:hidden"><span style="display:block; width:88%; height:100%; background:#0F6E56"></span></div>
+              </div>
+            </div>
+            <p style="font-size:13.5px; line-height:1.65; color:rgba(18,36,28,.6); margin:16px 0 0">Same total hours. Different work entirely.</p>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:26px 28px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:18px">Working inside it, four habits that mattered</div>
+          <div style="display:grid; gap:16px">
+            <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline">
+              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Describe the intent, not the CSS.</strong> Naming the feeling landed. Naming a hex value got me that hex value and nothing else.</div>
+              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">editorial, warm paper,<br>not a tech landing page</div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; padding-top:16px; border-top:1px solid rgba(18,36,28,.09)">
+              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Look before reading.</strong> I judged the shape of the page from across the room first. Rhythm is visible at that distance. Wording is not.</div>
+              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">this section is louder than<br>the one above it</div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; padding-top:16px; border-top:1px solid rgba(18,36,28,.09)">
+              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">One correction at a time.</strong> Five fixes at once got me four good ones and a new problem I had to find.</div>
+              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">only the card padding.<br>leave the rest alone</div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; padding-top:16px; border-top:1px solid rgba(18,36,28,.09)">
+              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Say what is settled.</strong> Anything I did not declare final drifted, helpfully, into something slightly different on the next page.</div>
+              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">the header is final.<br>reuse it exactly</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 DECISIONS ══ -->
+  <section id="decisions" data-sec="3" style="background:#FDFDFD; margin-top:clamp(64px,8vw,110px); padding:clamp(64px,8vw,110px) 0">
+    <div style="max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,56px)">
+      <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+        <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">03 Decisions</div></div>
+        <div>
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Four calls, and what each one cost</h2>
+          <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 48px; max-width:68ch">All four serve the same user in the same four minutes. Three of them are subtractions.</p>
+
+          <!-- 01 one shell -->
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
+            <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
+              <div style="flex:1 1 330px; min-width:280px">
+                <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 01 · Consistency</div>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">One shell for five pages, not five designs</h3>
+                <div style="display:grid; gap:16px; max-width:60ch">
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Options</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Let each case study look like its project, or hold one layout and let the content differ.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                    <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">One shell. Identical header, section rhythm, type scale and palette on every page. The client's colour appears in the banner only.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Why</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Someone reading a second case study should spend their attention on the work, not on relearning where things are. Familiarity is a reading speed feature.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">The pages are less individually striking than my old boards were. I traded surprise for speed, deliberately.</div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 1 250px; min-width:230px; background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+                <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">The drift I had to catch</div>
+                <div style="display:grid; gap:9px; margin-bottom:16px">
+                  <div style="display:flex; align-items:center; gap:11px">
+                    <span style="width:30px; height:30px; border-radius:5px; background:#2FBE8E; flex-shrink:0"></span>
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.7)">#2FBE8E</span>
+                    <span style="margin-left:auto; font-size:11px; color:rgba(18,36,28,.5)">homepage</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:11px">
+                    <span style="width:30px; height:30px; border-radius:5px; background:#3DDC7A; flex-shrink:0"></span>
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.7)">#3DDC7A</span>
+                    <span style="margin-left:auto; font-size:11px; color:rgba(18,36,28,.5)">status dot</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:11px">
+                    <span style="width:30px; height:30px; border-radius:5px; background:#6EDBB8; flex-shrink:0"></span>
+                    <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.7)">#6EDBB8</span>
+                    <span style="margin-left:auto; font-size:11px; color:rgba(18,36,28,.5)">a badge</span>
+                  </div>
+                </div>
+                <p style="font-size:13.5px; line-height:1.65; color:rgba(18,36,28,.6); margin:0">Three greens, each plausible on its own page. Every page was built in its own conversation, so consistency was never going to arrive by itself. I audited all five for stray hex values, then wrote down what each colour is allowed to mean.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 decisions over screens -->
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
+            <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
+              <div style="flex:1 1 330px; min-width:280px">
+                <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 02 · Content</div>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">Decisions with their cost, not a wall of screens</h3>
+                <div style="display:grid; gap:16px; max-width:60ch">
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Options</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Show everything I made with captions, or show the forks where I chose one thing over another.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                    <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">Three or four decisions per case study, each framed as options, what I chose, why, and what it cost.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Why</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Screens prove I can use Figma. The cost line proves I understood the tradeoff, and it is the part interviewers actually probe.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">A lot of finished visual work is not on the site. It also invites harder questions, which I decided was the point.</div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 1 250px; min-width:230px; background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+                <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:14px">Cut from the first drafts</div>
+                <div style="display:grid; gap:9px">
+                  <div style="display:flex; gap:10px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)"><span style="color:#C93A2A; flex-shrink:0">✕</span> A persona I never interviewed</div>
+                  <div style="display:flex; gap:10px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)"><span style="color:#C93A2A; flex-shrink:0">✕</span> Completion rates nobody measured</div>
+                  <div style="display:flex; gap:10px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)"><span style="color:#C93A2A; flex-shrink:0">✕</span> A five step process diagram</div>
+                  <div style="display:flex; gap:10px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)"><span style="color:#C93A2A; flex-shrink:0">✕</span> Four how might we cards</div>
+                  <div style="display:flex; gap:10px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)"><span style="color:#C93A2A; flex-shrink:0">✕</span> Stock photography with a watermark</div>
+                </div>
+                <p style="font-size:13.5px; line-height:1.65; color:rgba(18,36,28,.6); margin:16px 0 0">Roughly half the first JIO-BP draft never shipped. When adding a section costs nothing, restraint is the only editor you have.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 reference over adjectives -->
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
+            <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
+              <div style="flex:1 1 330px; min-width:280px">
+                <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 03 · Direction</div>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">Print that happens to scroll</h3>
+                <div style="display:grid; gap:16px; max-width:60ch">
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Problem</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">I knew what I did not want and could not name what I did. A dozen adjectives got me a dozen different pages.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                    <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">Reference sites instead of adjectives, then one phrase I could repeat: warm, editorial, print that happens to scroll.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Why</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">A reference is not a thing to copy, it is a shared vocabulary. It also matches the brief: long-form reading wants paper, not a product page.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">It is a quiet site. It will not win anyone over in a thumbnail, which is a real tradeoff for a portfolio.</div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 1 250px; min-width:230px; display:grid; gap:12px">
+                <div style="background:#F2EFE8; border:1px solid rgba(201,58,42,.3); border-radius:6px; padding:16px 18px">
+                  <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">Ruled out</div>
+                  <div style="display:grid; gap:8px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)">
+                    <div style="display:flex; gap:9px"><span style="color:#C93A2A; flex-shrink:0">✕</span> Gradient hero, oversized headline</div>
+                    <div style="display:flex; gap:9px"><span style="color:#C93A2A; flex-shrink:0">✕</span> Cards floating on a dark blur</div>
+                    <div style="display:flex; gap:9px"><span style="color:#C93A2A; flex-shrink:0">✕</span> Big numbers with no source</div>
+                  </div>
+                </div>
+                <div style="background:#F2EFE8; border:1px solid rgba(15,110,86,.3); border-radius:6px; padding:16px 18px">
+                  <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Kept</div>
+                  <div style="display:grid; gap:8px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)">
+                    <div style="display:flex; gap:9px"><span style="color:#0F6E56; flex-shrink:0">→</span> Warm paper, not white</div>
+                    <div style="display:flex; gap:9px"><span style="color:#0F6E56; flex-shrink:0">→</span> Long measure, generous leading</div>
+                    <div style="display:flex; gap:9px"><span style="color:#0F6E56; flex-shrink:0">→</span> Rules and labels doing the dividing</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 04 what I had to correct -->
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px">
+            <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
+              <div style="flex:1 1 330px; min-width:280px">
+                <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 04 · Craft</div>
+                <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">Hold the details nothing else was watching</h3>
+                <div style="display:grid; gap:16px; max-width:60ch">
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Problem</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">A page can be locally correct and globally wrong. Nothing in the build process was looking at the whole.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                    <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">To treat every page as a proof against one written system, and to re-audit all five whenever anything changed.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Caught</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Body copy arriving at 15, 15.5 and 16.5px on three pages. Panels capped at a readable text width, so the container shrank with its paragraph and broke the column edge. Four uneven cards in a rigid two by two.</div>
+                  </div>
+                  <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                    <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                    <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Slow, unglamorous, and most of the hours on this project. It is also the only reason five pages read as one site.</div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 1 250px; min-width:230px; display:grid; gap:12px">
+                <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:16px 18px">
+                  <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">Cap the words, not the box</div>
+                  <div style="border:1px solid rgba(201,58,42,.35); border-radius:4px; padding:10px; margin-bottom:8px; width:74%">
+                    <span style="display:block; height:5px; border-radius:3px; background:rgba(18,36,28,.16); margin-bottom:5px"></span>
+                    <span style="display:block; height:5px; width:70%; border-radius:3px; background:rgba(18,36,28,.16)"></span>
+                  </div>
+                  <div style="font-size:10.5px; color:#C93A2A; margin-bottom:12px">box shrank with the text</div>
+                  <div style="border:1px solid rgba(15,110,86,.35); border-radius:4px; padding:10px">
+                    <span style="display:block; height:5px; width:74%; border-radius:3px; background:rgba(18,36,28,.16); margin-bottom:5px"></span>
+                    <span style="display:block; height:5px; width:52%; border-radius:3px; background:rgba(18,36,28,.16)"></span>
+                  </div>
+                  <div style="font-size:10.5px; color:#0F6E56; margin-top:8px">container holds the edge</div>
+                </div>
+                <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:16px 18px">
+                  <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">Rows, not grids</div>
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px">
+                    <span style="height:24px; border-radius:4px; background:#FDFDFD; border:1px solid rgba(201,58,42,.3)"></span>
+                    <span style="height:38px; border-radius:4px; background:#FDFDFD; border:1px solid rgba(201,58,42,.3)"></span>
+                  </div>
+                  <div style="font-size:10.5px; color:#C93A2A; margin-bottom:12px">ragged bottom edge</div>
+                  <div style="display:grid; gap:6px">
+                    <span style="height:20px; border-radius:4px; background:#FDFDFD; border:1px solid rgba(15,110,86,.3)"></span>
+                    <span style="height:20px; border-radius:4px; background:#FDFDFD; border:1px solid rgba(15,110,86,.3)"></span>
+                    <span style="height:20px; border-radius:4px; background:#FDFDFD; border:1px solid rgba(15,110,86,.3)"></span>
+                  </div>
+                  <div style="font-size:10.5px; color:#0F6E56; margin-top:8px">unequal text wants rows</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 04 THE SYSTEM ══ -->
+  <section id="system" data-sec="4" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">04 The system</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">What the whole site runs on</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">Written down once, then enforced everywhere. Small enough to hold in your head, which is the only kind of system that survives.</p>
+
+        <!-- type -->
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px); margin-bottom:24px">
+          <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 20px; margin-bottom:22px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Type, three pairings tried</div>
+            <div style="font-size:12px; color:rgba(18,36,28,.45)">Same sentence, three times</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:26px">
+            <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px; position:relative">
+              <span style="position:absolute; top:-1px; right:14px; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:rgba(18,36,28,.6); background:rgba(18,36,28,.09); border-radius:0 0 3px 3px; padding:3px 8px">Ruled out</span>
+              <div style="font-family:'Inter',sans-serif; font-size:23px; font-weight:700; letter-spacing:-.02em; line-height:1.15; color:rgba(18,36,28,.72); margin-bottom:10px">Fuel booking, solved</div>
+              <div style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.7)">Sans on sans. Efficient, and it read like a SaaS dashboard.</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(18,36,28,.55); margin-top:12px">Inter + Inter</div>
+            </div>
+            <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px; position:relative">
+              <span style="position:absolute; top:-1px; right:14px; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:rgba(18,36,28,.6); background:rgba(18,36,28,.09); border-radius:0 0 3px 3px; padding:3px 8px">Ruled out</span>
+              <div style="font-family:Georgia,'Times New Roman',serif; font-size:24px; font-weight:400; letter-spacing:-.01em; line-height:1.15; color:rgba(18,36,28,.72); margin-bottom:10px">Fuel booking, solved</div>
+              <div style="font-family:Georgia,serif; font-size:13px; line-height:1.6; color:rgba(18,36,28,.7)">Serif everywhere. Handsome for a paragraph, exhausting for a label.</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(18,36,28,.55); margin-top:12px">Serif + serif</div>
+            </div>
+            <div style="background:#F2EFE8; border:1px solid rgba(15,110,86,.35); border-radius:6px; padding:18px 20px; position:relative">
+              <span style="position:absolute; top:-1px; right:14px; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:#FDFDFD; background:#0F6E56; border-radius:0 0 3px 3px; padding:3px 8px">Kept</span>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:24px; font-weight:500; letter-spacing:-.02em; line-height:1.15; color:#12241C; margin-bottom:10px">Fuel booking, solved</div>
+              <div style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.65)">Serif speaks, sans informs. The split does the hierarchy for me.</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(18,36,28,.45); margin-top:12px">Source Serif + Inter</div>
+            </div>
+          </div>
+
+          <div style="border:1px solid rgba(18,36,28,.12); border-radius:6px; overflow:hidden">
+            <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px; padding:16px 18px; background:#FBFAF7; border-bottom:1px solid rgba(18,36,28,.09)">
+              <span style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(26px,3vw,34px); font-weight:500; letter-spacing:-.025em; line-height:1; flex:1 1 auto">Page title</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(18,36,28,.45); white-space:nowrap">serif · 500 · tight</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px; padding:14px 18px; border-bottom:1px solid rgba(18,36,28,.09)">
+              <span style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.012em; flex:1 1 auto">Section head</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(18,36,28,.45); white-space:nowrap">serif · 600</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px; padding:14px 18px; border-bottom:1px solid rgba(18,36,28,.09)">
+              <span style="font-size:15px; color:rgba(18,36,28,.78); flex:1 1 auto">Body copy, exactly one size on every page</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(18,36,28,.45); white-space:nowrap">sans · 400 · 15px</span>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px; padding:14px 18px">
+              <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.55); flex:1 1 auto">Label</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(18,36,28,.45); white-space:nowrap">sans · tracked · caps</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- palette -->
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px); margin-bottom:24px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:20px">Palette, and what each colour is allowed to mean</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:22px">
+            <div>
+              <div style="height:74px; border-radius:5px; background:#F2EFE8; border:1px solid rgba(18,36,28,.12); margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Paper</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#F2EFE8</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Every page ground</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#12241C; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Ink</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#12241C</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">All text, at opacities</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#0F6E56; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Accent</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#0F6E56</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Section marks, links</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#C93A2A; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Problem red</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#C93A2A</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Breaks and gaps, never decoration</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#1F1A17; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Dark grounds</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">one per subject</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Banners only, never the shell</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- banner rule -->
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px); margin-bottom:24px">
+          <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:6px 20px; margin-bottom:20px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Each banner carries its subject's colour, the shell never changes</div>
+            <div style="font-size:12px; color:rgba(18,36,28,.45)">Same layout, four grounds</div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px">
+            <div>
+              <div style="border-radius:6px; overflow:hidden; background:#0D2B1E; padding:16px 17px 18px">
+                <div style="height:6px; width:34px; border-radius:3px; background:#2FBE8E; margin-bottom:14px"></div>
+                <div style="height:7px; width:82%; border-radius:4px; background:rgba(255,255,255,.5); margin-bottom:7px"></div>
+                <div style="height:7px; width:58%; border-radius:4px; background:rgba(255,255,255,.22)"></div>
+              </div>
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 2px 0">
+                <span style="font-size:12.5px; font-weight:600">JIO-BP</span>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(18,36,28,.45)">#2FBE8E</span>
+              </div>
+            </div>
+            <div>
+              <div style="border-radius:6px; overflow:hidden; background:#1A1210; padding:16px 17px 18px">
+                <div style="height:6px; width:34px; border-radius:3px; background:#C93A2A; margin-bottom:14px"></div>
+                <div style="height:7px; width:82%; border-radius:4px; background:rgba(255,255,255,.5); margin-bottom:7px"></div>
+                <div style="height:7px; width:58%; border-radius:4px; background:rgba(255,255,255,.22)"></div>
+              </div>
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 2px 0">
+                <span style="font-size:12.5px; font-weight:600">TTK Prestige</span>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(18,36,28,.45)">#C93A2A</span>
+              </div>
+            </div>
+            <div>
+              <div style="border-radius:6px; overflow:hidden; background:#062A47; padding:16px 17px 18px">
+                <div style="height:6px; width:34px; border-radius:3px; background:#4FB0E8; margin-bottom:14px"></div>
+                <div style="height:7px; width:82%; border-radius:4px; background:rgba(255,255,255,.5); margin-bottom:7px"></div>
+                <div style="height:7px; width:58%; border-radius:4px; background:rgba(255,255,255,.22)"></div>
+              </div>
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 2px 0">
+                <span style="font-size:12.5px; font-weight:600">DAM audit</span>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(18,36,28,.45)">#4FB0E8</span>
+              </div>
+            </div>
+            <div>
+              <div style="border-radius:6px; overflow:hidden; background:#1F1A17; padding:16px 17px 18px">
+                <div style="height:6px; width:34px; border-radius:3px; background:#D97757; margin-bottom:14px"></div>
+                <div style="height:7px; width:82%; border-radius:4px; background:rgba(255,255,255,.5); margin-bottom:7px"></div>
+                <div style="height:7px; width:58%; border-radius:4px; background:rgba(255,255,255,.22)"></div>
+              </div>
+              <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding:9px 2px 0">
+                <span style="font-size:12.5px; font-weight:600">This page</span>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(18,36,28,.45)">#D97757</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- rhythm -->
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px)">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:18px">One rhythm, every page</div>
+          <div style="display:flex; flex-wrap:wrap; gap:24px 32px; align-items:flex-start">
+            <div style="flex:1 1 220px; min-width:200px">
+              <div style="display:flex; gap:10px; margin-bottom:12px">
+                <div style="width:34px; flex-shrink:0"><span style="display:block; height:5px; border-radius:3px; background:rgba(15,110,86,.5)"></span></div>
+                <div style="flex:1; display:grid; gap:5px">
+                  <span style="height:5px; border-radius:3px; background:rgba(18,36,28,.2)"></span>
+                  <span style="height:5px; width:88%; border-radius:3px; background:rgba(18,36,28,.13)"></span>
+                  <span style="height:5px; width:76%; border-radius:3px; background:rgba(18,36,28,.13)"></span>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px">
+                <div style="width:34px; flex-shrink:0"><span style="display:block; height:5px; border-radius:3px; background:rgba(15,110,86,.5)"></span></div>
+                <div style="flex:1; display:grid; gap:5px">
+                  <span style="height:5px; border-radius:3px; background:rgba(18,36,28,.2)"></span>
+                  <span style="height:5px; width:82%; border-radius:3px; background:rgba(18,36,28,.13)"></span>
+                </div>
+              </div>
+            </div>
+            <p style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.68); margin:0">Numbered label on the left, content on the right, identical width on every page and every section. Boring on purpose: a reader on their second case study should already know where to look.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 OUTCOME ══ -->
+  <section id="outcome" data-sec="5" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">05 Outcome</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 34px; max-width:26ch">It exists, and it passes its own test</h2>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:40px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(30px,3.4vw,40px); font-weight:500; letter-spacing:-.02em; line-height:1; margin-bottom:10px">5</div>
+            <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.68)">Pages live, from three unbuilt Figma boards</div>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(30px,3.4vw,40px); font-weight:500; letter-spacing:-.02em; line-height:1; margin-bottom:10px">1</div>
+            <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.68)">Palette, type scale and layout across all of them</div>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(30px,3.4vw,40px); font-weight:500; letter-spacing:-.02em; line-height:1; margin-bottom:10px">0</div>
+            <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.68)">Numbers on this site I cannot account for</div>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:26px 28px; margin-bottom:40px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">Being straight about it</div>
+          <p style="font-size:15px; line-height:1.8; color:rgba(18,36,28,.7); margin:0; max-width:70ch">I have no analytics to quote and no interview data on my own portfolio. What I can say is that it shipped after two years of not shipping, it holds one system across five pages, and I can defend every decision on it without reaching. For a self-directed project that is the honest measure.</p>
+        </div>
+
+        <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(21px,2.2vw,27px); font-weight:500; letter-spacing:-.02em; margin:0 0 26px">What I would carry into a team</h3>
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:44px">
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:220px">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Execution stopped being the constraint</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Trying a layout used to cost an afternoon, so I tried one. Here it cost a sentence, so I tried four and chose. What is scarce now is knowing which of the four is right.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Everything got faster except deciding.</p>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:220px">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Nothing else was looking at the whole</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Each page came back locally excellent and globally adrift. Systems thinking was the entire contribution, and it is the difference between five pages and one site.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Consistency is a decision, not an output.</p>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:220px">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Editing became the job</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">When a section costs nothing to add, restraint is the only thing keeping a portfolio readable. Most of my instructions were deletions.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Cheap to add is not worth adding.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-left:2px solid #0F6E56; padding:4px 0 4px 24px; max-width:62ch; margin-bottom:48px">
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2.1vw,25px); font-weight:400; font-style:italic; line-height:1.5; color:#12241C; margin:0">The tool built what I designed. Deciding what belonged, and noticing when it drifted, was the work.</p>
+        </div>
+
+        <div style="border-top:1px solid rgba(18,36,28,.14); padding-top:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+          <a href="index.html#work" style="font-size:13px; color:rgba(18,36,28,.6)">← All work</a>
+          <a href="pooja_kurade_casestudy_jiobp.html" style="display:flex; align-items:baseline; gap:14px">
+            <span style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Next case study</span>
+            <span style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(22px,2.6vw,32px); font-weight:500; letter-spacing:-.02em; color:#12241C">JIO-BP Fuel Booking →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:clamp(56px,7vw,88px)"></div>
 </div>
-
-<!-- 1 · PROJECT OVERVIEW -->
-<section class="cs-section rv" id="overview">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">01. Project Overview</span>
-    <h2>Treating my portfolio as a product, not a gallery</h2>
-    <p class="cs-lead">The goal wasn't a prettier site. It was to shorten the distance between "recruiter opens the link" and "recruiter understands what I can do for their team."</p>
-    <p>I decided to redesign because I was applying for Senior Product Designer roles in Berlin and noticed a pattern: strong conversations happened when someone had actually read a case study, and weak ones when they'd only skimmed screens. My old portfolio optimised for the skim. It showed outcomes but hid the thinking: the exact thing a senior hiring bar is testing for.</p>
-    <p><strong>Target audience.</strong> Three readers, each skimming differently: <strong>recruiters</strong> (30-second scan for role fit, seniority, location), <strong>hiring managers</strong> (5-minute read for decision-making and craft), and <strong>design teams</strong> on the panel (deep read for process rigour and systems thinking). Every layout choice was checked against those three reading speeds.</p>
-    <p><strong>Role &amp; responsibilities.</strong> This was a solo, full-stack design project: I owned research, information architecture, UX writing, visual design, the design system, front-end build, and deployment. There was no engineer to hand off to and no PM to write the brief, so I acted as all three.</p>
-
-    <div class="proc-steps-wrap">
-      <div class="proc-steps rv">
-        <div class="proc-step">
-          <div class="proc-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-          <div class="proc-num">01</div><div class="proc-title">Audit</div>
-          <div class="proc-desc">Heuristic self-review · recruiter feedback · reference study</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/></svg></div>
-          <div class="proc-num">02</div><div class="proc-title">Define</div>
-          <div class="proc-desc">Audience framing · IA · content structure</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"/><path d="M12 22v-4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg></div>
-          <div class="proc-num">03</div><div class="proc-title">System</div>
-          <div class="proc-desc">Tokens · type scale · components in shared.css</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-          <div class="proc-num">04</div><div class="proc-title">Build</div>
-          <div class="proc-desc">Hand-coded HTML/CSS/JS · responsive</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-          <div class="proc-num">05</div><div class="proc-title">Test &amp; Ship</div>
-          <div class="proc-desc">Device testing · critique loops · deploy</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 2 · AUDIT -->
-<section class="cs-section cs-section--alt rv" id="audit">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">02. Initial Audit &amp; Problem Identification</span>
-    <h2>Finding out why the old portfolio wasn't converting</h2>
-    <p>I audited the existing site the same way I'd audit a client product: a heuristic pass against usability and communication principles, a read of my own analytics and recruiter replies, and a benchmark against portfolios that were clearly landing interviews. I wrote every problem as a specific, fixable statement rather than a vague "it feels off."</p>
-
-    <div class="cs-insights-grid">
-      <div class="cs-insight-card">
-        <div class="cs-insight-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-        <div>
-          <div class="cs-insight-num">Problem 01</div>
-          <div class="cs-insight-title">Weak storytelling</div>
-          <div class="cs-insight-desc">Projects were screen dumps. No problem statement, no research, no decisions, so a reader couldn't tell what I actually did versus what the team did. Impact was implied, never shown.</div>
-        </div>
-      </div>
-      <div class="cs-insight-card">
-        <div class="cs-insight-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22c5 0 6-3 6-5 0-1.5-1-2-2-2H8c-1 0-2 .5-2 2 0 2 1 5 6 5z"/></svg></div>
-        <div>
-          <div class="cs-insight-num">Problem 02</div>
-          <div class="cs-insight-title">Three visual styles fighting</div>
-          <div class="cs-insight-desc">Each project page had its own colours, type and spacing. The site read like three different designers. No shared tokens meant no consistency, and inconsistency reads as junior.</div>
-        </div>
-      </div>
-      <div class="cs-insight-card">
-        <div class="cs-insight-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div>
-        <div>
-          <div class="cs-insight-num">Problem 03</div>
-          <div class="cs-insight-title">Typography &amp; hierarchy noise</div>
-          <div class="cs-insight-desc">Too many weights and sizes with no scale. Headlines and body blurred together, so the eye had no path. Nothing signalled "read this first."</div>
-        </div>
-      </div>
-      <div class="cs-insight-card">
-        <div class="cs-insight-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6 2 11c0 5 4 9 10 9a3 3 0 0 0 3-3 2 2 0 0 1 2-2h1a4 4 0 0 0 4-4c0-5-4.5-9-10-9z"/></svg></div>
-        <div>
-          <div class="cs-insight-num">Problem 04</div>
-          <div class="cs-insight-title">Colour imbalance</div>
-          <div class="cs-insight-desc">Accent colours were used decoratively, not functionally. Nothing tied to meaning, and several text/background pairings failed contrast: an accessibility and credibility problem at once.</div>
-        </div>
-      </div>
-      <div class="cs-insight-card">
-        <div class="cs-insight-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-        <div>
-          <div class="cs-insight-num">Problem 05</div>
-          <div class="cs-insight-title">Generic templated layouts</div>
-          <div class="cs-insight-desc">The old site looked like a theme. Nothing about it felt authored, and for a design role, the portfolio itself is the strongest craft sample I have.</div>
-        </div>
-      </div>
-      <div class="cs-insight-card">
-        <div class="cs-insight-icon"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-        <div>
-          <div class="cs-insight-num">Problem 06</div>
-          <div class="cs-insight-title">Usability friction</div>
-          <div class="cs-insight-desc">No clear way back to Work, no obvious next project, buried resume link, and a mobile layout that broke on the pages recruiters open most from LinkedIn.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>Competitor &amp; inspiration research</h3>
-      <p>I studied portfolios and reference sites that consistently earn senior interviews, then extracted the pattern behind each, not the pixels. The takeaway was consistent: strong portfolios lead with a decision and a result, use one restrained system, and make the reading path effortless.</p>
-      <div class="cs-quote">
-        <p>"The best portfolios don't show more work; they make one project impossible to misunderstand."</p>
-        <cite>The principle I kept returning to during the audit</cite>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3 · AI-ASSISTED PROCESS -->
-<section class="cs-section rv" id="ai-process">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">03. AI-Assisted Design Process</span>
-    <h2>Where AI helped, and where I stayed in charge</h2>
-    <p>I used AI (Claude and ChatGPT) as a fast, tireless collaborator across the process: a research assistant, a writing editor, and an on-demand critique partner. It compressed the slow parts of the work so I could spend my time on judgement. Crucially, AI never made a design decision; it widened my options and pressure-tested mine.</p>
-
-    <div class="ai-grid">
-      <div class="ai-card">
-        <span class="ai-card-tag">Research assistance</span>
-        <h4>Faster synthesis of what "good" looks like</h4>
-        <p>I asked AI to summarise recurring patterns in senior product-design portfolios and to translate WCAG contrast rules into a plain checklist I could design against.</p>
-        <div class="ai-human"><b>My decision</b>I chose which patterns fit a systems-and-research designer and discarded the flashy ones that didn't match my strengths.</div>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Idea &amp; reference generation</span>
-        <h4>Divergent options, quickly</h4>
-        <p>I generated multiple directions for hero layouts, palette moods and section structures to react against, using AI to get past the blank canvas.</p>
-        <div class="ai-human"><b>My decision</b>I converged on a calm dark-green editorial direction with a single teal accent, because it reads senior and doesn't compete with the work.</div>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">UX writing &amp; storytelling</span>
-        <h4>Sharper case-study narratives</h4>
-        <p>AI helped me tighten problem statements, cut filler, and turn feature lists into decision-and-result sentences. I fed it my raw notes; it gave me leaner drafts.</p>
-        <div class="ai-human"><b>My decision</b>Every final line is in my voice: I rewrote anything that sounded generic or overclaimed, and kept the specifics only I know.</div>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Content structure</span>
-        <h4>A repeatable case-study skeleton</h4>
-        <p>Together we defined one structure: Problem → Research → Insight → Process → Solution → Impact → Learnings, so all three case studies scan the same way.</p>
-        <div class="ai-human"><b>My decision</b>I set the structure as a rule and enforced it in the actual component system, not just the copy.</div>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Design critique</span>
-        <h4>A second set of eyes, on demand</h4>
-        <p>I pasted screenshots and described choices, then asked AI to argue the recruiter's, the manager's, and the panellist's point of view separately.</p>
-        <div class="ai-human"><b>My decision</b>I treated critiques as hypotheses to test against real users, not instructions to follow.</div>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Iteration speed</span>
-        <h4>Tighter feedback loops</h4>
-        <p>Because drafting, rewriting and debugging were faster, I ran more cycles in the same time: more versions of the hero, the work list, the case-study intro.</p>
-        <div class="ai-human"><b>My decision</b>More iterations only helped because I set the bar for what counted as "better" each round.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 · DESIGN SYSTEM -->
-<section class="cs-section cs-section--alt rv" id="system">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">04. Design System &amp; Visual Improvements</span>
-    <h2>One system, applied everywhere</h2>
-    <p>The single biggest upgrade was replacing three ad-hoc styles with one tokenised system, defined once and shared across every page through a single <strong>shared.css</strong> file. Change a token, and the whole site updates, the same discipline I bring to product design systems.</p>
-
-    <h3 style="margin-top:8px">Colour palette &amp; accessibility</h3>
-    <p>I built a restrained palette around a deep forest green as the brand foundation, a single teal as the functional accent (links, labels, active states), and a warm yellow reserved only for availability and highlights. Every pairing was checked for <strong>WCAG AA contrast</strong>: body text sits at 4.5:1 or higher, and colour never carries meaning alone; it's always paired with text or shape.</p>
-    <div class="sg-swatches">
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#0D2B1E"></div><div class="sg-swatch-label">Forest<br>#0D2B1E</div></div>
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#081812"></div><div class="sg-swatch-label">Ink<br>#081812</div></div>
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#2FBE8E"></div><div class="sg-swatch-label">Teal<br>#2FBE8E</div></div>
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#0F6E56"></div><div class="sg-swatch-label">Teal Deep<br>#0F6E56</div></div>
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#E8B84B"></div><div class="sg-swatch-label">Yellow<br>#E8B84B</div></div>
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#F2EFE8;border:1px solid #ddd"></div><div class="sg-swatch-label">Paper<br>#F2EFE8</div></div>
-      <div class="sg-swatch-item"><div class="sg-swatch" style="background:#FDFDFD;border:1px solid #ddd"></div><div class="sg-swatch-label">White<br>#FDFDFD</div></div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>Typography &amp; hierarchy</h3>
-      <p>I paired a serif for voice with a sans for clarity and a mono for structural labels: a three-role system, not a pile of fonts. <strong>Newsreader</strong> (italic, light) carries editorial headlines and lead lines; <strong>Source Sans</strong> handles all body and UI; <strong>Space Mono</strong> is reserved for eyebrow labels, meta and numbers. A fixed type scale replaced the old free-for-all, so hierarchy now guides the eye instead of fighting it.</p>
-      <div class="sg-type-grid">
-        <div class="sg-type-block">
-          <div style="font-family:var(--ff-s);font-style:italic;font-weight:300;font-size:34px;color:var(--dark);line-height:1.1;margin-bottom:10px">Editorial voice</div>
-          <div class="sg-type-spec">Newsreader · Italic 300 · Display &amp; leads</div>
-        </div>
-        <div class="sg-type-block">
-          <div style="font-weight:700;font-size:22px;color:var(--dark);margin-bottom:6px">Clear, quiet body text</div>
-          <div style="font-size:14px;color:var(--mid);margin-bottom:12px">Source Sans keeps long reads comfortable and neutral so the story stays in front.</div>
-          <div class="sg-type-spec">Source Sans 3 · 400-700 · Body &amp; UI · Space Mono · labels</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>Spacing, components &amp; consistency</h3>
-      <p>I standardised spacing with a fluid <strong>clamp()</strong> padding token and a shared max-width, so rhythm is identical on every page and every breakpoint. Recurring patterns became named components in shared.css: insight cards, process steps, personas, outcome metrics, quote blocks, before/after callouts and case navigation. Because each one is defined once, the whole portfolio stays visually coherent and is trivial to extend with a new project.</p>
-      <div class="pill-row">
-        <span class="pill">Design tokens</span>
-        <span class="pill">Fluid spacing · clamp()</span>
-        <span class="pill">Insight cards</span>
-        <span class="pill">Process steps</span>
-        <span class="pill">Persona cards</span>
-        <span class="pill">Outcome metrics</span>
-        <span class="pill">Before / after</span>
-        <span class="pill">Case navigation</span>
-      </div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>Motion &amp; micro-interactions</h3>
-      <p>Motion is used sparingly and with intent. A custom blend-mode cursor that grows over interactive targets signals interactivity; content reveals on scroll via an <strong>IntersectionObserver</strong> so sections arrive with a calm rhythm; the work list shifts and reveals meta on hover to invite exploration; and a marquee of past brands adds life without noise. Every animation respects reduced-motion and never blocks reading.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 5 · INFORMATION ARCHITECTURE -->
-<section class="cs-section rv" id="ia">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">05. Information Architecture</span>
-    <h2>Reorganising for how recruiters actually read</h2>
-    <p>I restructured the site around the recruiter's journey rather than my own chronology. The landing page now leads with a one-line positioning statement, availability and location (the three things a recruiter checks first), then a scannable <strong>Selected Work</strong> list, a "What I do" grid for capability, and social proof via past brands. Each project links to a case study that always ends with a clear path to the next one.</p>
-
-    <div class="ia-change">
-      <span class="ia-change-label">Structural change</span>
-      <p class="ia-change-intro">The old IA buried the decision-useful information. The new IA surfaces it in the first screen and keeps every case study one predictable structure.</p>
-      <div class="ia-change-grid">
-        <div class="ia-change-col ia-change-col--before">
-          <h4>Before</h4>
-          <div class="ia-change-item">Landing led with a generic hero, no positioning or availability</div>
-          <div class="ia-change-item">Projects opened as image galleries with no narrative</div>
-          <div class="ia-change-item">No consistent way back to Work or on to the next project</div>
-          <div class="ia-change-item">Resume and contact were hard to find</div>
-        </div>
-        <div class="ia-change-col ia-change-col--after">
-          <h4>After</h4>
-          <div class="ia-change-item">Hero states role, focus, location and availability instantly</div>
-          <div class="ia-change-item">Every project follows one Problem → Impact narrative structure</div>
-          <div class="ia-change-item">Persistent nav plus prev/next case navigation on every page</div>
-          <div class="ia-change-item">Resume, email and LinkedIn one click away from anywhere</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>User journey: landing to decision</h3>
-      <div class="flow">
-        <div class="flow-step"><div class="flow-n">01</div><h4>Land</h4><p>Recruiter arrives from LinkedIn and reads positioning + availability in seconds.</p></div>
-        <div class="flow-step"><div class="flow-n">02</div><h4>Scan work</h4><p>Selected Work list communicates domain, platform and year at a glance.</p></div>
-        <div class="flow-step"><div class="flow-n">03</div><h4>Read a story</h4><p>One case study opens with the problem and the result up top.</p></div>
-        <div class="flow-step"><div class="flow-n">04</div><h4>Continue</h4><p>Prev/next nav keeps them moving through the work instead of bouncing.</p></div>
-        <div class="flow-step"><div class="flow-n">05</div><h4>Act</h4><p>Resume, email and availability make the next step obvious.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 6 · STORYTELLING -->
-<section class="cs-section cs-section--alt rv" id="storytelling">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">06. Case Study Storytelling</span>
-    <h2>From showcases to design stories</h2>
-    <p>The heart of the redesign was rewriting all three projects (JioBP, DAM, TTK Prestige) from screen showcases into structured narratives. I defined one story spine and applied it consistently so a reader always knows where they are and what to expect next.</p>
-    <div class="flow" style="margin-top:28px">
-      <div class="flow-step"><div class="flow-n">01</div><h4>Problem</h4><p>A sharp statement of what was broken and for whom.</p></div>
-      <div class="flow-step"><div class="flow-n">02</div><h4>Research</h4><p>Interviews, heuristics and analytics: how I know, not just what I think.</p></div>
-      <div class="flow-step"><div class="flow-n">03</div><h4>Insight</h4><p>The reframe that changed the direction of the work.</p></div>
-      <div class="flow-step"><div class="flow-n">04</div><h4>Process</h4><p>Personas, IA, wireframes, iterations: the thinking made visible.</p></div>
-    </div>
-    <div class="flow" style="margin-top:12px">
-      <div class="flow-step"><div class="flow-n">05</div><h4>Solution</h4><p>The final design, tied back to each decision.</p></div>
-      <div class="flow-step"><div class="flow-n">06</div><h4>Impact</h4><p>Results framed as outcomes, with honest before/after context.</p></div>
-      <div class="flow-step"><div class="flow-n">07</div><h4>Learnings</h4><p>What I'd do differently: the senior signal reviewers look for.</p></div>
-      <div class="flow-step" style="background:var(--teal-l);border-color:rgba(15,110,86,.2)"><div class="flow-n">→</div><h4>Consistent</h4><p>Same spine across all three, enforced in the component system.</p></div>
-    </div>
-    <div class="cs-quote">
-      <p>"Each project now answers the only three questions a hiring manager has: what was the problem, what did you decide, and what changed because of it."</p>
-      <cite>The editorial rule for every rewrite</cite>
-    </div>
-  </div>
-</section>
-
-<!-- 7 · PROMPT ENGINEERING -->
-<section class="cs-section rv" id="prompts">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">07. AI Prompt Engineering</span>
-    <h2>How I directed AI to get useful output</h2>
-    <p>Good AI output came from good briefs. I prompted AI the way I'd brief a collaborator: role, context, constraints, and the exact form of the answer I wanted. Vague prompts gave generic results; specific ones gave material I could actually design with. A few representative examples:</p>
-
-    <div class="prompt-card">
-      <div class="prompt-card-head"><span class="prompt-goal">Redesign concept direction</span><span class="prompt-badge">Divergent ideas</span></div>
-      <div class="prompt-body">You are a senior design director. My portfolio targets Senior Product Designer roles in Berlin. My strengths are UX research and design systems, not flashy visuals. Suggest 5 distinct art directions for a calm, editorial, senior-feeling portfolio. For each: mood, palette logic, type pairing, and the risk. No generic "modern and clean."</div>
-      <div class="prompt-why"><b>Why it worked:</b> role + audience + constraints + "the risk" forced trade-off thinking, not a list of buzzwords.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-head"><span class="prompt-goal">Case-study copy improvement</span><span class="prompt-badge">UX writing</span></div>
-      <div class="prompt-body">Here are my raw notes on the JioBP project. Rewrite the problem statement in 2 sentences that a hiring manager could repeat back after one read. Keep my specifics (fuel booking, station discovery). Cut adjectives. Then flag any sentence that claims impact I haven't backed with evidence.</div>
-      <div class="prompt-why"><b>Why it worked:</b> constrained length, preserved specifics, and asked AI to police overclaiming, which I then verified.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-head"><span class="prompt-goal">Multi-perspective critique</span><span class="prompt-badge">Design review</span></div>
-      <div class="prompt-body">Critique this case-study intro from three separate viewpoints: (1) a recruiter scanning for 30 seconds, (2) a hiring manager deciding whether to read on, (3) a senior designer judging craft. For each, give the single biggest reason they'd stop reading.</div>
-      <div class="prompt-why"><b>Why it worked:</b> separating audiences surfaced conflicts I could resolve deliberately instead of averaging them away.</div>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-head"><span class="prompt-goal">Accessibility review</span><span class="prompt-badge">UX / a11y</span></div>
-      <div class="prompt-body">Given these foreground/background hex pairs, tell me which fail WCAG AA for body text and AA-large for headings, and suggest the smallest lightness change to pass without shifting the hue.</div>
-      <div class="prompt-why"><b>Why it worked:</b> a precise, checkable question: I confirmed each result in a contrast checker before shipping.</div>
-    </div>
-  </div>
-</section>
-
-<!-- 8 · DEVELOPMENT -->
-<section class="cs-section cs-section--alt rv" id="build">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">08. Development &amp; Implementation</span>
-    <h2>Designing in the browser, then shipping it</h2>
-    <p>Rather than hand off static mockups, I built the site myself in <strong>semantic HTML, CSS and vanilla JavaScript</strong>: no framework, no build step, so it stays fast and maintainable. Designing in code let me tune real type rendering, motion and responsiveness directly instead of approximating them in a mockup. AI acted as a pair-programmer for CSS edge cases and debugging, but I owned the architecture.</p>
-    <div class="ai-grid">
-      <div class="ai-card">
-        <span class="ai-card-tag">Front-end</span>
-        <h4>Lightweight by design</h4>
-        <p>Hand-written HTML/CSS/JS with a single shared stylesheet as the source of truth. No dependencies to break, instant loads, easy to extend.</p>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Responsive</span>
-        <h4>Mobile-first, fluid</h4>
-        <p>Fluid type and spacing via clamp(), CSS grid/flex layouts, and breakpoints tuned for the phones recruiters open from LinkedIn.</p>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Performance</span>
-        <h4>Fast and quiet</h4>
-        <p>Preconnected fonts, optimised images, GPU-friendly transforms, and reveal animations that never block the first paint.</p>
-      </div>
-      <div class="ai-card">
-        <span class="ai-card-tag">Deploy</span>
-        <h4>Versioned &amp; hosted</h4>
-        <p>Git version control, deployed on GitHub Pages at poojakurade.github.io; every change is tracked and instantly live.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 9 · TESTING -->
-<section class="cs-section rv" id="testing">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">09. Testing &amp; Iteration</span>
-    <h2>Reviewing, then changing what didn't work</h2>
-    <p>I reviewed the site across real devices and browsers, shared it with designer peers and a recruiter contact, and ran AI critiques from each audience's perspective. Then I acted on the feedback: the value of testing is only in what you change afterward.</p>
-    <div class="ia-change">
-      <span class="ia-change-label">Feedback → change</span>
-      <p class="ia-change-intro">A sample of the changes made after evaluation, across usability, visuals and storytelling.</p>
-      <div class="ia-change-grid">
-        <div class="ia-change-col ia-change-col--before">
-          <h4>Feedback received</h4>
-          <div class="ia-change-item">"I can't tell what YOU did vs. the team"</div>
-          <div class="ia-change-item">Case-study intros were too long before the payoff</div>
-          <div class="ia-change-item">Custom cursor felt confusing on first visit</div>
-          <div class="ia-change-item">Some accent text was hard to read on light sections</div>
-        </div>
-        <div class="ia-change-col ia-change-col--after">
-          <h4>What I changed</h4>
-          <div class="ia-change-item">Added explicit role/responsibility lines to every project</div>
-          <div class="ia-change-item">Moved the problem + result above the fold in each story</div>
-          <div class="ia-change-item">Kept the cursor but disabled it on touch and reduced-motion</div>
-          <div class="ia-change-item">Swapped to the deeper teal to pass AA on light backgrounds</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10 · OUTCOME -->
-<section class="cs-section cs-section--alt rv" id="outcome">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">10. Final Outcome</span>
-    <h2>Before vs. after</h2>
-    <p>The rebuilt portfolio does one job far better than the old one: it lets a busy reader understand my thinking and my impact quickly, in a system that looks authored and senior. The figures below are illustrative targets I designed toward, framing the qualitative shift.</p>
-    <div class="outcomes-grid">
-      <div class="outcome-card">
-        <span class="outcome-before">Before: 3 clashing page styles</span>
-        <div class="outcome-metric">1</div>
-        <div class="outcome-label">Unified design system across the whole site</div>
-      </div>
-      <div class="outcome-card">
-        <span class="outcome-before">Before: image galleries only</span>
-        <div class="outcome-metric">100<span>%</span></div>
-        <div class="outcome-label">Case studies rewritten as structured stories</div>
-      </div>
-      <div class="outcome-card">
-        <span class="outcome-before">Before: several AA failures</span>
-        <div class="outcome-metric">AA</div>
-        <div class="outcome-label">Contrast compliance across text and UI</div>
-      </div>
-    </div>
-
-    <div class="outcome-learnings">
-      <h3>What I learned</h3>
-      <div class="outcome-learning-item"><div class="ol-icon">1</div><div class="ol-text"><strong>AI is an accelerator, not an author.</strong> It removed friction from research, writing and debugging, but the portfolio only got better because I set the bar and made every design call myself.</div></div>
-      <div class="outcome-learning-item"><div class="ol-icon">2</div><div class="ol-text"><strong>A portfolio is a product.</strong> Treating recruiters and hiring managers as users with distinct journeys changed the IA and the writing more than any visual tweak did.</div></div>
-      <div class="outcome-learning-item"><div class="ol-icon">3</div><div class="ol-text"><strong>Constraints create seniority.</strong> One accent colour, one type system and one story spine read as more confident than variety ever did.</div></div>
-      <div class="outcome-learning-item"><div class="ol-icon">4</div><div class="ol-text"><strong>Designing in code closes the gap.</strong> Building it myself meant the shipped experience matched the intent exactly: motion, type and responsiveness included.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 11 · REFERENCES -->
-<section class="cs-section rv" id="references">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">11. References &amp; Inspiration</span>
-    <h2>What informed the decisions</h2>
-    <p>Each reference earned its place by changing a specific decision, not by looking nice.</p>
-    <div class="ref-grid">
-      <div class="ref-item"><span class="ref-src">UX Principles</span><h4>Nielsen's 10 usability heuristics</h4><p>Framed the audit into checkable problems: visibility of status, consistency, recognition over recall, which shaped the persistent nav and prev/next case navigation.</p></div>
-      <div class="ref-item"><span class="ref-src">Accessibility</span><h4>WCAG 2.1 contrast guidelines</h4><p>Set the non-negotiable colour rules; drove the switch to a deeper teal so accent text passes AA on light sections.</p></div>
-      <div class="ref-item"><span class="ref-src">Storytelling</span><h4>Structured case-study frameworks</h4><p>Reinforced leading with problem and result, and ending with learnings: the spine now applied across all three projects.</p></div>
-      <div class="ref-item"><span class="ref-src">Typography</span><h4>Editorial serif + neutral sans pairing</h4><p>Inspired the Newsreader / Source Sans / Space Mono three-role system that carries voice, clarity and structure separately.</p></div>
-      <div class="ref-item"><span class="ref-src">Design systems</span><h4>Token-driven, single-source styling</h4><p>Justified consolidating everything into one shared.css with CSS custom properties, so the site scales like a real product.</p></div>
-      <div class="ref-item"><span class="ref-src">AI &amp; dev tools</span><h4>Claude, ChatGPT, Figma, VS Code, GitHub Pages</h4><p>The working toolkit: AI for research, writing and critique; Figma for exploration; VS Code and Git for building and shipping.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- MANAGER REVIEW -->
-<section class="cs-section cs-section--alt rv" id="manager">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Manager-Level Review</span>
-    <h2>What this project demonstrates</h2>
-    <p class="cs-lead">Read as a hiring signal, this project is evidence of how I operate, not just what I made.</p>
-    <div class="mgr-grid">
-      <div class="mgr-card"><h4>Product thinking</h4><p>Framed the portfolio as a product with real users (recruiters, managers, panels) and designed the IA and content around their journeys and reading speeds.</p></div>
-      <div class="mgr-card"><h4>Strategic decision-making</h4><p>Chose constraints deliberately: one accent, one type system, one story spine, and can articulate the trade-off behind each, including what was rejected.</p></div>
-      <div class="mgr-card"><h4>Collaboration</h4><p>Directed AI like a teammate through clear briefs, and folded in peer and recruiter feedback with a visible feedback-to-change loop.</p></div>
-      <div class="mgr-card"><h4>Business understanding</h4><p>Tied every decision to the outcome that matters: a faster, clearer path from "opens the link" to "wants to talk."</p></div>
-      <div class="mgr-card"><h4>Ownership</h4><p>Ran the full stack solo: research, UX, UI, design system, front-end build and deployment, no handoff, no gaps.</p></div>
-      <div class="mgr-card"><h4>Craft &amp; systems</h4><p>Shipped a tokenised, componentised, accessible system in production code: the same rigour I bring to enterprise design systems.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CASE NAV -->
-<section class="cs-case-nav">
-  <div class="cs-case-nav-inner">
-    <a href="pooja_kurade_casestudy_ttkprestige.html">← TTK Prestige Website Revamp</a>
-    <a href="index.html#work">All work</a>
-    <a href="pooja_kurade_casestudy_jiobp.html">JIO-BP Fuel Booking App →</a>
-  </div>
-</section>
-
-<!-- CLOSING CTA -->
-<section id="cta">
-  <h2 class="cta-headline rv">Let's Collaborate!</h2>
-  <div class="cta-say rv">Say hello</div>
-  <div class="cta-email-wrap rv"><a href="mailto:pooja.kurade@gmail.com" class="cta-email">pooja.kurade@gmail.com</a></div>
-  <div class="cta-status rv"><span class="nav-dot"></span>Available for work in Germany (open to relocation)</div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ft">
-    <span class="ft-logo">Pooja Kurade.</span>
-    <span class="ft-loc"><span class="nav-dot"></span>Berlin, Germany</span>
-    <div class="ft-links">
-      <a href="https://www.linkedin.com/in/poojakurade/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-</footer>
 
 <script>
-// Cursor
-const cur = document.getElementById('cur');
-let cx = 0, cy = 0, tx = 0, ty = 0;
-document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY });
-document.querySelectorAll('a, button').forEach(el => {
-  el.addEventListener('mouseenter', () => cur.classList.add('big'));
-  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-});
-(function loop() {
-  cx += (tx - cx) * .14; cy += (ty - cy) * .14;
-  cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
-  requestAnimationFrame(loop);
+(function () {
+  var links = [].slice.call(document.querySelectorAll('[data-spy]'));
+  var sections = links.map(function (a) { return document.getElementById(a.getAttribute('data-spy')); });
+  var bar = document.querySelector('[data-progress]');
+
+  function onScroll() {
+    var mx = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = (mx > 0 ? (window.scrollY / mx) * 100 : 0).toFixed(2) + '%';
+    var mid = window.scrollY + window.innerHeight * 0.36, active = -1;
+    sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) active = i; });
+    links.forEach(function (a, i) {
+      var on = i === active;
+      a.style.color = on ? '#0F6E56' : 'rgba(18,36,28,.55)';
+      a.style.fontWeight = on ? '600' : '400';
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var nav = document.querySelector('[data-nav]');
+  function fit() { if (nav) nav.style.display = window.innerWidth > 1000 ? 'flex' : 'none'; }
+  window.addEventListener('resize', fit, { passive: true });
+  fit();
+
+  document.querySelectorAll('img[src*="old-figma"]').forEach(function (img) {
+    var frame = img.parentElement;
+    if (!frame) return;
+    frame.style.position = 'relative';
+    frame.style.overflow = 'hidden';
+    frame.style.cursor = 'ns-resize';
+    img.style.transition = 'transform 9s linear';
+    frame.addEventListener('mouseenter', function () {
+      var over = img.offsetHeight - frame.offsetHeight;
+      if (over > 0) img.style.transform = 'translateY(-' + over + 'px)';
+    });
+    frame.addEventListener('mouseleave', function () { img.style.transform = 'translateY(0)'; });
+  });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var target = window.scrollY, current = target, running = false;
+  function max() { return document.documentElement.scrollHeight - window.innerHeight; }
+  function frame() {
+    current += (target - current) * 0.085;
+    if (Math.abs(target - current) < 0.35) { current = target; running = false; }
+    window.scrollTo(0, current);
+    if (running) requestAnimationFrame(frame);
+  }
+  function resync() { if (!running) { target = current = window.scrollY; } }
+  ['keydown', 'mousedown', 'touchstart'].forEach(function (t) { window.addEventListener(t, resync, { passive: true }); });
+  window.addEventListener('scroll', resync, { passive: true });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var el = document.querySelector(a.getAttribute('href'));
+    if (!el) return;
+    e.preventDefault();
+    target = Math.max(0, Math.min(max(), el.getBoundingClientRect().top + window.scrollY - 78));
+    if (!running) { running = true; requestAnimationFrame(frame); }
+  });
 })();
-
-// Mobile nav
-const ham = document.getElementById('ham'), mob = document.getElementById('mob'), mobX = document.getElementById('mobX');
-if (ham) ham.addEventListener('click', () => mob.classList.add('open'));
-if (mobX) mobX.addEventListener('click', () => mob.classList.remove('open'));
-function cM() { mob.classList.remove('open') }
-
-// Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } });
-}, { threshold: 0.06 });
-document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 </script>
-<script src="interactions.js" defer></script>
 </body>
 </html>

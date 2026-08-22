@@ -1,794 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DAM Ecosystem Audit | Pooja Kurade</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
-  <link rel="icon" href="images/favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,470;8..60,600;8..60,700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --teal: #2155CC;
-      --teal-dk: #1640A0;
-      --teal-l: #EBF0FF;
-      --dark: #0F0E17;
-      --mid: #6B7280;
-      --light: #F5F5F3;
-      --cream: #F2F1EF;
-      --border: rgba(0,0,0,.09);
-      --yellow: #E8B84B;
-      --yellow-l: #FEF3CD;
-      --ff: 'Inter', system-ui, sans-serif;
-      --ff-m: 'Inter', system-ui, sans-serif;
-      --ff-display: 'Source Serif 4', Georgia, serif;
-      --ff-s: 'Playfair Display', serif;
-      --pad: clamp(24px, 6vw, 96px);
-      --max-w: 1060px;
-      --ease: cubic-bezier(.25,.1,.25,1);
-      --off: #F2F1EF;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital asset management audit — Pooja Kurade</title>
+<meta name="description" content="Four years of a digital asset platform with no taxonomy, governance or lifecycle. An end-to-end audit, and a prioritised plan the team owned.">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<link rel="icon" href="images/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
 
-    /* ── RESEARCH PARTICIPANT CARDS ── */
-    .rp-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 40px; }
-    .rp-card { background: var(--off); border-radius: 20px; padding: 28px; }
-    .rp-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-    .rp-name { font-family: var(--ff-display); font-size: 16px; font-weight: 700; color: var(--dark); }
-    .rp-title { font-size: 13px; color: var(--mid); margin-top: 2px; }
-    .rp-tag { display: inline-block; background: var(--teal-l); color: var(--teal); font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 14px; }
-    .rp-quote { font-size: 13.5px; font-style: italic; color: var(--mid); line-height: 1.65; border-left: 3px solid var(--teal); padding-left: 14px; margin-bottom: 16px; }
-    .rp-needs { list-style: none; padding: 0; margin: 0; }
-    .rp-needs li { font-size: 13px; color: var(--dark); padding: 7px 0 7px 20px; border-bottom: 1px solid var(--border); line-height: 1.5; position: relative; }
-    .rp-needs li:last-child { border-bottom: none; }
-    .rp-needs li::before { content: '→'; color: var(--teal); position: absolute; left: 0; font-size: 11px; top: 9px; }
-    @media(max-width:720px){ .rp-grid { grid-template-columns: 1fr; } }
+  body { margin: 0; background: #F2EFE8; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #0F6E56; text-decoration: none }
+  a:hover { color: #12241C }
+  img { display: block }
+  @keyframes bnScreen { 0%{opacity:1} 3%{opacity:1} 30%{opacity:1} 34%{opacity:0} 100%{opacity:0} }
+  @keyframes bnStep { 0%{opacity:.3} 3%{opacity:1} 30%{opacity:1} 35%{opacity:.3} 100%{opacity:.3} }
+  @keyframes bnDot { 0%{transform:scale(1); background:rgba(253,253,253,.25)} 3%{transform:scale(1.5); background:#4FB0E8} 30%{transform:scale(1.5); background:#4FB0E8} 35%{transform:scale(1); background:rgba(253,253,253,.25)} 100%{transform:scale(1); background:rgba(253,253,253,.25)} }
+  @keyframes bnRail { 0%{transform:scaleY(0)} 96%{transform:scaleY(1)} 100%{transform:scaleY(1)} }
+  @keyframes bnChip { 0%,64%{opacity:0; transform:translate(-50%,8px)} 70%{opacity:1; transform:translate(-50%,0)} 94%{opacity:1; transform:translate(-50%,0)} 99%,100%{opacity:0; transform:translate(-50%,0)} }
+  @keyframes bnGlow { 0%,100%{opacity:.5} 50%{opacity:1} }
+  @keyframes bnCaret { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes bnType { 0%{width:0} 8%{width:0} 24%{width:104px} 100%{width:104px} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none !important} }
 
-    /* ── PROBLEM CARDS ── */
-    .problem-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 40px; }
-    .problem-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; border-left: 4px solid var(--teal); }
-    .problem-num { font-family: var(--ff-m); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; display: block; }
-    .problem-title { font-family: var(--ff-display); font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-    .problem-desc { font-size: 13.5px; color: var(--mid); line-height: 1.65; margin: 0; }
-    @media(max-width:640px){ .problem-grid { grid-template-columns: 1fr; } }
-
-    /* ── INSIGHT STATS ── */
-    .insight-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 40px; }
-    .insight-stat { text-align: center; background: var(--teal-l); border-radius: 16px; padding: 28px 16px; border: 1px solid rgba(33,85,204,.12); }
-    .insight-stat-num { font-size: 38px; font-weight: 800; color: var(--teal); font-family: var(--ff-display); line-height: 1; }
-    .insight-stat-label { font-size: 13px; color: var(--mid); margin-top: 8px; line-height: 1.4; }
-    .insight-stat-method { font-size: 11px; color: rgba(107,114,128,.7); margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(33,85,204,.1); line-height: 1.5; font-style: italic; text-align: left; }
-    @media(max-width:640px){ .insight-stats { grid-template-columns: repeat(2,1fr); } }
-
-    /* ── PROCESS FLOW ── */
-    .flow-wrap { margin-top: 40px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-    .flow-header { background: var(--teal); color: #fff; padding: 14px 24px; font-family: var(--ff-m); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
-    .flow-row { display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: #fff; }
-    .flow-row:last-child { border-bottom: none; }
-    .flow-row--broken { background: #FEF2F2; }
-    .flow-row-num { font-family: var(--ff-m); font-size: 10px; color: var(--mid); min-width: 22px; flex-shrink: 0; }
-    .flow-row-content { flex: 1; }
-    .flow-row-title { font-family: var(--ff-display); font-size: 13.5px; font-weight: 700; color: var(--dark); }
-    .flow-row--broken .flow-row-title { color: #991B1B; }
-    .flow-row-desc { font-size: 12px; color: var(--mid); margin-top: 2px; line-height: 1.45; }
-    .flow-row-status { font-family: var(--ff-m); font-size: 9px; padding: 4px 12px; border-radius: 100px; white-space: nowrap; letter-spacing: .06em; font-weight: 700; flex-shrink: 0; }
-    .flow-row-status--ok { background: #D1FAE5; color: #065F46; }
-    .flow-row-status--broken { background: #FEE2E2; color: #991B1B; }
-
-    /* ── STRATEGY CARDS ── */
-    .strategy-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 40px; }
-    .strategy-card { background: var(--off); border-radius: 20px; padding: 28px; }
-    .strategy-num { font-family: var(--ff-m); font-size: 10px; letter-spacing: .12em; color: var(--teal); margin-bottom: 12px; display: block; }
-    .strategy-title { font-family: var(--ff-display); font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
-    .strategy-desc { font-size: 13.5px; color: var(--mid); line-height: 1.65; margin-bottom: 16px; }
-    .strategy-actions { list-style: none; padding: 0; margin: 0; }
-    .strategy-actions li { font-size: 13px; color: var(--dark); padding: 5px 0 5px 20px; position: relative; line-height: 1.5; }
-    .strategy-actions li::before { content: '✓'; color: var(--teal); position: absolute; left: 0; font-size: 11px; top: 6px; font-weight: 700; }
-    @media(max-width:640px){ .strategy-grid { grid-template-columns: 1fr; } }
-
-    /* ── WORKSHOP OUTPUTS ── */
-    .workshop-outputs { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 32px; }
-    .workshop-output-card { background: #fff; border-radius: 12px; padding: 20px; border: 1px solid var(--border); }
-    .wo-num { font-family: var(--ff-m); font-size: 10px; color: var(--teal); margin-bottom: 6px; letter-spacing: .1em; }
-    .wo-title { font-family: var(--ff-display); font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
-    .wo-desc { font-size: 12.5px; color: var(--mid); line-height: 1.5; }
-    @media(max-width:640px){ .workshop-outputs { grid-template-columns: 1fr; } }
-
-    /* ── WORKSHOP ARTIFACTS ── */
-    .wa-artifact { margin-top: 52px; }
-    .wa-artifact-label { font-family: var(--ff-m); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; display: block; }
-    .wa-artifact-title { font-family: var(--ff-display); font-size: 18px; font-weight: 700; color: var(--dark); margin-bottom: 20px; }
-    /* Priority matrix */
-    .pm-container { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-    .pm-top-axis { padding: 8px 24px 6px; background: rgba(0,0,0,.02); border-bottom: 1px solid var(--border); text-align: center; font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); }
-    .pm-matrix { display: grid; grid-template-columns: 1fr 1fr; }
-    .pm-quadrant { padding: 22px 24px; }
-    .pm-q-wins { background: var(--teal-l); border-right: 1px solid rgba(33,85,204,.15); border-bottom: 1px solid rgba(33,85,204,.15); }
-    .pm-q-strategic { background: #F0FFF8; border-bottom: 1px solid var(--border); }
-    .pm-q-nice { background: #FAFAFA; border-right: 1px solid var(--border); }
-    .pm-q-depri { background: #FAFAFA; }
-    .pm-q-name { font-family: var(--ff-m); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 10px; }
-    .pm-q-wins .pm-q-name { color: var(--teal); }
-    .pm-q-strategic .pm-q-name { color: #059669; }
-    .pm-q-nice .pm-q-name, .pm-q-depri .pm-q-name { color: var(--mid); }
-    .pm-item { font-size: 12.5px; color: var(--dark); padding: 4px 0 4px 16px; position: relative; line-height: 1.35; }
-    .pm-q-wins .pm-item::before, .pm-q-strategic .pm-item::before { content: '→'; position: absolute; left: 0; font-size: 10px; top: 5px; }
-    .pm-q-nice .pm-item::before, .pm-q-depri .pm-item::before { content: '·'; position: absolute; left: 0; color: var(--mid); font-size: 16px; top: 1px; }
-    .pm-q-wins .pm-item::before { color: var(--teal); }
-    .pm-q-strategic .pm-item::before { color: #059669; }
-    .pm-axes { display: grid; grid-template-columns: 1fr 1fr; background: rgba(0,0,0,.02); border-top: 1px solid var(--border); }
-    .pm-axis { padding: 9px 24px; font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); }
-    .pm-axis:first-child { border-right: 1px solid var(--border); }
-    /* Naming convention */
-    .naming-wrap { background: var(--teal-l); border-radius: 16px; padding: 28px 32px; border: 1px solid rgba(33,85,204,.14); }
-    .naming-format { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-    .naming-segment { background: #fff; color: var(--teal); font-family: var(--ff-m); font-size: 13px; padding: 6px 14px; border-radius: 6px; border: 1.5px solid rgba(33,85,204,.2); font-weight: 700; }
-    .naming-sep { color: rgba(33,85,204,.3); font-family: var(--ff-m); font-size: 18px; }
-    .naming-example { font-family: var(--ff-m); font-size: 13px; color: var(--mid); margin-bottom: 24px; }
-    .naming-example code { color: var(--teal-dk); background: #fff; padding: 6px 14px; border-radius: 6px; display: inline-block; margin-left: 6px; border: 1px solid rgba(33,85,204,.15); }
-    .naming-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
-    .naming-rule { font-size: 12.5px; color: var(--dark); line-height: 1.5; padding-left: 18px; position: relative; }
-    .naming-rule.ok::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
-    .naming-rule.no::before { content: '✗'; position: absolute; left: 0; color: #DC2626; font-weight: 700; }
-    @media(max-width:640px){ .naming-rules { grid-template-columns: 1fr; } }
-    /* Ownership map */
-    .ownership-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-    .ow-card { background: var(--off); border-radius: 14px; padding: 20px; }
-    .ow-role { font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; display: block; }
-    .ow-name { font-family: var(--ff-display); font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
-    .ow-owns { list-style: none; padding: 0; margin: 0 0 12px; }
-    .ow-owns li { font-size: 12px; color: var(--mid); padding: 3px 0 3px 14px; position: relative; line-height: 1.4; }
-    .ow-owns li::before { content: '·'; position: absolute; left: 0; color: var(--teal); font-size: 16px; top: 0; }
-    .ow-cadence { display: inline-block; background: var(--teal-l); color: var(--teal); font-family: var(--ff-m); font-size: 9px; padding: 3px 10px; border-radius: 20px; letter-spacing: .04em; }
-    @media(max-width:720px){ .ownership-grid { grid-template-columns: 1fr; } }
-
-    /* ── ACTION TABLES ── */
-    .action-table-wrap { overflow-x: auto; margin-top: 36px; border-radius: 16px; border: 1px solid var(--border); }
-    .action-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-    .action-table thead tr { background: var(--teal); }
-    .action-table thead th { padding: 14px 20px; text-align: left; font-family: var(--ff-m); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #fff; font-weight: 700; }
-    .action-table td { padding: 14px 20px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.45; }
-    .action-table tr:last-child td { border-bottom: none; }
-    .action-table tbody tr:nth-child(odd) td { background: var(--cream); }
-    .action-table tbody tr:nth-child(even) td { background: #fff; }
-    .action-name { font-weight: 600; color: var(--dark); font-size: 13.5px; }
-    .action-sub { font-size: 12px; color: var(--mid); margin-top: 3px; }
-    .priority-badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 10px; font-weight: 700; letter-spacing: .04em; white-space: nowrap; font-family: var(--ff-m); }
-    .p-high { background: #FEE2E2; color: #991B1B; }
-    .p-med  { background: #FEF3C7; color: #92400E; }
-    .p-low  { background: #D1FAE5; color: #065F46; }
-    .t-badge { font-family: var(--ff-m); font-size: 10px; color: var(--mid); white-space: nowrap; background: rgba(0,0,0,.05); padding: 2px 8px; border-radius: 20px; }
-
-    /* ── STAKEHOLDER MAP ── */
-    .smap-top-axis { padding: 8px 24px 6px; background: rgba(0,0,0,.02); border-bottom: 1px solid var(--border); text-align: center; font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); }
-    .smap-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 28px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
-    .smap-q { padding: 20px 22px; }
-    .smap-q--tl { background: var(--teal-l); border-right: 1px solid rgba(33,85,204,.15); border-bottom: 1px solid rgba(33,85,204,.15); }
-    .smap-q--tr { background: #FEF2F2; border-bottom: 1px solid var(--border); }
-    .smap-q--bl { background: #F0FFF8; border-right: 1px solid var(--border); }
-    .smap-q--br { background: #FAFAFA; }
-    .smap-q-label { font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; display: block; }
-    .smap-q--tl .smap-q-label { color: var(--teal); }
-    .smap-q--tr .smap-q-label { color: #DC2626; }
-    .smap-q--bl .smap-q-label { color: #059669; }
-    .smap-q--br .smap-q-label { color: var(--mid); }
-    .smap-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-    .smap-chip { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 100px; line-height: 1; }
-    .smap-q--tl .smap-chip { background: rgba(33,85,204,.15); color: var(--teal-dk); }
-    .smap-q--tr .smap-chip { background: rgba(220,38,38,.1); color: #991B1B; }
-    .smap-q--bl .smap-chip { background: rgba(5,150,105,.1); color: #065F46; }
-    .smap-q--br .smap-chip { background: rgba(0,0,0,.06); color: var(--mid); }
-    .smap-axes { display: grid; grid-template-columns: 1fr 1fr; background: rgba(0,0,0,.02); border-top: 1px solid var(--border); }
-    .smap-axis { padding: 9px 22px; font-family: var(--ff-m); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); }
-    .smap-axis:first-child { border-right: 1px solid var(--border); }
-    .smap-note { font-size: 12px; color: var(--mid); font-style: italic; margin-top: 12px; }
-
-    /* ── SYNTHESIS ── */
-    .syn-method { display: flex; align-items: center; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
-    .syn-method-step { text-align: center; background: var(--teal-l); border-radius: 12px; padding: 20px 24px; min-width: 110px; }
-    .syn-method-num { display: block; font-size: 28px; font-weight: 800; color: var(--teal); font-family: var(--ff-display); line-height: 1; }
-    .syn-method-label { display: block; font-size: 11.5px; color: var(--mid); margin-top: 6px; line-height: 1.35; }
-    .syn-method-arrow { color: var(--teal); font-size: 20px; opacity: 0.4; flex-shrink: 0; }
-    .syn-clusters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
-    .syn-cluster { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px; border-top: 4px solid var(--teal); }
-    .syn-cluster-label { font-family: var(--ff-m); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; display: block; }
-    .syn-cluster-title { font-family: var(--ff-display); font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 14px; line-height: 1.3; }
-    .syn-notes { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-    .syn-note { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 9px 12px; font-size: 12px; font-style: italic; color: #78350F; line-height: 1.45; }
-    .syn-became { font-size: 11px; font-weight: 700; color: var(--teal); border-top: 1px solid var(--border); padding-top: 12px; letter-spacing: .01em; }
-    @media(max-width:720px){ .syn-clusters { grid-template-columns: 1fr; } }
-
-    /* ── OUTCOMES ── */
-    .outcomes-ba { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 40px; }
-    .ba-card { border-radius: 16px; padding: 24px; border: 1px solid var(--border); }
-    .ba-card--before { background: #FEF2F2; border-color: rgba(239,68,68,.15); }
-    .ba-card--after  { background: #F0FFF8; border-color: rgba(5,150,105,.15); }
-    .ba-label { font-family: var(--ff-m); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; display: block; }
-    .ba-card--before .ba-label { color: #DC2626; }
-    .ba-card--after  .ba-label { color: #059669; }
-    .ba-metric-row { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.06); }
-    .ba-metric-row:last-child { border-bottom: none; }
-    .ba-metric-name { font-size: 13px; color: var(--dark); line-height: 1.4; max-width: 65%; }
-    .ba-metric-val { font-family: var(--ff-m); font-size: 17px; font-weight: 700; }
-    .ba-card--before .ba-metric-val { color: #DC2626; }
-    .ba-card--after  .ba-metric-val { color: #059669; }
-    @media(max-width:640px){ .outcomes-ba { grid-template-columns: 1fr; } }
-    /* Implementation tracker */
-    .impl-track { margin-top: 48px; }
-    .impl-items { display: flex; flex-direction: column; gap: 0; margin-top: 24px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-    .impl-item { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: #fff; }
-    .impl-item:last-child { border-bottom: none; }
-    .impl-item:nth-child(odd) { background: var(--cream); }
-    .impl-name { font-size: 13.5px; font-weight: 600; color: var(--dark); }
-    .impl-sub  { font-size: 12px; color: var(--mid); margin-top: 2px; }
-    .impl-when { font-family: var(--ff-m); font-size: 10px; color: var(--mid); white-space: nowrap; }
-    .impl-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 100px; font-family: var(--ff-m); font-size: 9px; letter-spacing: .06em; font-weight: 700; white-space: nowrap; }
-    .impl-badge--done    { background: #D1FAE5; color: #065F46; }
-    .impl-badge--prog    { background: #FEF3C7; color: #92400E; }
-    .impl-badge--planned { background: #EDE9FE; color: #5B21B6; }
-    .impl-badge--done::before    { content: '✓'; }
-    .impl-badge--prog::before    { content: '◑'; }
-    .impl-badge--planned::before { content: '○'; }
-
-    /* ── VISION CARDS ── */
-    .vision-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 40px; }
-    .vision-card { background: var(--teal-l); border-radius: 20px; padding: 28px; border: 1px solid rgba(33,85,204,.14); display: flex; gap: 20px; align-items: flex-start; }
-    .vision-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .vision-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .vision-title { font-family: var(--ff-display); font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-    .vision-desc { font-size: 13.5px; color: var(--mid); line-height: 1.65; margin: 0; }
-    @media(max-width:640px){ .vision-grid { grid-template-columns: 1fr; } }
-  </style>
-  <link rel="stylesheet" href="shared.css">
-<link rel="stylesheet" href="interactions.css">
+.h1:hover{color:#0F6E56 !important}
+.h2:hover{color:#0F6E56 !important}
+.h3:hover{color:#0F6E56 !important}
+.h4:hover{color:#0F6E56 !important}
+.h5:hover{color:#0F6E56 !important}
+.h6:hover{color:#0F6E56 !important}
+.h7:hover{color:#0F6E56 !important}
+</style>
 </head>
 <body>
+<div style="background:#F2EFE8; color:#12241C">
 
-<div id="cur"></div>
-
-<!-- ── MOBILE OVERLAY ── -->
-<div id="mob">
-  <button class="mob-x" id="mobX">✕</button>
-  <a href="index.html" onclick="cM()">Home</a>
-  <a href="index.html#work" onclick="cM()">Work</a>
-  <a href="about.html" onclick="cM()">About</a>
-</div>
-
-<!-- ── NAV ── -->
-<nav id="nav">
-  <a class="nav-logo" href="index.html"><span class="nav-avatar"><img src="images/pooja-photo-edited.jpg" alt=""></span>Pooja Kurade.</a>
-  <div class="nav-right-cluster">
-    <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="Resume_Pooja_Kurade.pdf" target="_blank" rel="noopener">Resume</a></li>
-  </ul>
-    <span class="nav-divider"></span>
-    <div class="nav-right">
-      <div class="nav-icons">
-      <a href="https://www.linkedin.com/in/poojakurade/" target="_blank" rel="noopener" class="nav-icon-btn linkedin" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"></path></svg></a>
+  <!-- sticky utility bar -->
+  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.92); backdrop-filter:blur(10px); border-bottom:1px solid rgba(18,36,28,.1)">
+    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:0%; background:#0F6E56"></div></div>
+    <div style="max-width:1180px; margin:0 auto; padding:12px clamp(20px,5vw,56px); display:flex; align-items:center; gap:clamp(14px,2vw,28px)">
+      <a href="index.html" style="display:flex; align-items:center; gap:10px; color:inherit; white-space:nowrap">
+        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
+        <span style="font-family:'Source Serif 4',Georgia,serif; font-size:16px; font-weight:600; letter-spacing:-.01em">Pooja Kurade.</span>
+      </a>
+      <div style="width:1px; height:20px; background:rgba(18,36,28,.16); flex-shrink:0"></div>
+      <span style="font-size:13px; color:rgba(18,36,28,.6); white-space:nowrap">DAM ecosystem audit</span>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:clamp(14px,1.6vw,24px)">
+        <div style="display:none; gap:clamp(12px,1.4vw,20px); font-size:12px; letter-spacing:.02em; color:rgba(18,36,28,.55); white-space:nowrap" data-nav="1">
+          <a href="#brief" data-spy="brief" style="color:inherit; transition:color .2s" class="h1">Brief</a>
+          <a href="#users" data-spy="users" style="color:inherit; transition:color .2s" class="h2">Who I spoke to</a>
+          <a href="#structure" data-spy="structure" style="color:inherit; transition:color .2s" class="h3">The flow</a>
+          <a href="#decisions" data-spy="decisions" style="color:inherit; transition:color .2s" class="h4">Decisions</a>
+          <a href="#flows" data-spy="flows" style="color:inherit; transition:color .2s" class="h5">Recommendations</a>
+          <a href="#foundations" data-spy="foundations" style="color:inherit; transition:color .2s" class="h6">Workshop</a>
+        </div>
+        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="h7">All work</a>
       </div>
-      <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span></button>
-    </div>
-  </div>
-</nav>
-
-<!-- ── HERO ── -->
-<div class="cs-hero">
-
-  <!-- Banner: optionE.svg embedded inline -->
-  <div class="cs-hero-img" style="background:#1338BE;">
-    <a href="index.html#work" class="cs-back">← All Work</a>
-    <svg viewBox="500 60 600 480" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="'Space Mono', ui-monospace, monospace">
-      <defs>
-        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#1338BE"/>
-          <stop offset="0.55" stop-color="#1A56DB"/>
-          <stop offset="1" stop-color="#2563EB"/>
-        </linearGradient>
-        <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
-          <circle cx="2" cy="2" r="1.4" fill="#ffffff" opacity="0.10"/>
-        </pattern>
-        <radialGradient id="cg" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stop-color="#7DA3FF" stop-opacity="0.55"/>
-          <stop offset="1" stop-color="#7DA3FF" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="glow" x="-70%" y="-70%" width="240%" height="240%">
-          <feGaussianBlur stdDeviation="14" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <rect x="-500" y="-60" width="2600" height="1200" fill="url(#bg)"/>
-      <rect x="-500" y="-60" width="2600" height="1200" fill="url(#dots)"/>
-      <circle cx="800" cy="300" r="200" fill="url(#cg)"/>
-      <circle cx="800" cy="300" r="130" fill="none" stroke="#fff" stroke-opacity="0.16" stroke-width="1.2"/>
-      <circle cx="800" cy="300" r="86"  fill="none" stroke="#fff" stroke-opacity="0.10" stroke-width="1.2"/>
-      <line x1="800" y1="300" x2="800"  y2="170"  stroke="#fff" stroke-opacity="0.18" stroke-width="1.2" stroke-dasharray="4 5"/>
-      <line x1="800" y1="300" x2="913"  y2="235"  stroke="#fff" stroke-opacity="0.18" stroke-width="1.2" stroke-dasharray="4 5"/>
-      <line x1="800" y1="300" x2="913"  y2="365"  stroke="#fff" stroke-opacity="0.18" stroke-width="1.2" stroke-dasharray="4 5"/>
-      <line x1="800" y1="300" x2="800"  y2="430"  stroke="#fff" stroke-opacity="0.18" stroke-width="1.2" stroke-dasharray="4 5"/>
-      <line x1="800" y1="300" x2="687"  y2="365"  stroke="#fff" stroke-opacity="0.18" stroke-width="1.2" stroke-dasharray="4 5"/>
-      <line x1="800" y1="300" x2="687"  y2="235"  stroke="#fff" stroke-opacity="0.18" stroke-width="1.2" stroke-dasharray="4 5"/>
-      <g transform="translate(800 170)"><circle r="32" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5"/><text y="5" text-anchor="middle" fill="#fff" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif">Create</text></g>
-      <g transform="translate(913 235)"><circle r="32" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5"/><text y="5" text-anchor="middle" fill="#fff" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif">Upload</text></g>
-      <g transform="translate(913 365)"><circle r="32" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5"/><text y="5" text-anchor="middle" fill="#fff" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif">Tag</text></g>
-      <g transform="translate(800 430)"><circle r="32" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5"/><text y="5" text-anchor="middle" fill="#fff" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif">Search</text></g>
-      <g transform="translate(687 365)"><circle r="32" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5"/><text y="5" text-anchor="middle" fill="#fff" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif">Share</text></g>
-      <g transform="translate(687 235)"><circle r="32" fill="#fff" fill-opacity="0.14" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5"/><text y="5" text-anchor="middle" fill="#fff" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif">Archive</text></g>
-      <g filter="url(#glow)"><circle cx="800" cy="300" r="60" fill="#fff" fill-opacity="0.22" stroke="#fff" stroke-opacity="0.7" stroke-width="2"/></g>
-      <text x="800" y="296" text-anchor="middle" fill="#fff" font-size="28" font-weight="700" letter-spacing="2">DAM</text>
-      <text x="800" y="316" text-anchor="middle" fill="#fff" opacity="0.65" font-size="11" font-family="ui-sans-serif,system-ui,sans-serif">Asset Lifecycle</text>
-    </svg>
-  </div>
-
-  <div class="cs-hero-head">
-    <div class="cs-hero-content">
-      <h1>Auditing the Asset Lifecycle<br>in a Global DAM Ecosystem</h1>
     </div>
   </div>
 
-  <div class="cs-hero-cols">
-    <div class="cs-hero-cols-inner">
+  <!-- ══ HERO ══ -->
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vw,88px) clamp(20px,5vw,56px) 0">
+    <div style="display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(18,36,28,.55); margin-bottom:26px">
+      <span>Case study 03</span><span style="width:22px; height:1px; background:rgba(18,36,28,.25)"></span><span>Research · Enterprise B2B</span>
+    </div>
+    <h1 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(38px,6.4vw,76px); font-weight:500; letter-spacing:-.03em; line-height:1.02; margin:0 0 24px; max-width:19ch; text-wrap:pretty">A platform nobody trusted, and nobody owned</h1>
+    <p style="font-size:clamp(17px,1.6vw,21px); line-height:1.65; color:rgba(18,36,28,.68); margin:0 0 44px; max-width:58ch; text-wrap:pretty">Four years of a digital asset platform with no taxonomy, no governance and no lifecycle. People had quietly stopped using it. No interface to redesign here: the work was finding out why the flow failed, and what to fix first.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
       <div>
-        <span class="cs-overview-lbl">Overview</span>
-        <div class="cs-overview-body">
-          <p>A global marketing organisation had been running their DAM platform for 4+ years, but without governance, taxonomy, or a defined asset lifecycle. Growth had been organic and chaotic: duplicate files, empty metadata, abandoned folders, and no single owner of the platform.</p>
-          <p>I was engaged to audit the current state end-to-end, map how assets were actually created, stored, searched and shared, and produce an actionable prioritisation framework to fix the most critical gaps.</p>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Role</div>
+        <div style="font-size:14px; font-weight:600">UX Researcher</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Also design strategist on the roadmap</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Deliverable</div>
+        <div style="font-size:14px; font-weight:600">Insight, not screens</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Audit, process maps, prioritised plan</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Methods</div>
+        <div style="font-size:14px; font-weight:600">Interviews and audit</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Plus process mapping and a workshop</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Ended at</div>
+        <div style="font-size:14px; font-weight:600">Handover to the team</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">They owned implementation</div>
+      </div>
+    </div>
+
+    <!-- animated banner: the failure loop -->
+    <div style="position:relative; border-radius:6px; overflow:hidden; background:#062A47; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
+      <div style="position:absolute; inset:0; background:radial-gradient(90% 70% at 78% 20%, rgba(0,118,206,.32), transparent 68%); animation:bnGlow 9s ease-in-out infinite; pointer-events:none"></div>
+
+      <div style="position:relative">
+        <div style="font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(253,253,253,.5); margin-bottom:26px">How the platform lost its users</div>
+        <div style="position:relative; display:grid; gap:26px; padding-left:26px">
+          <span style="position:absolute; left:4.5px; top:8px; bottom:8px; width:1px; background:rgba(253,253,253,.14)"></span>
+          <span style="position:absolute; left:4.5px; top:8px; bottom:8px; width:1px; background:#4FB0E8; transform-origin:top; animation:bnRail 13.5s linear infinite"></span>
+
+          <div style="position:relative; animation:bnStep 13.5s linear infinite">
+            <span style="position:absolute; left:-26px; top:7px; width:10px; height:10px; border-radius:50%; animation:bnDot 13.5s linear infinite"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2vw,24px); font-weight:500; color:#FDFDFD; letter-spacing:-.015em; margin-bottom:6px">You search for the asset</div>
+            <div style="font-size:13.5px; line-height:1.6; color:rgba(253,253,253,.55); max-width:34ch">Nothing was tagged, so results came back ordered by upload date</div>
+          </div>
+
+          <div style="position:relative; animation:bnStep 13.5s linear infinite; animation-delay:4.5s">
+            <span style="position:absolute; left:-26px; top:7px; width:10px; height:10px; border-radius:50%; animation:bnDot 13.5s linear infinite; animation-delay:4.5s"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2vw,24px); font-weight:500; color:#FDFDFD; letter-spacing:-.015em; margin-bottom:6px">You cannot tell which is current</div>
+            <div style="font-size:13.5px; line-height:1.6; color:rgba(253,253,253,.55); max-width:34ch">Seven year old files sat beside live campaign work, with no lifecycle to separate them</div>
+          </div>
+
+          <div style="position:relative; animation:bnStep 13.5s linear infinite; animation-delay:9s">
+            <span style="position:absolute; left:-26px; top:7px; width:10px; height:10px; border-radius:50%; animation:bnDot 13.5s linear infinite; animation-delay:9s"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2vw,24px); font-weight:500; color:#FDFDFD; letter-spacing:-.015em; margin-bottom:6px">So you ask a person instead</div>
+            <div style="font-size:13.5px; line-height:1.6; color:rgba(253,253,253,.55); max-width:34ch">The workaround becomes the process, and the platform gets emptier and less trusted</div>
+          </div>
         </div>
       </div>
-      <div class="cs-hero-meta-col">
-        <div>
-          <span class="cs-hmeta-label">Role</span>
-          <div class="cs-hmeta-value">UX Researcher · Design Strategist</div>
+
+      <div style="position:relative; display:flex; justify-content:center">
+        <div style="position:relative; width:100%; max-width:420px; border-radius:10px; overflow:hidden; background:#04203A; border:1px solid rgba(255,255,255,.16); box-shadow:0 30px 70px rgba(0,0,0,.5)">
+          <div style="display:flex; align-items:center; gap:6px; padding:10px 12px; background:rgba(255,255,255,.06)">
+            <span style="width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25)"></span>
+            <span style="width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25)"></span>
+            <span style="width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25)"></span>
+            <span style="margin-left:10px; font-size:10.5px; color:rgba(255,255,255,.4)">Asset library</span>
+          </div>
+          <div style="position:relative; aspect-ratio:16/11">
+
+            <!-- state 1: search with useless results -->
+            <div style="position:absolute; inset:0; padding:18px; display:flex; flex-direction:column; gap:12px; animation:bnScreen 13.5s linear infinite">
+              <div style="display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14); border-radius:6px; padding:9px 12px">
+                <span style="font-size:12px; color:rgba(255,255,255,.4)">Search</span>
+                <span style="height:13px; overflow:hidden; white-space:nowrap; animation:bnType 13.5s steps(14) infinite"><span style="font-size:12px; color:#FDFDFD">spring campaign</span></span>
+                <span style="width:1px; height:13px; background:#4FB0E8; animation:bnCaret 1s step-end infinite"></span>
+              </div>
+              <div style="font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.35)">312 results, newest first</div>
+              <div style="display:grid; gap:7px">
+                <div style="display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.05); border-radius:5px; padding:9px 11px">
+                  <span style="width:22px; height:22px; border-radius:3px; background:rgba(255,255,255,.12); flex-shrink:0"></span>
+                  <span style="font-size:11px; color:rgba(255,255,255,.65)">IMG_4471_final_v3.psd</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.05); border-radius:5px; padding:9px 11px">
+                  <span style="width:22px; height:22px; border-radius:3px; background:rgba(255,255,255,.12); flex-shrink:0"></span>
+                  <span style="font-size:11px; color:rgba(255,255,255,.65)">untitled-export-2.jpg</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:9px; background:rgba(255,255,255,.05); border-radius:5px; padding:9px 11px">
+                  <span style="width:22px; height:22px; border-radius:3px; background:rgba(255,255,255,.12); flex-shrink:0"></span>
+                  <span style="font-size:11px; color:rgba(255,255,255,.65)">FINAL FINAL use this.png</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- state 2: empty metadata -->
+            <div style="position:absolute; inset:0; padding:18px; display:flex; flex-direction:column; gap:11px; opacity:0; animation:bnScreen 13.5s linear infinite; animation-delay:4.5s">
+              <div style="font-size:11px; color:rgba(255,255,255,.5)">untitled-export-2.jpg</div>
+              <div style="display:grid; gap:7px">
+                <div style="display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:7px"><span style="font-size:11px; color:rgba(255,255,255,.4)">Campaign</span><span style="font-size:11px; color:rgba(255,255,255,.22)">empty</span></div>
+                <div style="display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:7px"><span style="font-size:11px; color:rgba(255,255,255,.4)">Asset type</span><span style="font-size:11px; color:rgba(255,255,255,.22)">empty</span></div>
+                <div style="display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:7px"><span style="font-size:11px; color:rgba(255,255,255,.4)">Region</span><span style="font-size:11px; color:rgba(255,255,255,.22)">empty</span></div>
+                <div style="display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:7px"><span style="font-size:11px; color:rgba(255,255,255,.4)">Approved</span><span style="font-size:11px; color:rgba(255,255,255,.22)">empty</span></div>
+                <div style="display:flex; justify-content:space-between; gap:12px; border-bottom:1px solid rgba(255,255,255,.08); padding-bottom:7px"><span style="font-size:11px; color:rgba(255,255,255,.4)">Expiry</span><span style="font-size:11px; color:rgba(255,255,255,.22)">empty</span></div>
+                <div style="display:flex; justify-content:space-between; gap:12px"><span style="font-size:11px; color:rgba(255,255,255,.4)">Uploaded</span><span style="font-size:11px; color:rgba(255,255,255,.55)">2019</span></div>
+              </div>
+            </div>
+
+            <!-- state 3: the workaround -->
+            <div style="position:absolute; inset:0; padding:18px; display:flex; flex-direction:column; justify-content:center; gap:10px; opacity:0; animation:bnScreen 13.5s linear infinite; animation-delay:9s">
+              <div style="align-self:flex-start; max-width:78%; background:rgba(255,255,255,.08); border-radius:12px 12px 12px 3px; padding:10px 13px; font-size:11.5px; line-height:1.5; color:rgba(255,255,255,.72)">Hey, do you have the spring hero image? Can't find it in the DAM</div>
+              <div style="align-self:flex-end; max-width:78%; background:rgba(0,118,206,.28); border:1px solid rgba(79,176,232,.45); border-radius:12px 12px 3px 12px; padding:10px 13px; font-size:11.5px; line-height:1.5; color:#FDFDFD">Sending it over now</div>
+              <div style="align-self:flex-start; max-width:78%; background:rgba(255,255,255,.08); border-radius:12px 12px 12px 3px; padding:10px 13px; font-size:11.5px; line-height:1.5; color:rgba(255,255,255,.72)">Thanks, you're faster than the platform</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <span class="cs-hmeta-label">Type</span>
-          <div class="cs-hmeta-value">B2B Enterprise Research</div>
-        </div>
-        <div>
-          <span class="cs-hmeta-label">Methods</span>
-          <div class="cs-hmeta-value">Stakeholder interviews · Content audit · Workshop facilitation · Prioritisation mapping</div>
-        </div>
-        <div>
-          <span class="cs-hmeta-label">Duration</span>
-          <div class="cs-hmeta-value">8 weeks</div>
+        <div style="position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); display:flex; align-items:center; gap:9px; background:rgba(8,24,18,.94); border:1px solid rgba(79,176,232,.5); border-radius:999px; padding:9px 16px; white-space:nowrap; animation:bnChip 13.5s linear infinite">
+          <span style="width:7px; height:7px; border-radius:50%; background:#4FB0E8"></span>
+          <span style="font-size:12px; font-weight:600; color:#FDFDFD">The platform was never the problem</span>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ══ 01 BRIEF ══ -->
+  <section id="brief" data-sec="1" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div>
+        <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">01 The brief</div>
+      </div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Find out why the current flow was failing</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 20px; max-width:68ch">Duplicate files, empty metadata, abandoned folders, no naming convention, and nobody whose job it was to hold any of it together. Teams had built their own systems around it and stopped going back.</p>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">I audited the current state end to end, mapped how assets actually moved, and handed back a prioritised plan.</p>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:30px 32px; margin-bottom:34px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:16px">What I did</div>
+          <p style="font-size:15.5px; line-height:1.8; color:rgba(18,36,28,.75); margin:0 0 22px; max-width:74ch">Interviews told me what people believed. The audit told me what was actually in the library. Where the two disagreed was where the problems were.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px">
+            <span style="font-size:12.5px; color:rgba(18,36,28,.7); background:#F2EFE8; border:1px solid rgba(18,36,28,.14); border-radius:999px; padding:8px 16px">Stakeholder interviews</span>
+            <span style="font-size:12.5px; color:rgba(18,36,28,.7); background:#F2EFE8; border:1px solid rgba(18,36,28,.14); border-radius:999px; padding:8px 16px">Content audit</span>
+            <span style="font-size:12.5px; color:rgba(18,36,28,.7); background:#F2EFE8; border:1px solid rgba(18,36,28,.14); border-radius:999px; padding:8px 16px">Process mapping</span>
+            <span style="font-size:12.5px; color:rgba(18,36,28,.7); background:#F2EFE8; border:1px solid rgba(18,36,28,.14); border-radius:999px; padding:8px 16px">Workshop facilitation</span>
+            <span style="font-size:12.5px; color:rgba(18,36,28,.7); background:#F2EFE8; border:1px solid rgba(18,36,28,.14); border-radius:999px; padding:8px 16px">Prioritisation mapping</span>
+          </div>
+        </div>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden">
+          <div style="background:#FDFDFD; padding:26px 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,220px); gap:20px 32px; align-items:start">
+            <div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Search could not work, because nothing was tagged</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0; max-width:52ch">Folders named by campaign, team, date and person, sometimes all four in one path. With metadata empty, results fell back to upload date.</p>
+            </div>
+            <div style="font-size:13px; line-height:1.6; color:#0F6E56; font-weight:600">Content audit and interviews agreed</div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,220px); gap:20px 32px; align-items:start">
+            <div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Assets went in and never came out</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0; max-width:52ch">No review, no expiry, no archive policy. Files years past relevance sat beside live campaign work.</p>
+            </div>
+            <div style="font-size:13px; line-height:1.6; color:#0F6E56; font-weight:600">No lifecycle defined anywhere</div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,220px); gap:20px 32px; align-items:start">
+            <div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">The platform was nobody's job</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0; max-width:52ch">IT ran the infrastructure, marketing used it, nobody owned governance. Every symptom traced back here.</p>
+            </div>
+            <div style="font-size:13px; line-height:1.6; color:#0F6E56; font-weight:600">The root cause, not a symptom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 WHO I SPOKE TO ══ -->
+  <section id="users" data-sec="2" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div>
+        <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">02 Who I spoke to</div>
+      </div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Three relationships to the same platform</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 40px; max-width:68ch">Three groups, three different ideas of what a working platform means. The person who runs it, the people who put things in, the people who need things out.</p>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:36px">
+          <div style="background:#FDFDFD; padding:30px 32px; display:grid; grid-template-columns:minmax(0,200px) minmax(0,1fr); gap:22px 34px; align-items:start">
+            <div>
+              <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:10px">Runs the platform</div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:4px">Platform owner</div>
+              <div style="font-size:13px; line-height:1.55; color:rgba(18,36,28,.6)">Six years in role, holds the whole library in her head</div>
+            </div>
+            <div>
+              <p style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-style:italic; line-height:1.55; color:#12241C; margin:0 0 14px; max-width:46ch">"I spend a large part of my week answering where is the file. I should not be a human search engine."</p>
+              <div style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.68); max-width:56ch">Her memory was the only working search the organisation had, which is why nothing improved.</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:30px 32px; display:grid; grid-template-columns:minmax(0,200px) minmax(0,1fr); gap:22px 34px; align-items:start">
+            <div>
+              <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:10px">Puts assets in</div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:4px">Asset creator</div>
+              <div style="font-size:13px; line-height:1.55; color:rgba(18,36,28,.6)">Creative lead, agency side, uploads after each campaign</div>
+            </div>
+            <div>
+              <p style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-style:italic; line-height:1.55; color:#12241C; margin:0 0 14px; max-width:46ch">"I upload files after campaigns but I have no idea what happens next. Half the time someone remakes an asset I already made."</p>
+              <div style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.68); max-width:56ch">Uploading ended his job and started nobody else's. That gap made the duplicates.</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:30px 32px; display:grid; grid-template-columns:minmax(0,200px) minmax(0,1fr); gap:22px 34px; align-items:start">
+            <div>
+              <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:10px">Needs assets out</div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:4px">Asset consumer</div>
+              <div style="font-size:13px; line-height:1.55; color:rgba(18,36,28,.6)">Marketing operations, global team, shares assets daily</div>
+            </div>
+            <div>
+              <p style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-style:italic; line-height:1.55; color:#12241C; margin:0 0 14px; max-width:46ch">"I never know if I am sharing the latest approved version. I email the creative team directly. The platform is a last resort."</p>
+              <div style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.68); max-width:56ch">His risk was reputational, not convenience, so he chose the slow certain route every time.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:30px 32px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">What that told me</div>
+          <p style="font-size:15.5px; line-height:1.8; color:rgba(18,36,28,.75); margin:0; max-width:74ch">All three had a workaround that worked. Nobody was fighting the platform, they had quietly routed around it, so the real system of record had moved into inboxes and memory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 THE FLOW ══ -->
+  <section id="structure" data-sec="3" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div>
+        <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">03 The flow</div>
+      </div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Where the lifecycle broke</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">I mapped an asset's real journey from brief to archive across the teams that touch it. One step worked. Everything after the moment of upload broke, and each break pushed people further towards their own workaround.</p>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:28px 30px; margin-bottom:34px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:16px">Two systems, one asset</div>
+          <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.62); margin:0 0 26px; max-width:60ch">I mapped both flows separately. The damage lived in the gap between them.</p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px">
+            <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:14px">Content studio</div>
+              <div style="display:grid; gap:8px">
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Brief</div>
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Produce</div>
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Review</div>
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Its own idea of final</div>
+              </div>
+            </div>
+            <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:14px">Asset library</div>
+              <div style="display:grid; gap:8px">
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Whatever got uploaded</div>
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Search</div>
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Share</div>
+                <div style="font-size:13px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:9px 12px">Never archived</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:14px; margin-top:16px">
+            <span style="flex:1; height:1px; background:rgba(201,58,42,.3)"></span>
+            <span style="font-size:12px; font-weight:600; color:#C93A2A; background:rgba(201,58,42,.08); border:1px dashed rgba(201,58,42,.4); border-radius:999px; padding:7px 16px; white-space:nowrap">No handover between them</span>
+            <span style="flex:1; height:1px; background:rgba(201,58,42,.3)"></span>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:34px">
+          <div style="padding:18px 24px; border-bottom:1px solid rgba(18,36,28,.12); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Current state, asset lifecycle</div>
+
+          <div style="display:grid; grid-template-columns:44px minmax(0,1fr) minmax(0,120px); gap:18px; align-items:center; padding:20px 24px; border-bottom:1px solid rgba(18,36,28,.08)">
+            <div style="font-size:12px; letter-spacing:.06em; color:rgba(18,36,28,.4)">01</div>
+            <div>
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:5px">Brief and create</div>
+              <div style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.65)">The asset gets made in the creative tools. This part was never the issue.</div>
+            </div>
+            <div style="justify-self:end"><span style="font-size:11.5px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.09); border-radius:4px; padding:6px 12px; white-space:nowrap">Working</span></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:44px minmax(0,1fr) minmax(0,120px); gap:18px; align-items:center; padding:20px 24px; border-bottom:1px solid rgba(18,36,28,.08); background:rgba(201,58,42,.03)">
+            <div style="font-size:12px; letter-spacing:.06em; color:rgba(18,36,28,.4)">02</div>
+            <div>
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:5px">Upload</div>
+              <div style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.65)">No folder guidance or naming rule at the one moment anyone is paying attention.</div>
+            </div>
+            <div style="justify-self:end"><span style="font-size:11.5px; font-weight:600; color:#C93A2A; background:rgba(201,58,42,.1); border-radius:4px; padding:6px 12px; white-space:nowrap">Breaks</span></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:44px minmax(0,1fr) minmax(0,120px); gap:18px; align-items:center; padding:20px 24px; border-bottom:1px solid rgba(18,36,28,.08); background:rgba(201,58,42,.03)">
+            <div style="font-size:12px; letter-spacing:.06em; color:rgba(18,36,28,.4)">03</div>
+            <div>
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:5px">Metadata</div>
+              <div style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.65)">Fourteen fields, almost all skipped. Tagging was slower than skipping it.</div>
+            </div>
+            <div style="justify-self:end"><span style="font-size:11.5px; font-weight:600; color:#C93A2A; background:rgba(201,58,42,.1); border-radius:4px; padding:6px 12px; white-space:nowrap">Breaks</span></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:44px minmax(0,1fr) minmax(0,120px); gap:18px; align-items:center; padding:20px 24px; border-bottom:1px solid rgba(18,36,28,.08); background:rgba(201,58,42,.03)">
+            <div style="font-size:12px; letter-spacing:.06em; color:rgba(18,36,28,.4)">04</div>
+            <div>
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:5px">Search</div>
+              <div style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.65)">Nothing to rank on, so results came back by date. This is where people gave up.</div>
+            </div>
+            <div style="justify-self:end"><span style="font-size:11.5px; font-weight:600; color:#C93A2A; background:rgba(201,58,42,.1); border-radius:4px; padding:6px 12px; white-space:nowrap">Breaks</span></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:44px minmax(0,1fr) minmax(0,120px); gap:18px; align-items:center; padding:20px 24px; border-bottom:1px solid rgba(18,36,28,.08); background:rgba(201,58,42,.03)">
+            <div style="font-size:12px; letter-spacing:.06em; color:rgba(18,36,28,.4)">05</div>
+            <div>
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:5px">Share and distribute</div>
+              <div style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.65)">Sharing happened over email and chat, so the platform never saw the step that mattered most.</div>
+            </div>
+            <div style="justify-self:end"><span style="font-size:11.5px; font-weight:600; color:#C93A2A; background:rgba(201,58,42,.1); border-radius:4px; padding:6px 12px; white-space:nowrap">Bypassed</span></div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:44px minmax(0,1fr) minmax(0,120px); gap:18px; align-items:center; padding:20px 24px; background:rgba(201,58,42,.03)">
+            <div style="font-size:12px; letter-spacing:.06em; color:rgba(18,36,28,.4)">06</div>
+            <div>
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:5px">Archive</div>
+              <div style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.65)">No policy, so nothing ever left. Every year of growth made search worse.</div>
+            </div>
+            <div style="justify-self:end"><span style="font-size:11.5px; font-weight:600; color:#C93A2A; background:rgba(201,58,42,.1); border-radius:4px; padding:6px 12px; white-space:nowrap">Missing</span></div>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:30px 32px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">The pattern in the map</div>
+          <p style="font-size:15.5px; line-height:1.8; color:rgba(18,36,28,.75); margin:0; max-width:74ch">Search is where the pain is felt, so search is what everyone wanted fixed. But it fails because upload and metadata failed two steps earlier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 04 DECISIONS ══ -->
+  <section id="decisions" data-sec="4" style="background:#FDFDFD; margin-top:clamp(64px,8vw,110px); padding:clamp(64px,8vw,110px) 0">
+    <div style="max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,56px)">
+      <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+        <div>
+          <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">04 Decisions</div>
+        </div>
+        <div>
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Three calls, and what each one cost</h2>
+          <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 48px; max-width:68ch">On a research engagement the decisions are about method and framing rather than layout. These are the three I would defend.</p>
+
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
+            <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 01 · Method</div>
+            <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:26ch">Audit the library, not just the people</h3>
+            <div style="display:grid; gap:16px; max-width:66ch">
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Options</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Interviews alone, which is faster and what was expected, or interviews plus a full content audit.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">Both, and I ran the audit before I finished analysing the interviews.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Why</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">People describe the workaround they built, not the system that made them build it. The audit gave me evidence nobody could argue with, and in a room full of stakeholders who each had a theory, that mattered more than another quote.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">The audit ate a large share of the timeline, so I ran fewer interviews than I would have liked and leaned on internal referrals to recruit.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
+            <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 02 · Framing</div>
+            <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:26ch">Name it an ownership problem, not a search problem</h3>
+            <div style="display:grid; gap:16px; max-width:66ch">
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Tension</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Everyone asked for better search. Search was genuinely broken. It was also the symptom furthest from the cause.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">Lead the recommendation with governance and ownership, and show search as downstream of it.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Why</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Renaming folders fixes search until the next quarter of uploads arrives. Without an owner and a rule at upload, the chaos regenerates. The technology could already do what they needed, it had just never been set up to.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">It is the harder sell. An ownership recommendation asks for headcount and behaviour change instead of a feature, so I had to pair it with quick wins people could feel within weeks.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px">
+            <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 03 · Handover</div>
+            <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:26ch">Let them prioritise it, in the room</h3>
+            <div style="display:grid; gap:16px; max-width:66ch">
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Options</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">Deliver a finished roadmap, or bring the findings and let the team place the actions themselves.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">I chose</div>
+                <div style="font-size:15px; line-height:1.7; color:#12241C; font-weight:500">A facilitated workshop where they mapped every action onto impact against effort.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Why</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">I was leaving and they were implementing. A plan they built is a plan they defend when it competes with other work. It also surfaced constraints my interviews had missed, because people say different things in front of their peers.</div>
+              </div>
+              <div style="display:grid; grid-template-columns:88px minmax(0,1fr); gap:16px; align-items:baseline">
+                <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Cost</div>
+                <div style="font-size:15px; line-height:1.7; color:rgba(18,36,28,.75)">You give up control of the outcome. Two things I would have ranked higher went to deprioritise, and I let them, because the ranking being theirs was the point.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 RECOMMENDATIONS ══ -->
+  <section id="flows" data-sec="5" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div>
+        <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">05 Recommendations</div>
+      </div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Four pillars that only work together</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 40px; max-width:68ch">Fixing one without the others buys a few months. A convention with no owner drifts. An owner with no schema has nothing to enforce.</p>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:44px">
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
+            <div style="flex:1 1 220px; min-width:200px">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
+                <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">01</span>
+                
+              </div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Taxonomy and naming</div>
+              <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">A structure obvious enough to follow without a manual, enforced where the file enters.</p>
+            </div>
+            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Top level folders by content type</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Brand, campaign, asset type, version</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Legacy folders archived, not deleted</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
+            <div style="flex:1 1 220px; min-width:200px">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
+                <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">02</span>
+                
+              </div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Metadata schema</div>
+              <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">Fewer fields, mostly picked from a list. Make tagging faster than skipping it.</p>
+            </div>
+            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Fourteen fields down to six required</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Controlled lists, not free text</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Date, uploader and format automatic</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
+            <div style="flex:1 1 220px; min-width:200px">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
+                <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">03</span>
+                <span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#0F6E56; white-space:nowrap">Everything else depends on this</span>
+              </div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Governance and ownership</div>
+              <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">Someone accountable for quality, with the time to actually do it.</p>
+            </div>
+            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">A named owner with real capacity</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Upload, review and archive workflow</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">A regular audit that gets reported</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
+            <div style="flex:1 1 220px; min-width:200px">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
+                <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">04</span>
+                
+              </div>
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Training and adoption</div>
+              <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">People had working alternatives. Change management, not configuration.</p>
+            </div>
+            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Separate guides for creators and consumers</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Hands on sessions per team</div>
+              <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">A one page naming reference</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:18px">
+          <span style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45)">Sequenced</span>
+          <div style="font-family:'Source Serif 4',Georgia,serif; font-size:21px; font-weight:600; letter-spacing:-.01em">Quick wins first, so the rest gets funded</div>
+        </div>
+        <p style="font-size:15px; line-height:1.75; color:rgba(18,36,28,.68); margin:0 0 24px; max-width:66ch">The long work needs headcount and patience, which is easier to ask for once people can feel something improving. So the plan front loads the changes that cost almost nothing.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:28px 30px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:18px">Weeks, not quarters</div>
+            <div style="display:grid; gap:14px; font-size:14.5px; line-height:1.65; color:rgba(18,36,28,.75)">
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:#0F6E56">01</span><span>Name an owner, even an interim one</span></div>
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:#0F6E56">02</span><span>Publish the naming convention where people upload</span></div>
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:#0F6E56">03</span><span>Make the six core metadata fields required</span></div>
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:#0F6E56">04</span><span>Split working files from approved final assets</span></div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:28px 30px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:18px">The longer work</div>
+            <div style="display:grid; gap:14px; font-size:14.5px; line-height:1.65; color:rgba(18,36,28,.72)">
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:rgba(18,36,28,.4)">05</span><span>Full taxonomy redesign and migration</span></div>
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:rgba(18,36,28,.4)">06</span><span>Integration with the creative tools people already live in</span></div>
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:rgba(18,36,28,.4)">07</span><span>Role based training programme</span></div>
+              <div style="display:grid; grid-template-columns:20px minmax(0,1fr); gap:12px"><span style="color:rgba(18,36,28,.4)">08</span><span>Lifecycle and expiry policy, applied retroactively</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 06 WORKSHOP ══ -->
+  <section id="foundations" data-sec="6" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div>
+        <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">06 Workshop</div>
+      </div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">The room decided the order</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">I presented the findings and handed over the pen. Every action went onto a grid of impact against effort. What came out was the roadmap in their words.</p>
+
+        <div style="border-left:2px solid #0F6E56; padding:4px 0 4px 24px; max-width:62ch; margin-bottom:40px">
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2.1vw,25px); font-weight:400; font-style:italic; line-height:1.5; color:#12241C; margin:0 0 12px">"We all knew it was broken, but nobody had ever mapped it. The naming problem alone explains most of our support tickets."</p>
+          <div style="font-size:12.5px; letter-spacing:.04em; color:rgba(18,36,28,.55)">Workshop participant, brand operations</div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(22px,3vw,32px); margin-bottom:24px">
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:20px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Workshop output, impact against effort</div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.4)">High impact above, low effort left</div>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px">
+            <div style="border:1px solid rgba(15,110,86,.35); background:rgba(15,110,86,.05); border-radius:5px; padding:20px 22px">
+              <div style="font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#0F6E56; font-weight:600; margin-bottom:14px">Do first</div>
+              <div style="display:grid; gap:9px; font-size:14px; line-height:1.55; color:rgba(18,36,28,.78)">
+                <div>Name a platform owner</div>
+                <div>Publish the naming convention</div>
+                <div>Required metadata fields</div>
+                <div>Split working and final</div>
+              </div>
+            </div>
+            <div style="border:1px solid rgba(18,36,28,.16); border-radius:5px; padding:20px 22px">
+              <div style="font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.55); font-weight:600; margin-bottom:14px">Commit properly</div>
+              <div style="display:grid; gap:9px; font-size:14px; line-height:1.55; color:rgba(18,36,28,.7)">
+                <div>Taxonomy redesign</div>
+                <div>Creative tool integration</div>
+                <div>Role based training</div>
+              </div>
+            </div>
+            <div style="border:1px solid rgba(18,36,28,.16); border-radius:5px; padding:20px 22px">
+              <div style="font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.55); font-weight:600; margin-bottom:14px">Fill in around it</div>
+              <div style="display:grid; gap:9px; font-size:14px; line-height:1.55; color:rgba(18,36,28,.7)">
+                <div>Archive inactive assets</div>
+                <div>Communicate every change</div>
+              </div>
+            </div>
+            <div style="border:1px solid rgba(18,36,28,.16); border-radius:5px; padding:20px 22px">
+              <div style="font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.4); font-weight:600; margin-bottom:14px">Not yet</div>
+              <div style="display:grid; gap:9px; font-size:14px; line-height:1.55; color:rgba(18,36,28,.55)">
+                <div>Rights management</div>
+                <div>Usage analytics dashboard</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:30px 32px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">Where it ended</div>
+          <p style="font-size:15.5px; line-height:1.8; color:rgba(18,36,28,.75); margin:0; max-width:74ch">My engagement finished at the workshop and the plan. The team took the quick wins forward and the owner role went into hiring, so I have no launch metrics to claim.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 07 WHAT COMES NEXT ══ -->
+  <section id="next" data-sec="7" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div>
+        <div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">07 What comes next</div>
+      </div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">The state worth building towards</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 30px; max-width:68ch">A plan needs a destination, not just a list of fixes. Four plain tests for whether any piece of work moves them towards it.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:52px">
+          <div style="background:#FDFDFD; padding:26px 28px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">One route in</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">An asset leaves the studio and enters the library through a single handover, tagged at that moment, so the two systems stop drifting apart.</p>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Findable by anyone</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Search works for someone who was not in the campaign, because the words they would use are in the metadata rather than in a colleague's memory.</p>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Current by default</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Approved and expired are states an asset actually has, so what you find is safe to send without checking with a person first.</p>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Owned</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Somebody's name is against the platform, with the time and the mandate to keep the rest of it true a year from now.</p>
+          </div>
+        </div>
+
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 34px; max-width:26ch">What I took from it</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 20px; max-width:68ch">Technology gets blamed for problems that are organisational. The platform could already do everything these teams needed. Nobody had ever been made responsible for setting it up that way, and four years of that compounds into something that looks like a software failure.</p>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 40px; max-width:68ch">Finding the problems was not the hard part, the audit made those undeniable. The hard part was getting people past the quick fix, because renaming a few folders feels like progress and takes an afternoon. Making the case for the ownership work meant showing that every symptom they hated sat downstream of it.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:28px 36px; max-width:80ch; margin-bottom:48px">
+          <div>
+            <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">Workshop earlier</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">The prioritisation session surfaced constraints that would have changed which interviews I ran and which parts of the library I audited first.</p>
+          </div>
+          <div>
+            <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">More voices, shorter sessions</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Long interviews with a few people gave depth. Fifteen minute conversations with many more would have told me how widely each workaround had spread.</p>
+          </div>
+          <div>
+            <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">Agree the measures up front</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">I left without a baseline anyone had signed off, so nobody could prove the improvement later. I would fix that in the first week now.</p>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid rgba(18,36,28,.14); padding-top:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+          <a href="index.html#work" style="font-size:13px; color:rgba(18,36,28,.6)">← All work</a>
+          <a href="pooja_kurade_casestudy_ttkprestige.html" style="display:flex; align-items:baseline; gap:14px">
+            <span style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Next case study</span>
+            <span style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(22px,2.6vw,32px); font-weight:500; letter-spacing:-.02em; color:#12241C">TTK Prestige →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:clamp(56px,7vw,88px)"></div>
 </div>
-
-<!-- ── CONTEXT ── -->
-<section class="cs-section cs-section--alt rv" id="context">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Context &amp; Approach</span>
-    <h2>A DAM Nobody Trusted</h2>
-    <p>This organisation had been running a DAM platform for 4+ years, without governance, taxonomy, or a defined asset lifecycle. Teams had built workarounds (private Dropbox folders, WhatsApp threads, email attachments) because the platform had failed them enough times that they stopped using it. The brief: understand why it wasn't working, map the gaps, and deliver an actionable plan to fix it. No UI deliverable. The output was insight, strategy, and prioritisation.</p>
-
-    <div class="proc-steps-wrap rv">
-      <div class="proc-steps">
-        <div class="proc-step">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          </div>
-          <div class="proc-num">01</div>
-          <div class="proc-title">Stakeholder Interviews</div>
-          <div class="proc-desc">8 in-depth interviews across DAM managers, creatives, and marketing ops</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          </div>
-          <div class="proc-num">02</div>
-          <div class="proc-title">Content Audit</div>
-          <div class="proc-desc">Reviewed 12,000+ assets across all folders for duplicates, gaps, and naming patterns</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div class="proc-num">03</div>
-          <div class="proc-title">Process Mapping</div>
-          <div class="proc-desc">Documented the current asset lifecycle from creation to archive across 4 teams</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-          </div>
-          <div class="proc-num">04</div>
-          <div class="proc-title">Workshop</div>
-          <div class="proc-desc">Led cross-functional alignment session to co-create the prioritisation roadmap</div>
-        </div>
-        <div class="proc-arrow">→</div>
-        <div class="proc-step">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          </div>
-          <div class="proc-num">05</div>
-          <div class="proc-title">Action Planning</div>
-          <div class="proc-desc">Delivered prioritised quick-wins and long-term roadmap with owners and timelines</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── INTERVIEWS ── -->
-<section class="cs-section rv" id="research">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Research</span>
-    <h2>Who I Spoke To</h2>
-    <p>8 semi-structured interviews (45-60 min, remote) across three user types, each with a different relationship to the DAM and a different idea of what "working" meant. Recruited via internal referral; screened for 3+ months of active platform use. Names changed.</p>
-
-    <div class="rp-grid">
-      <div class="rp-card rv">
-        <span class="rp-tag">Platform Owner</span>
-        <div class="rp-quote">"I spend 40% of my time answering 'where is the file?' from other teams. I shouldn't be a human search engine."</div>
-        <div class="rp-title" style="margin-top:12px;">DAM Manager · 6 yrs in role</div>
-      </div>
-      <div class="rp-card rv">
-        <span class="rp-tag">Asset Creator</span>
-        <div class="rp-quote">"I upload files after campaigns but have no idea what happens next. Half the time someone re-creates assets I already made."</div>
-        <div class="rp-title" style="margin-top:12px;">Creative Director · Agency-side</div>
-      </div>
-      <div class="rp-card rv">
-        <span class="rp-tag">Asset Consumer</span>
-        <div class="rp-quote">"I never know if I'm sharing the latest approved version. I email the creative team directly, the DAM is a last resort."</div>
-        <div class="rp-title" style="margin-top:12px;">Marketing Ops Lead · Global team</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FINDINGS ── -->
-<section class="cs-section rv" id="findings">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Research Findings</span>
-    <h2>What the Data Showed</h2>
-    <p>84 observations across 8 interviews were sorted into themes using affinity clustering; no problem was named until the groupings were stable. Combined with platform analytics and a full content audit, six systemic issues emerged. Not individual user errors, but organisational failures the DAM had been absorbing silently for years.</p>
-
-    <div class="insight-stats rv">
-      <div class="insight-stat">
-        <div class="insight-stat-num">12k+</div>
-        <div class="insight-stat-label">Total assets audited</div>
-        <div class="insight-stat-method">Full library export via DAM admin panel; all folders including archive, personal uploads, and regional sub-accounts.</div>
-      </div>
-      <div class="insight-stat">
-        <div class="insight-stat-num">35%</div>
-        <div class="insight-stat-label">Duplicate or near-duplicate files</div>
-        <div class="insight-stat-method">Filename similarity matching (&gt;80%) plus manual review of 200 flagged pairs. Identical content across folders counted once.</div>
-      </div>
-      <div class="insight-stat">
-        <div class="insight-stat-num">1.8</div>
-        <div class="insight-stat-label">Avg. metadata fields filled (of 14)</div>
-        <div class="insight-stat-method">Random sample of 1,200 assets; auto-populated fields excluded. Only manually entered, non-empty values counted.</div>
-      </div>
-      <div class="insight-stat">
-        <div class="insight-stat-num">68%</div>
-        <div class="insight-stat-label">Preferred email/Slack over DAM for sharing</div>
-        <div class="insight-stat-method">Post-interview survey to all 38 platform users. Q: "When sharing an asset, what do you do first?" (single choice)</div>
-      </div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>Six Systemic Problems</h3>
-    </div>
-
-    <div class="problem-grid">
-      <div class="problem-card rv">
-        <span class="problem-num">Problem 01</span>
-        <div class="problem-title">No Taxonomy or Naming Convention</div>
-        <p class="problem-desc">Folders were named by campaign, by team, by date, by person, sometimes all four. 63% of assets had no meaningful filename. Search was effectively broken.</p>
-      </div>
-      <div class="problem-card rv">
-        <span class="problem-num">Problem 02</span>
-        <div class="problem-title">Metadata Fields Left Empty</div>
-        <p class="problem-desc">The platform had 14 metadata fields. On average, assets had only 1.8 filled. Without tags the search algorithm returned results ordered by upload date: useless in practice.</p>
-      </div>
-      <div class="problem-card rv">
-        <span class="problem-num">Problem 03</span>
-        <div class="problem-title">No Defined Asset Lifecycle</div>
-        <p class="problem-desc">Assets were uploaded but never reviewed, updated, or archived. Files 7 years old were still appearing in search results alongside current campaign materials.</p>
-      </div>
-      <div class="problem-card rv">
-        <span class="problem-num">Problem 04</span>
-        <div class="problem-title">Duplicate Assets at Scale</div>
-        <p class="problem-desc">The audit identified 4,200+ duplicate or near-duplicate files, 35% of total library volume. Teams were re-uploading the same assets rather than searching for existing versions.</p>
-      </div>
-      <div class="problem-card rv">
-        <span class="problem-num">Problem 05</span>
-        <div class="problem-title">No Clear Platform Ownership</div>
-        <p class="problem-desc">The DAM was nobody's job. IT supported the infrastructure; marketing used it, but no team owned governance, training, or platform strategy.</p>
-      </div>
-      <div class="problem-card rv">
-        <span class="problem-num">Problem 06</span>
-        <div class="problem-title">Shadow Systems Proliferating</div>
-        <p class="problem-desc">Teams built workarounds: Dropbox folders, local drives, WhatsApp threads. The DAM was being bypassed because emailing a file was faster than finding one in the platform.</p>
-      </div>
-    </div>
-
-    <div class="cs-subsection">
-      <h3>DAM Current Process Flow</h3>
-      <p>Mapping the actual lifecycle of an asset, from creation to end-of-life, revealed five major breakdown points where the system failed users and teams reverted to workarounds.</p>
-      <div class="flow-wrap rv">
-        <div class="flow-header">Current State: Asset Lifecycle</div>
-        <div class="flow-row">
-          <div class="flow-row-num">01</div>
-          <div class="flow-row-content">
-            <div class="flow-row-title">Brief &amp; Create</div>
-            <div class="flow-row-desc">Asset is created in creative tools; this step works fine</div>
-          </div>
-          <span class="flow-row-status flow-row-status--ok">✓ Working</span>
-        </div>
-        <div class="flow-row flow-row--broken">
-          <div class="flow-row-num">02</div>
-          <div class="flow-row-content">
-            <div class="flow-row-title">Upload</div>
-            <div class="flow-row-desc">No folder guidance or naming convention enforced at point of upload</div>
-          </div>
-          <span class="flow-row-status flow-row-status--broken">⚠ Breakdown</span>
-        </div>
-        <div class="flow-row flow-row--broken">
-          <div class="flow-row-num">03</div>
-          <div class="flow-row-content">
-            <div class="flow-row-title">Metadata</div>
-            <div class="flow-row-desc">14 fields exist, average of 1.8 filled. Tags are skipped, search becomes useless</div>
-          </div>
-          <span class="flow-row-status flow-row-status--broken">⚠ Breakdown</span>
-        </div>
-        <div class="flow-row flow-row--broken">
-          <div class="flow-row-num">04</div>
-          <div class="flow-row-content">
-            <div class="flow-row-title">Search</div>
-            <div class="flow-row-desc">Poor results sorted by upload date; users give up and find workarounds</div>
-          </div>
-          <span class="flow-row-status flow-row-status--broken">⚠ Breakdown</span>
-        </div>
-        <div class="flow-row flow-row--broken">
-          <div class="flow-row-num">05</div>
-          <div class="flow-row-content">
-            <div class="flow-row-title">Distribution</div>
-            <div class="flow-row-desc">68% of users share files via email or Slack; DAM is bypassed entirely</div>
-          </div>
-          <span class="flow-row-status flow-row-status--broken">⚠ Breakdown</span>
-        </div>
-        <div class="flow-row flow-row--broken">
-          <div class="flow-row-num">06</div>
-          <div class="flow-row-content">
-            <div class="flow-row-title">Archive</div>
-            <div class="flow-row-desc">No lifecycle policy means assets accumulate forever: 7-year-old files mixed with live campaigns</div>
-          </div>
-          <span class="flow-row-status flow-row-status--broken">⚠ Breakdown</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STRATEGY ── -->
-<section class="cs-section cs-section--alt rv" id="strategy">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Recommendations</span>
-    <h2>Recommendations Framework</h2>
-    <p>The findings pointed to four interconnected pillars: fixing only one without the others would have limited lasting impact. Renaming files without fixing metadata governance, for instance, solves search for a month before the chaos returns.</p>
-
-    <div class="strategy-grid">
-      <div class="strategy-card rv">
-        <span class="strategy-num">Pillar 01</span>
-        <div class="strategy-title">Taxonomy &amp; Naming</div>
-        <p class="strategy-desc">Build a structured folder hierarchy and a consistent naming convention that is intuitive, scalable, and enforced at the point of upload.</p>
-        <ul class="strategy-actions">
-          <li>Define top-level folder categories by content type</li>
-          <li>Create [Brand]-[Campaign]-[AssetType]-[Version] naming standard</li>
-          <li>Archive legacy folders without disrupting active work</li>
-        </ul>
-      </div>
-      <div class="strategy-card rv">
-        <span class="strategy-num">Pillar 02</span>
-        <div class="strategy-title">Metadata Schema</div>
-        <p class="strategy-desc">Redesign the metadata structure with required fields, controlled vocabularies, and smart defaults, making it faster to tag correctly than to skip it.</p>
-        <ul class="strategy-actions">
-          <li>Reduce 14 fields to 6 required + 4 optional</li>
-          <li>Introduce controlled lists for Asset Type, Region, Campaign</li>
-          <li>Auto-populate date, uploader, and format on upload</li>
-        </ul>
-      </div>
-      <div class="strategy-card rv">
-        <span class="strategy-num">Pillar 03</span>
-        <div class="strategy-title">Governance &amp; Ownership</div>
-        <p class="strategy-desc">Establish clear roles, responsibilities, and workflows so the platform has people, not just technology, accountable for quality.</p>
-        <ul class="strategy-actions">
-          <li>Appoint a DAM Owner with dedicated capacity</li>
-          <li>Define upload, review, and archive approval workflows</li>
-          <li>Establish a quarterly audit cadence with reporting</li>
-        </ul>
-      </div>
-      <div class="strategy-card rv">
-        <span class="strategy-num">Pillar 04</span>
-        <div class="strategy-title">Training &amp; Adoption</div>
-        <p class="strategy-desc">Change management is as important as platform configuration. Users need to trust the system before they'll abandon their workarounds.</p>
-        <ul class="strategy-actions">
-          <li>Create role-specific onboarding guides (Creator / Consumer)</li>
-          <li>Run hands-on training sessions for each team</li>
-          <li>Build a self-service FAQ and naming convention reference</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── WORKSHOP ── -->
-<section class="cs-section rv" id="workshop">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Collaboration</span>
-    <h2>Workshop &amp; Next Action Points</h2>
-    <p>Research findings were presented to 12 stakeholders in a 3-hour alignment workshop. Rather than presenting a top-down solution, the workshop was structured to let the team co-prioritise the fixes, increasing buy-in and surfacing constraints that interviews hadn't revealed.</p>
-
-    <div class="cs-quote rv">
-      <p>"Finally seeing everything laid out like this: we all knew the DAM was broken, but nobody had mapped it before. The naming convention issue alone explained so many of our support tickets."</p>
-      <cite>Workshop participant, Head of Brand Operations</cite>
-    </div>
-
-    <!-- Artifact 01: Priority Matrix -->
-    <div class="wa-artifact rv">
-      <span class="wa-artifact-label">Artifact 01 · Priority Matrix</span>
-      <div class="wa-artifact-title">Impact vs Effort: Workshop Output</div>
-      <div class="pm-container">
-        <div class="pm-top-axis">High Impact ↑</div>
-        <div class="pm-matrix">
-          <div class="pm-quadrant pm-q-wins">
-            <span class="pm-q-name">⚡ Quick Wins</span>
-            <div class="pm-item">Appoint DAM Owner</div>
-            <div class="pm-item">Publish naming convention</div>
-            <div class="pm-item">Metadata required fields</div>
-            <div class="pm-item">Split Working / Final folders</div>
-          </div>
-          <div class="pm-quadrant pm-q-strategic">
-            <span class="pm-q-name">🎯 Strategic Bets</span>
-            <div class="pm-item">Full taxonomy redesign</div>
-            <div class="pm-item">Adobe CC integration</div>
-            <div class="pm-item">Role-based training programme</div>
-          </div>
-          <div class="pm-quadrant pm-q-nice">
-            <span class="pm-q-name">Fill-ins</span>
-            <div class="pm-item">Archive inactive assets</div>
-            <div class="pm-item">Team communication on changes</div>
-          </div>
-          <div class="pm-quadrant pm-q-depri">
-            <span class="pm-q-name">Deprioritise</span>
-            <div class="pm-item">Rights management system</div>
-            <div class="pm-item">Usage analytics dashboard</div>
-          </div>
-        </div>
-        <div class="pm-axes">
-          <div class="pm-axis">← Low Effort</div>
-          <div class="pm-axis" style="text-align:right">High Effort →</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── OUTCOMES ── -->
-<section class="cs-section rv" id="outcomes">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Outcomes</span>
-    <h2>What Changed: 12 Weeks Later</h2>
-    <p>The engagement scope ended at recommendations and workshop facilitation. The internal team implemented the quick-win actions; I checked in at 12 weeks to measure early impact. Long-term initiatives were tracked until the DAM Owner hire completed and an internal team took over.</p>
-
-    <!-- Before / After metrics -->
-    <div class="outcomes-ba">
-      <div class="ba-card ba-card--before rv">
-        <span class="ba-label">Before: State at Audit</span>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Assets with required metadata filled</div>
-          <div class="ba-metric-val">13%</div>
-        </div>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Avg. time to find a specific approved asset</div>
-          <div class="ba-metric-val">11 min</div>
-        </div>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Monthly support tickets: "where is this file?"</div>
-          <div class="ba-metric-val">~42</div>
-        </div>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Uploads using correct naming format</div>
-          <div class="ba-metric-val">&lt;5%</div>
-        </div>
-      </div>
-      <div class="ba-card ba-card--after rv">
-        <span class="ba-label">After: 12 Weeks Post-Workshop</span>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Assets with required metadata filled</div>
-          <div class="ba-metric-val">71%</div>
-        </div>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Avg. time to find a specific approved asset</div>
-          <div class="ba-metric-val">2-3 min</div>
-        </div>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Monthly support tickets: "where is this file?"</div>
-          <div class="ba-metric-val">~17</div>
-        </div>
-        <div class="ba-metric-row">
-          <div class="ba-metric-name">Uploads using correct naming format</div>
-          <div class="ba-metric-val">68%</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── REFLECTION ── -->
-<section class="cs-section cs-section--alt rv" id="reflection">
-  <div class="cs-section-inner">
-    <span class="cs-section-label">Reflection</span>
-    <h2>What I Learned</h2>
-    <p>This project reinforced how often technology gets blamed for problems that are fundamentally organisational. The DAM platform wasn't the issue: the lack of ownership, process, and accountability around it was. The platform could do everything the teams needed; they just hadn't set it up to.</p>
-    <p>The hardest part wasn't identifying the problems: the content audit made those undeniable. The hard part was helping stakeholders see that a quick fix (renaming a few folders) wouldn't solve a structural issue. Getting buy-in for the governance piece required showing that the technical problems they experienced were downstream of an ownership problem upstream.</p>
-    <p>If I were to do this again, I would run the workshop earlier in the process, before the full audit. The priority matrix exercise surfaced constraints that would have changed which interviews I prioritised and which platform analytics I examined first.</p>
-  </div>
-</section>
-
-<!-- ── CASE STUDY NAV ── -->
-<div class="cs-case-nav">
-  <div class="cs-case-nav-inner">
-    <a href="pooja_kurade_casestudy_ttkprestige.html">← TTK Prestige</a>
-    <a href="index.html#work">All Work</a>
-    <a href="pooja_kurade_casestudy_jiobp.html">JIO-BP Fuel App →</a>
-  </div>
-</div>
-
-<!-- CLOSING CTA -->
-<section id="cta">
-  <h2 class="cta-headline rv">Let's Collaborate!</h2>
-  <div class="cta-say rv">Say hello</div>
-  <div class="cta-email-wrap rv"><a href="mailto:pooja.kurade@gmail.com" class="cta-email">pooja.kurade@gmail.com</a></div>
-  <div class="cta-status rv"><span class="nav-dot"></span>Available for work in Germany (open to relocation)</div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer style="padding:32px var(--pad);background:var(--cream);border-top:1px solid var(--border);">
-  <div style="max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
-    <span style="font-size:16px;font-weight:700;color:var(--dark);">Pooja Kurade.</span>
-    <span style="font-family:var(--ff-m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);display:flex;align-items:center;gap:6px;"><span class="nav-dot"></span>Berlin, Germany</span>
-    <div style="display:flex;gap:24px;">
-      <a href="https://www.linkedin.com/in/poojakurade/" target="_blank" style="font-size:14px;font-weight:500;color:var(--mid);">LinkedIn</a>
-    </div>
-  </div>
-</footer>
 
 <script>
-// Mobile nav
-const ham = document.getElementById('ham'), mob = document.getElementById('mob'), mobX = document.getElementById('mobX');
-function oM() { mob.classList.add('open') }
-function cM() { mob.classList.remove('open') }
-if (ham && mob && mobX) { ham.addEventListener('click', oM); mobX.addEventListener('click', cM); }
+(function () {
+  var links = [].slice.call(document.querySelectorAll('[data-spy]'));
+  var sections = links.map(function (a) { return document.getElementById(a.getAttribute('data-spy')); });
+  var bar = document.querySelector('[data-progress]');
 
-  const cur = document.getElementById('cur');
-  document.addEventListener('mousemove', e => {
-    cur.style.left = e.clientX + 'px';
-    cur.style.top  = e.clientY + 'px';
+  function onScroll() {
+    var mx = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = (mx > 0 ? (window.scrollY / mx) * 100 : 0).toFixed(2) + '%';
+    var mid = window.scrollY + window.innerHeight * 0.36, active = -1;
+    sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) active = i; });
+    links.forEach(function (a, i) {
+      var on = i === active;
+      a.style.color = on ? '#0F6E56' : 'rgba(18,36,28,.55)';
+      a.style.fontWeight = on ? '600' : '400';
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var nav = document.querySelector('[data-nav]');
+  function fit() { if (nav) nav.style.display = window.innerWidth > 1000 ? 'flex' : 'none'; }
+  window.addEventListener('resize', fit, { passive: true });
+  fit();
+
+  document.querySelectorAll('[data-scroller]').forEach(function (el) {
+    var frame = el.parentElement;
+    if (!frame) return;
+    frame.style.position = 'relative';
+    frame.style.overflow = 'hidden';
+    frame.style.cursor = 'ns-resize';
+    el.style.transition = 'transform 9s linear';
+    frame.addEventListener('mouseenter', function () {
+      var over = el.offsetHeight - frame.offsetHeight;
+      if (over > 0) el.style.transform = 'translateY(-' + over + 'px)';
+    });
+    frame.addEventListener('mouseleave', function () { el.style.transform = 'translateY(0)'; });
   });
-  document.querySelectorAll('a,button').forEach(el => {
-    el.addEventListener('mouseenter', () => cur.classList.add('big'));
-    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  var target = window.scrollY, current = target, running = false;
+  function max() { return document.documentElement.scrollHeight - window.innerHeight; }
+  function frame() {
+    current += (target - current) * 0.085;
+    if (Math.abs(target - current) < 0.35) { current = target; running = false; }
+    window.scrollTo(0, current);
+    if (running) requestAnimationFrame(frame);
+  }
+  function resync() { if (!running) { target = current = window.scrollY; } }
+  ['keydown', 'mousedown', 'touchstart'].forEach(function (t) { window.addEventListener(t, resync, { passive: true }); });
+  window.addEventListener('scroll', resync, { passive: true });
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var el = document.querySelector(a.getAttribute('href'));
+    if (!el) return;
+    e.preventDefault();
+    target = Math.max(0, Math.min(max(), el.getBoundingClientRect().top + window.scrollY - 78));
+    if (!running) { running = true; requestAnimationFrame(frame); }
   });
-  const ro = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+})();
 </script>
-<script src="interactions.js" defer></script>
 </body>
 </html>
