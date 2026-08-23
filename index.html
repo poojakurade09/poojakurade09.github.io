@@ -342,10 +342,39 @@ img { display: block; max-width: 100% }
 @keyframes up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
 /* Ambient background */
-.floats { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0 }
-.fl { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .05 }
-.fl1 { width: 480px; height: 480px; background: var(--teal); top: 0; right: -120px }
-.fl2, .fl3 { display: none }
+.floats { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:0 }
+/* layer 1: blueprint dot matrix, fading out at the edges, drifting slowly */
+.floats::before {
+  content:''; position:absolute; inset:-40px;
+  background-image:radial-gradient(rgba(47,190,142,.34) 1px, transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(78% 62% at 50% 42%, #000 0%, rgba(0,0,0,.55) 52%, transparent 82%);
+  mask-image:radial-gradient(78% 62% at 50% 42%, #000 0%, rgba(0,0,0,.55) 52%, transparent 82%);
+  opacity:.5; animation:flDrift 40s linear infinite;
+}
+/* layer 2: a slow diagonal sheen crossing the grid */
+.floats::after {
+  content:''; position:absolute; top:-60%; left:-60%; width:80%; height:220%;
+  background:linear-gradient(100deg, transparent, rgba(47,190,142,.10) 42%, rgba(110,219,184,.16) 50%, rgba(47,190,142,.10) 58%, transparent);
+  filter:blur(30px); transform:rotate(14deg);
+  animation:flSheen 15s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes flDrift { to { background-position:30px 30px } }
+@keyframes flSheen { 0%{ left:-60%; opacity:0 } 12%{ opacity:1 } 78%{ opacity:1 } 100%{ left:130%; opacity:0 } }
+
+.fl { position:absolute; border-radius:50%; filter:blur(80px) }
+.fl1 { width:520px; height:520px; background:var(--teal); top:-120px; right:-140px; opacity:.09; animation:flA 26s ease-in-out infinite }
+.fl2 { display:block; width:420px; height:420px; background:#1E8C6B; bottom:-160px; left:-120px; opacity:.11; animation:flB 32s ease-in-out infinite }
+.fl3 { display:block; width:260px; height:260px; background:#6EDBB8; top:38%; left:46%; opacity:.05; animation:flC 22s ease-in-out infinite }
+@keyframes flA { 0%,100%{ transform:translate(0,0) scale(1) } 50%{ transform:translate(-60px,50px) scale(1.12) } }
+@keyframes flB { 0%,100%{ transform:translate(0,0) scale(1) } 50%{ transform:translate(70px,-46px) scale(1.08) } }
+@keyframes flC { 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(40px,-60px) } }
+
+@media (prefers-reduced-motion:reduce){
+  .floats::before, .floats::after, .fl { animation:none !important }
+  .floats::after { display:none }
+}
+@media (max-width:600px){ .floats::after { display:none } .fl3 { display:none } }
 
 /* MARQUEE: true full width */
 .marquee-belt {
