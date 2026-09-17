@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Milega: Auto Lost &amp; Found — Pooja Kurade</title>
+<meta name="description" content="A concept for Mumbai autos. Describe what you lost in one sentence; a QR sticker lets the driver report a find in four taps.">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<link rel="icon" href="images/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<style>
+
+  body { margin:0; background:#F2EFE8; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased }
+  a { color:#0F6E56; text-decoration:none }
+  a:hover { color:#12241C }
+  img { display:block }
+  @keyframes mgType { 0%{width:0} 20%{width:100%} 90%{width:100%} 100%{width:100%} }
+  @keyframes mgCaret { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+  @keyframes mgStep { 0%,22%{opacity:.3} 28%{opacity:1} 60%{opacity:1} 66%,100%{opacity:.3} }
+  @keyframes mgField { 0%,26%{opacity:0; transform:translateY(6px)} 34%{opacity:1; transform:translateY(0)} 88%{opacity:1; transform:translateY(0)} 100%{opacity:0} }
+  @keyframes mgMatch { 0%,62%{opacity:0; transform:translateY(10px)} 70%{opacity:1; transform:translateY(0)} 92%{opacity:1; transform:translateY(0)} 100%{opacity:0} }
+  @keyframes mgGlow { 0%,100%{opacity:.5} 50%{opacity:1} }
+  @keyframes mgPulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none !important} }
+
+.x1:hover{color:#0F6E56 !important}
+.x2:hover{color:#0F6E56 !important}
+.x3:hover{color:#0F6E56 !important}
+.x4:hover{color:#0F6E56 !important}
+.x5:hover{color:#0F6E56 !important}
+.x6:hover{color:#0F6E56 !important}
+.x7:hover{color:#0F6E56 !important}
+</style>
+</head>
+<body>
+<div style="background:#F2EFE8; color:#12241C">
+
+  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.97); border-bottom:1px solid rgba(18,36,28,.1)">
+    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:100%; background:#0F6E56; transform:scaleX(0); transform-origin:left center; will-change:transform"></div></div>
+    <div style="max-width:1180px; margin:0 auto; padding:12px clamp(20px,5vw,56px); display:flex; align-items:center; gap:clamp(14px,2vw,28px)">
+      <a href="index.html" style="display:flex; align-items:center; gap:10px; color:inherit; white-space:nowrap">
+        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img decoding="async" src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
+        <span style="font-family:'Source Serif 4',Georgia,serif; font-size:16px; font-weight:600; letter-spacing:-.01em">Pooja Kurade.</span>
+      </a>
+      <div style="width:1px; height:20px; background:rgba(18,36,28,.16); flex-shrink:0"></div>
+      <span style="font-size:13px; color:rgba(18,36,28,.6); white-space:nowrap">Milega, a concept</span>
+      <div style="margin-left:auto; display:flex; align-items:center; gap:clamp(14px,1.6vw,24px)">
+        <div style="display:none; gap:clamp(12px,1.4vw,20px); font-size:12px; letter-spacing:.02em; color:rgba(18,36,28,.55); white-space:nowrap" data-nav="1">
+          <a href="#problem" data-spy="problem" style="color:inherit; transition:color .2s" class="x1">Problem</a>
+          <a href="#research" data-spy="research" style="color:inherit; transition:color .2s" class="x2">Research</a>
+          <a href="#concept" data-spy="concept" style="color:inherit; transition:color .2s" class="x3">Concept</a>
+          <a href="#ai" data-spy="ai" style="color:inherit; transition:color .2s" class="x4">AI</a>
+          <a href="#design" data-spy="design" style="color:inherit; transition:color .2s" class="x5">Design</a>
+          <a href="#outcome" data-spy="outcome" style="color:inherit; transition:color .2s" class="x6">Outcome</a>
+        </div>
+        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="x7">All work</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section style="max-width:1180px; margin:0 auto; padding:clamp(48px,7vw,88px) clamp(20px,5vw,56px) 0">
+    <div style="display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(18,36,28,.55); margin-bottom:22px">
+      <span>Case study 05</span><span style="width:22px; height:1px; background:rgba(18,36,28,.25)"></span><span>Mobile · Civic service</span>
+    </div>
+
+    <div style="display:inline-flex; align-items:center; gap:14px; background:rgba(245,197,24,.14); border:1px solid rgba(184,140,0,.4); border-radius:5px; padding:11px 17px; margin-bottom:26px">
+      <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:#8A6A00; flex:0 0 auto">Self-initiated concept</span><span style="font-size:13px; color:rgba(18,36,28,.72); flex:1 1 auto; min-width:0">No client and no funding. It started because I watched it happen to people I work with.</span>
+    </div>
+
+    <h1 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(38px,6.4vw,76px); font-weight:500; letter-spacing:-.03em; line-height:1.02; margin:0 0 24px; max-width:20ch; text-wrap:pretty">You left your bag in an auto. Now what?</h1>
+    <p style="font-size:clamp(17px,1.6vw,21px); line-height:1.65; color:rgba(18,36,28,.68); margin:0 0 44px; max-width:56ch; text-wrap:pretty">Mumbai runs on autos, and an auto ride leaves no trace. No booking, no receipt, no driver name. I designed <strong style="font-weight:600">Milega</strong>, a lost and found built around one honest constraint: the passenger will do the work, the driver will not.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Type</div>
+        <div style="font-size:14px; font-weight:600">Concept project</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Self set brief</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Role</div>
+        <div style="font-size:14px; font-weight:600">Everything</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Framing, IA, UI, writing</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">The name</div>
+        <div style="font-size:14px; font-weight:600"><span style="font-family:'Noto Sans Devanagari',sans-serif">मिलेगा</span> · Milega</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Hindi for "it will be found"</div>
+      </div>
+      <div>
+        <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Where AI sits</div>
+        <div style="font-size:14px; font-weight:600">One job only</div>
+        <div style="font-size:12.5px; line-height:1.55; color:rgba(18,36,28,.6); margin-top:4px">Turning a sentence into a search</div>
+      </div>
+    </div>
+
+    <!-- animated banner: auto livery -->
+    <div style="position:relative; border-radius:6px; overflow:hidden; background:#16130E; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
+      <div style="position:absolute; inset:0; background:radial-gradient(90% 70% at 78% 20%, rgba(245,197,24,.22), transparent 68%); animation:mgGlow 9s ease-in-out infinite; pointer-events:none"></div>
+
+      <div style="position:relative">
+        <div style="font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(253,253,253,.5); margin-bottom:22px">Describe it, do not fill a form</div>
+
+        <div style="background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14); border-radius:6px; padding:13px 15px; margin-bottom:26px">
+          <div style="font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,197,24,.85); margin-bottom:9px">What the passenger types</div>
+          <div style="display:flex; align-items:baseline; gap:2px; font-family:'JetBrains Mono',ui-monospace,monospace; font-size:12px; line-height:1.6; color:rgba(253,253,253,.9)">
+            <span style="display:inline-block; overflow:hidden; white-space:nowrap; animation:mgType 12s steps(52,end) infinite">black bag, left near Linking Road</span>
+            <span style="width:6px; height:13px; background:#F5C518; animation:mgCaret 1s step-end infinite; flex-shrink:0"></span>
+          </div>
+        </div>
+
+        <div style="position:relative; display:grid; gap:20px; padding-left:26px">
+          <span style="position:absolute; left:4.5px; top:8px; bottom:8px; width:1px; background:rgba(253,253,253,.14)"></span>
+          <div style="position:relative; animation:mgStep 12s linear infinite">
+            <span style="position:absolute; left:-26px; top:6px; width:10px; height:10px; border-radius:50%; background:#F5C518"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; font-weight:500; color:#FDFDFD; letter-spacing:-.01em">A sentence, in any language</div>
+          </div>
+          <div style="position:relative; animation:mgStep 12s linear infinite; animation-delay:4s">
+            <span style="position:absolute; left:-26px; top:6px; width:10px; height:10px; border-radius:50%; background:#F5C518"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; font-weight:500; color:#FDFDFD; letter-spacing:-.01em">Becomes searchable fields</div>
+          </div>
+          <div style="position:relative; animation:mgStep 12s linear infinite; animation-delay:8s">
+            <span style="position:absolute; left:-26px; top:6px; width:10px; height:10px; border-radius:50%; background:#F5C518"></span>
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:18px; font-weight:500; color:#FDFDFD; letter-spacing:-.01em">Matched against what was found</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative; display:flex; justify-content:center">
+        <div style="position:relative; width:clamp(210px,54%,268px); aspect-ratio:9/18.5; border-radius:26px; overflow:hidden; background:#0C0A07; border:1px solid rgba(255,255,255,.16); box-shadow:0 30px 70px rgba(0,0,0,.5); padding:9px">
+          <div style="height:100%; background:#FDFBF4; border-radius:19px; overflow:hidden; display:flex; flex-direction:column">
+            <div style="background:#F5C518; padding:11px 13px; display:flex; align-items:center; justify-content:space-between">
+              <span style="font-family:'Noto Sans Devanagari',sans-serif; font-size:14px; font-weight:700; color:#16130E; letter-spacing:-.01em">मिलेगा</span>
+              <span style="font-size:8.5px; font-weight:700; letter-spacing:.1em; color:rgba(22,19,14,.6)">LOST</span>
+            </div>
+            <div style="padding:12px 13px; display:grid; gap:8px; align-content:start">
+              <div style="font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45)">Read from your description</div>
+              <div style="display:flex; flex-wrap:wrap; gap:5px">
+                <span style="font-size:9px; font-weight:600; color:#16130E; background:rgba(245,197,24,.28); border-radius:3px; padding:5px 8px; animation:mgField 12s linear infinite">Bag</span>
+                <span style="font-size:9px; font-weight:600; color:#16130E; background:rgba(245,197,24,.28); border-radius:3px; padding:5px 8px; animation:mgField 12s linear infinite; animation-delay:.3s">Black</span>
+                <span style="font-size:9px; font-weight:600; color:#16130E; background:rgba(245,197,24,.28); border-radius:3px; padding:5px 8px; animation:mgField 12s linear infinite; animation-delay:.6s">Linking Road</span>
+                <span style="font-size:9px; font-weight:600; color:#16130E; background:rgba(245,197,24,.28); border-radius:3px; padding:5px 8px; animation:mgField 12s linear infinite; animation-delay:.9s">Auto</span>
+              </div>
+              <div style="margin-top:6px; background:#16130E; border-radius:6px; padding:11px 12px; animation:mgMatch 12s linear infinite">
+                <div style="font-size:8px; letter-spacing:.1em; text-transform:uppercase; color:#F5C518; margin-bottom:7px">Possible match</div>
+                <div style="font-size:10.5px; font-weight:600; color:#FDFBF4; line-height:1.4; margin-bottom:6px">Black bag found near Bandra</div>
+                <div style="font-size:9px; color:rgba(253,251,244,.6); line-height:1.5">Clothing and a jewellery box<br>Reported 18 minutes ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute; left:50%; bottom:-13px; transform:translateX(-50%); display:flex; align-items:center; gap:9px; background:rgba(12,10,7,.95); border:1px solid rgba(245,197,24,.5); border-radius:999px; padding:9px 16px; white-space:nowrap; animation:mgMatch 12s linear infinite">
+          <span style="width:7px; height:7px; border-radius:50%; background:#F5C518"></span>
+          <span style="font-size:12px; font-weight:600; color:#FDFDFD">No form, no dropdowns</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 01 THE STORY ══ -->
+  <section id="problem" data-sec="1" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">01 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>The story</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">A cab leaves a record. An auto leaves nothing.</h2>
+
+        <figure style="margin:0 0 34px">
+          <div style="position:relative; border-radius:6px; overflow:hidden; background:#16130E; border:1px solid rgba(18,36,28,.12)">
+            <img loading="lazy" decoding="async" src="images/auto-rickshaw.jpg" alt="A black and yellow Mumbai auto rickshaw in motion, passenger in the back" style="width:100%; height:auto; display:block">
+            <span style="position:absolute; left:0; right:0; bottom:0; height:16%; background:linear-gradient(to bottom, transparent, rgba(22,19,14,.55) 62%, #16130E); pointer-events:none"></span>
+          </div>
+          <figcaption style="display:flex; flex-wrap:wrap; gap:8px 16px; align-items:baseline; padding:13px 2px 0">
+            <span style="font-size:13px; line-height:1.6; color:rgba(18,36,28,.62); flex:1 1 260px; min-width:min(240px,100%)">Black and yellow, no meter you can trace, no record that the ride happened. The palette in this photo became the product's palette.</span>
+            <span style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.4); flex:0 0 auto">Reference photo</span>
+          </figcaption>
+        </figure>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr)); gap:14px; margin-bottom:30px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#0F6E56; font-weight:600; margin-bottom:16px">If you lose a bag in a cab</div>
+            <div style="display:grid; gap:9px">
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#0F6E56; font-weight:700">✓</span>You know the driver's name</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#0F6E56; font-weight:700">✓</span>You have the number plate</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#0F6E56; font-weight:700">✓</span>There is a receipt in your email</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#0F6E56; font-weight:700">✓</span>You can call support</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(201,58,42,.3); border-radius:6px; padding:24px 26px">
+            <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; font-weight:600; margin-bottom:16px">If you lose a bag in an auto</div>
+            <div style="display:grid; gap:9px">
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#C93A2A; font-weight:700">✕</span>No name</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#C93A2A; font-weight:700">✕</span>No number plate</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#C93A2A; font-weight:700">✕</span>No receipt</div>
+              <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(18,36,28,.75)"><span style="color:#C93A2A; font-weight:700">✕</span>Nobody to call</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">An auto ride is quick because nothing is recorded. You raise a hand, agree a fare, get out. That speed is the whole appeal, and it is also the reason a forgotten bag is simply gone.</p>
+
+
+        <div style="border-left:2px solid #B88C00; padding:4px 0 4px 24px; max-width:60ch">
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2.1vw,25px); font-weight:400; font-style:italic; line-height:1.5; color:#12241C; margin:0 0 12px">A cab you can trace. An auto you can only remember.</p>
+          <div style="font-size:12.5px; letter-spacing:.04em; color:rgba(18,36,28,.55)">The framing I started from</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 PROBLEM STATEMENT ══ -->
+  <section data-sec="2" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">02 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Problem</div></div>
+      <div>
+        <div style="background:#16130E; border-radius:6px; padding:clamp(28px,4vw,44px); color:#FDFBF4">
+          <div style="font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(253,251,244,.5); margin-bottom:22px">Problem statement</div>
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(21px,2.6vw,32px); font-weight:400; line-height:1.35; letter-spacing:-.02em; margin:0 0 26px; max-width:34ch">A passenger who leaves something in an auto has no driver, no record and no place to report it. A driver who finds something has nobody to return it to.</p>
+          <p style="font-size:15px; line-height:1.7; color:rgba(253,251,244,.6); margin:0 0 26px; max-width:60ch">Both sides want the same outcome. Nothing connects them. That gap is the whole product.</p>
+          <div style="border-top:1px solid rgba(253,251,244,.14); padding-top:22px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#F5C518; margin-bottom:12px">Why it is worth solving</div>
+            <p style="font-size:14.5px; line-height:1.75; color:rgba(253,251,244,.7); margin:0; max-width:64ch">The bag is rarely the real loss. A work laptop means company data. A folder means identity documents, and replacing those starts with filing a police complaint to prove they are gone. Recovering the item in the first hour avoids all of it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 DESIGN CHALLENGE ══ -->
+  <section data-sec="3" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">03 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Challenge</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 30px; max-width:26ch">Three constraints I set myself</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:14px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:34px; font-weight:500; color:#B88C00; line-height:1; margin-bottom:14px">01</div>
+            <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">Reporting a find must take seconds</div>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">A driver has a minute between fares and no reason to spend it on this. If reporting a found bag means downloading an app, making an account or typing, they will leave the bag where it is. So: no sign up, no typing, nothing to learn.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:34px; font-weight:500; color:#B88C00; line-height:1; margin-bottom:14px">02</div>
+            <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">Works with no ride data at all</div>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">There is no booking to look up. The only inputs are a fuzzy memory and an approximate place.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-family:'Source Serif 4',Georgia,serif; font-size:34px; font-weight:500; color:#B88C00; line-height:1; margin-bottom:14px">03</div>
+            <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">Safe to use for both people</div>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">A public list of valuables and locations is a shopping list for the wrong person. It cannot be open.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 04 RESEARCH ══ -->
+  <section id="research" data-sec="4" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">04 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Research</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">What I would need to find out</h2>
+
+        <div style="background:rgba(245,197,24,.1); border:1px solid rgba(184,140,0,.35); border-radius:6px; padding:22px 24px; margin-bottom:32px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:#8A6A00; margin-bottom:10px">Read this before the next four sections</div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.78); margin:0 0 14px; max-width:70ch">I have not run formal interviews. What I do have is why I started: I have watched colleagues leave a work laptop in an auto and realise it minutes later, with nothing to go on. The panic is not really about the laptop, it is the documents inside it, and the police complaint you now have to file to prove you lost them.</p>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.78); margin:0; max-width:70ch">So the personas and pain points below come from watching this happen, not from a research plan. I am marking that clearly rather than dressing observation up as findings, because the difference matters more than the page looking complete.</p>
+        </div>
+
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 26px; max-width:68ch">If this became real, this is the research I would run first, in this order, because each answer changes the product more than the one after it.</p>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden">
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:14px 30px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-size:15px; font-weight:600; margin-bottom:6px">Would a driver ever open this?</div>
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Intercept interviews at stands. If the answer is no, the QR mechanic is the entire product and the app is irrelevant.</p>
+            </div>
+            <span style="flex:0 0 auto; font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:#B88C00; background:rgba(245,197,24,.16); border-radius:3px; padding:6px 11px">Highest risk</span>
+          </div>
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:14px 30px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-size:15px; font-weight:600; margin-bottom:6px">How do people describe a lost object?</div>
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Ask twenty people to describe something they lost. Their words become the matching vocabulary, not mine.</p>
+            </div>
+            <span style="flex:0 0 auto; font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:rgba(18,36,28,.5); background:rgba(18,36,28,.06); border-radius:3px; padding:6px 11px">Shapes the AI</span>
+          </div>
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:14px 30px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-size:15px; font-weight:600; margin-bottom:6px">What happens to found items today?</div>
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Auto unions, police stations and stand leaders already have informal systems. Any real version has to sit on top of those, not replace them.</p>
+            </div>
+            <span style="flex:0 0 auto; font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; color:rgba(18,36,28,.5); background:rgba(18,36,28,.06); border-radius:3px; padding:6px 11px">Context</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 PERSONAS ══ -->
+  <section data-sec="5" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">05 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Personas</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 16px; max-width:26ch">Two users, opposite tolerances for effort</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 30px; max-width:68ch">The design decision lives in the gap between them. One is highly motivated and will do whatever it takes. The other is doing me a favour.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:14px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:26px 28px">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+              <span style="width:44px; height:44px; border-radius:50%; background:rgba(15,110,86,.1); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; flex-shrink:0">P</span>
+              <div>
+                <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.01em">The passenger</div>
+                <div style="font-size:12.5px; color:rgba(18,36,28,.55)">Smartphone native, high urgency</div>
+              </div>
+            </div>
+            <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.68); margin:0 0 18px">Just realised something is gone. Will type, photograph, verify, refresh, and check back every ten minutes. Effort is not the barrier here, hope is.</p>
+            <div style="border-top:1px solid rgba(18,36,28,.1); padding-top:14px">
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:9px">Design implication</div>
+              <div style="font-size:14px; line-height:1.65; color:#12241C; font-weight:500">Give this person depth. Detail, status, notifications, a sense that something is happening.</div>
+            </div>
+          </div>
+
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:26px 28px">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px">
+              <span style="width:44px; height:44px; border-radius:50%; background:rgba(245,197,24,.2); color:#8A6A00; display:flex; align-items:center; justify-content:center; font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; flex-shrink:0">D</span>
+              <div>
+                <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.01em">The driver</div>
+                <div style="font-size:12.5px; color:rgba(18,36,28,.55)">Low friction tolerance, working</div>
+              </div>
+            </div>
+            <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.68); margin:0 0 18px">Found a bag between fares. Willing to help, unwilling to sign up for anything. Every extra screen is a reason to leave the bag where it is and forget about it.</p>
+            <div style="border-top:1px solid rgba(18,36,28,.1); padding-top:14px">
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:9px">Design implication</div>
+              <div style="font-size:14px; line-height:1.65; color:#12241C; font-weight:500">No account, no app install, no typing. Four taps and done.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:rgba(15,110,86,.06); border:1px solid rgba(15,110,86,.22); border-radius:6px; padding:20px 22px; margin-top:16px; max-width:74ch">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:10px">A framing I deliberately avoided</div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.75); margin:0">It would be easy to write the driver as "not educated" and stop there. That is a stereotype, and worse, it produces no design. "Low friction tolerance while working" is both more accurate and immediately actionable: it tells me to cut steps, not to simplify language.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 06 JOURNEY MAP ══ -->
+  <section data-sec="6" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">06 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Journey</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Where it goes wrong today</h2>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(22px,3vw,30px); overflow-x:auto">
+          <div style="display:grid; grid-template-columns:repeat(5,minmax(140px,1fr)); gap:3px; min-width:640px; margin-bottom:16px">
+            <div><div style="height:7px; border-radius:4px 0 0 4px; background:#0F6E56"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin:10px 0 5px">Step 01</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Ride ends</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Pays, gets out, auto gone in seconds</p></div>
+            <div><div style="height:7px; background:rgba(15,110,86,.5)"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin:10px 0 5px">Step 02</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Realises</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Minutes or hours later, usually elsewhere</p></div>
+            <div><div style="height:7px; background:#C93A2A"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#C93A2A; margin:10px 0 5px">Step 03 · breaks</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Looks for someone to tell</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">No driver, no number, no platform. This is where most people stop</p></div>
+            <div><div style="height:7px; background:#C93A2A"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#C93A2A; margin:10px 0 5px">Step 04 · breaks</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Driver finds it</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Wants to return it, has no idea to whom</p></div>
+            <div><div style="height:7px; border-radius:0 4px 4px 0; background:rgba(18,36,28,.2)"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin:10px 0 5px">Step 05</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Nothing happens</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Item sits in an auto or a stand, owner gives up</p></div>
+          </div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.65); margin:0; max-width:70ch">Two adjacent steps both fail for the same reason, and it is not a lack of goodwill. Both people are trying. There is simply no channel between them, so the product does not need to persuade anyone, only to connect them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 07 PAIN POINTS ══ -->
+  <section data-sec="7" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">07 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Pain points</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Four things in the way</h2>
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden">
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px 28px; align-items:baseline">
+            <div style="flex:1 1 240px; min-width:min(220px,100%); font-size:15.5px; font-weight:600">No identity attached to the ride</div>
+            <div style="flex:1 1 260px; min-width:min(230px,100%); font-size:14px; line-height:1.7; color:rgba(18,36,28,.65)">Nothing to look up afterwards, so recovery starts from zero every time.</div>
+          </div>
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px 28px; align-items:baseline">
+            <div style="flex:1 1 240px; min-width:min(220px,100%); font-size:15.5px; font-weight:600">Memory is vague, forms are precise</div>
+            <div style="flex:1 1 260px; min-width:min(230px,100%); font-size:14px; line-height:1.7; color:rgba(18,36,28,.65)">People remember "somewhere near Linking Road, maybe four o'clock". No dropdown accepts that.</div>
+          </div>
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px 28px; align-items:baseline">
+            <div style="flex:1 1 240px; min-width:min(220px,100%); font-size:15.5px; font-weight:600">Reporting a find costs the finder</div>
+            <div style="flex:1 1 260px; min-width:min(230px,100%); font-size:14px; line-height:1.7; color:rgba(18,36,28,.65)">Time, data, and the risk of being accused of taking something. Doing nothing is safer.</div>
+          </div>
+          <div style="background:#FDFDFD; padding:22px 24px; display:flex; flex-wrap:wrap; gap:12px 28px; align-items:baseline">
+            <div style="flex:1 1 240px; min-width:min(220px,100%); font-size:15.5px; font-weight:600">Anyone can claim anything</div>
+            <div style="flex:1 1 260px; min-width:min(230px,100%); font-size:14px; line-height:1.7; color:rgba(18,36,28,.65)">Without proof of ownership, a public lost and found becomes a way to collect other people's things.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 08 HMW ══ -->
+  <section data-sec="8" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">08 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>How might we</div></div>
+      <div>
+        <div style="display:grid; gap:14px; max-width:74ch">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-left:3px solid #B88C00; border-radius:5px; padding:22px 24px">
+            <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#B88C00">HMW 01</span>
+            <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(18px,2vw,23px); font-weight:400; line-height:1.4; margin:10px 0 0">How might we let someone report a loss using the words they already have, instead of the fields we want?</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-left:3px solid #B88C00; border-radius:5px; padding:22px 24px">
+            <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#B88C00">HMW 02</span>
+            <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(18px,2vw,23px); font-weight:400; line-height:1.4; margin:10px 0 0">How might we make reporting a found item so quick that a driver does it before the next fare arrives?</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-left:3px solid #B88C00; border-radius:5px; padding:22px 24px">
+            <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#B88C00">HMW 03</span>
+            <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(18px,2vw,23px); font-weight:400; line-height:1.4; margin:10px 0 0">How might we prove an item is yours without publishing what it is?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 09 OPPORTUNITY AREAS ══ -->
+  <section data-sec="9" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">09 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Opportunities</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Three places to intervene</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:14px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Give the ride a trace</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">A QR sticker inside the auto is the cheapest possible identity. No hardware, no app, no data plan. It just has to be there.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Accept vague input</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">If the system can read a sentence, the passenger does not have to translate their memory into a form. This is the one place AI earns its place.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Verify by detail, not by document</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">The owner knows what is inside. That knowledge is the proof, and it never has to be shown publicly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 10 PRODUCT CONCEPT ══ -->
+  <section id="concept" data-sec="10" style="background:#FDFDFD; margin-top:clamp(56px,7vw,96px); padding:clamp(64px,8vw,110px) 0">
+    <div style="max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,56px)">
+      <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+        <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">10 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>The concept</div></div>
+        <div>
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">One product, two very different front doors</h2>
+          <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">Milega is a shared register of lost and found things, with a full app for the person searching and a four tap web page for the person who found something. The asymmetry is the design.</p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr)); gap:14px; margin-bottom:16px">
+            <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px">
+                <span style="width:8px; height:8px; border-radius:50%; background:#0F6E56"></span>
+                <span style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#0F6E56; font-weight:600">Passenger, full app</span>
+              </div>
+              <div style="display:grid; gap:8px">
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px">Describe the loss in a sentence</div>
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px">Review what the system understood</div>
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px">Get matches as they arrive</div>
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px">Verify, then arrange handover</div>
+              </div>
+            </div>
+            <div style="background:#F2EFE8; border:1px solid rgba(184,140,0,.4); border-radius:6px; padding:24px 26px">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:14px">
+                <span style="width:8px; height:8px; border-radius:50%; background:#B88C00"></span>
+                <span style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8A6A00; font-weight:600">Finder, no app at all</span>
+              </div>
+              <div style="display:grid; gap:8px">
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(184,140,0,.25); border-radius:4px; padding:10px 13px">Scan the sticker in the auto</div>
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(184,140,0,.25); border-radius:4px; padding:10px 13px">Photograph what you found</div>
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(184,140,0,.25); border-radius:4px; padding:10px 13px">Confirm where it was found</div>
+                <div style="font-size:13.5px; color:rgba(18,36,28,.75); background:#FDFDFD; border:1px solid rgba(184,140,0,.25); border-radius:4px; padding:10px 13px">Done, in under fifteen seconds</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px">
+            <span style="flex:1; height:1px; background:rgba(18,36,28,.18)"></span>
+            <span style="font-size:12px; font-weight:600; color:#12241C; background:rgba(245,197,24,.18); border:1px solid rgba(184,140,0,.4); border-radius:999px; padding:7px 16px; white-space:nowrap">One shared register underneath</span>
+            <span style="flex:1; height:1px; background:rgba(18,36,28,.18)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 11 AI OPPORTUNITY ══ -->
+  <section id="ai" data-sec="11" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">11 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>The AI</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">One job: turn a sentence into a search</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">AI is not the product here, it removes one specific obstacle. A person who has just lost something cannot fill in eight fields, but they can say what happened. The model's only task is turning that into structure the register can match on.</p>
+
+        <div style="background:#16130E; border-radius:6px; padding:clamp(24px,3.4vw,38px); margin-bottom:20px; color:#FDFBF4">
+          <div style="display:grid; grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr); gap:clamp(14px,2vw,26px); align-items:center">
+            <div>
+              <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(253,251,244,.45); margin-bottom:12px">What the person says</div>
+              <div style="background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:6px; padding:18px 20px; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.75; color:rgba(253,251,244,.9)">"I left a black shopping bag in an auto around Linking Road. It had a red blouse, a jewellery box and two sarees."</div>
+            </div>
+            <div style="text-align:center; font-size:20px; color:#F5C518">→</div>
+            <div>
+              <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#F5C518; margin-bottom:12px">What the register receives</div>
+              <div style="display:grid; gap:7px">
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; background:rgba(255,255,255,.05); border-radius:4px; padding:9px 12px"><span style="font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(253,251,244,.45)">Item</span><span style="font-size:13px; font-weight:600">Shopping bag</span></div>
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; background:rgba(255,255,255,.05); border-radius:4px; padding:9px 12px"><span style="font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(253,251,244,.45)">Colour</span><span style="font-size:13px; font-weight:600">Black</span></div>
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; background:rgba(255,255,255,.05); border-radius:4px; padding:9px 12px"><span style="font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(253,251,244,.45)">Area</span><span style="font-size:13px; font-weight:600">Linking Road</span></div>
+                <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px; background:rgba(255,255,255,.05); border-radius:4px; padding:9px 12px"><span style="font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(253,251,244,.45)">Transport</span><span style="font-size:13px; font-weight:600">Auto</span></div>
+                <div style="background:rgba(245,197,24,.12); border:1px solid rgba(245,197,24,.3); border-radius:4px; padding:9px 12px">
+                  <div style="font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:#F5C518; margin-bottom:6px">Contents, kept private</div>
+                  <div style="font-size:12.5px; line-height:1.6; color:rgba(253,251,244,.8)">Red blouse · jewellery box · two sarees</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr)); gap:14px; margin-bottom:20px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:22px 24px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Why not a form</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">A form asks the user to guess our categories. A sentence asks nothing. The structure still exists, it just gets built on our side instead of theirs.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:22px 24px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">Language is not a barrier</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Hindi, Marathi, English, or all three in one sentence, which is how people actually speak in Mumbai. Voice input matters more than typing here.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:22px 24px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">The user stays in charge</div>
+            <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Everything extracted is shown back as editable chips. The model proposes, the person confirms. It never silently decides what you lost.</p>
+          </div>
+        </div>
+
+        <div style="background:rgba(201,58,42,.06); border:1px solid rgba(201,58,42,.25); border-radius:6px; padding:20px 22px; max-width:74ch">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:#C93A2A; margin-bottom:10px">Where this design could fail</div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.75); margin:0">A confident wrong extraction is worse than no extraction. If it reads "red blouse" as the item rather than the contents, the match never happens and the person never knows why. That is why every field is visible and editable, and why the contents field is treated separately: it is the one used for verification later.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 12 IA ══ -->
+  <section data-sec="12" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">12 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Architecture</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">The whole product on one page</h2>
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(22px,3vw,32px); display:grid; gap:14px">
+          <div style="display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:clamp(14px,2vw,26px); align-items:start; padding-bottom:14px; border-bottom:1px solid rgba(18,36,28,.1)">
+            <div><div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:5px">Entry</div><div style="font-family:'Source Serif 4',Georgia,serif; font-size:17px; font-weight:600">Getting in</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px">
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Phone number, one step</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Language choice</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">No profile to build</span>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:clamp(14px,2vw,26px); align-items:start; padding-bottom:14px; border-bottom:1px solid rgba(18,36,28,.1)">
+            <div><div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:5px">Tab 01</div><div style="font-family:'Source Serif 4',Georgia,serif; font-size:17px; font-weight:600">Report a loss</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px">
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Describe, type or speak</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Confirm the fields</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Add private details</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Submit</span>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:clamp(14px,2vw,26px); align-items:start; padding-bottom:14px; border-bottom:1px solid rgba(18,36,28,.1)">
+            <div><div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#B88C00; margin-bottom:5px">Shared spine</div><div style="font-family:'Source Serif 4',Georgia,serif; font-size:17px; font-weight:600">The register</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px">
+              <span style="font-size:13px; color:#8A6A00; background:rgba(245,197,24,.14); border:1px solid rgba(184,140,0,.35); border-radius:4px; padding:8px 14px">Lost reports</span>
+              <span style="font-size:13px; color:#8A6A00; background:rgba(245,197,24,.14); border:1px solid rgba(184,140,0,.35); border-radius:4px; padding:8px 14px">Found reports</span>
+              <span style="font-size:13px; color:#8A6A00; background:rgba(245,197,24,.14); border:1px solid rgba(184,140,0,.35); border-radius:4px; padding:8px 14px">Matching</span>
+              <span style="font-size:13px; color:#8A6A00; background:rgba(245,197,24,.14); border:1px solid rgba(184,140,0,.35); border-radius:4px; padding:8px 14px">Verification</span>
+              <span style="font-size:13px; color:#8A6A00; background:rgba(245,197,24,.14); border:1px solid rgba(184,140,0,.35); border-radius:4px; padding:8px 14px">Handover codes</span>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:clamp(14px,2vw,26px); align-items:start; padding-bottom:14px; border-bottom:1px solid rgba(18,36,28,.1)">
+            <div><div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:5px">Tab 02</div><div style="font-family:'Source Serif 4',Georgia,serif; font-size:17px; font-weight:600">My reports</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px">
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Status of each report</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Possible matches</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Handover details</span>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:clamp(14px,2vw,26px); align-items:start">
+            <div><div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:5px">No login</div><div style="font-family:'Source Serif 4',Georgia,serif; font-size:17px; font-weight:600">Found flow</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px">
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">QR lands here directly</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Photo</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Where found</span>
+              <span style="font-size:13px; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:4px; padding:8px 14px">Submit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 13 USER FLOWS ══ -->
+  <section data-sec="13" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">13 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Flows</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Two flows, deliberately unequal</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr)); gap:14px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
+            <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#0F6E56; font-weight:600; margin-bottom:18px">Passenger · 6 steps</div>
+            <div style="display:grid; gap:0">
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(15,110,86,.12); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">1</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Opens app, taps "I lost something"</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(15,110,86,.12); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">2</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Describes it in one sentence, typed or spoken</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(15,110,86,.12); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">3</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Checks and corrects the extracted chips</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(15,110,86,.12); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">4</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Adds a private detail only the owner would know</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(15,110,86,.12); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">5</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Receives a match, reviews the blurred photo</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:#0F6E56; color:#FDFDFD; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">6</span><div style="font-size:14px; line-height:1.6; color:#12241C; font-weight:500">Verifies, gets a handover code, collects it</div></div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(184,140,0,.4); border-radius:6px; padding:24px 26px">
+            <div style="font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#8A6A00; font-weight:600; margin-bottom:18px">Finder · 4 steps, no account</div>
+            <div style="display:grid; gap:0">
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(245,197,24,.22); color:#8A6A00; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">1</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Scans the sticker inside the auto</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(245,197,24,.22); color:#8A6A00; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">2</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Photographs the item</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:rgba(245,197,24,.22); color:#8A6A00; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">3</span><div style="padding-bottom:16px; font-size:14px; line-height:1.6; color:rgba(18,36,28,.75)">Taps "found in my auto", location is already known</div></div>
+              <div style="display:flex; gap:14px; align-items:flex-start"><span style="flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:#B88C00; color:#FDFDFD; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700">4</span><div style="font-size:14px; line-height:1.6; color:#12241C; font-weight:500">Submits. Nothing else is ever asked of them</div></div>
+            </div>
+            <div style="border-top:1px solid rgba(18,36,28,.1); margin-top:18px; padding-top:14px; font-size:13px; line-height:1.65; color:rgba(18,36,28,.6)">The QR carries the auto's identity, so the two hardest fields, who and where, are answered before the driver touches anything.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 14 WIREFRAMES ══ -->
+  <section id="design" data-sec="14" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">14 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Wireframes</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Structure before style</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr)); gap:14px">
+          <div>
+            <div style="background:#EFEDE7; border:1px solid rgba(18,36,28,.14); border-radius:10px; padding:14px">
+              <div style="position:relative; background:#FDFDFD; border-radius:7px; aspect-ratio:9/17"><div style="position:absolute; inset:0; padding:13px; display:flex; flex-direction:column; gap:9px">
+                <div style="height:9px; width:44%; border-radius:3px; background:rgba(18,36,28,.22)"></div>
+                <div style="height:58px; border-radius:5px; border:1px dashed rgba(18,36,28,.28); background:rgba(18,36,28,.03)"></div>
+                <div style="display:flex; gap:5px"><span style="height:7px; width:30%; border-radius:3px; background:rgba(18,36,28,.14)"></span><span style="height:7px; width:24%; border-radius:3px; background:rgba(18,36,28,.14)"></span></div>
+                <div style="margin-top:auto; height:26px; border-radius:5px; background:rgba(18,36,28,.24)"></div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Describe the loss</div>
+          </div>
+          <div>
+            <div style="background:#EFEDE7; border:1px solid rgba(18,36,28,.14); border-radius:10px; padding:14px">
+              <div style="position:relative; background:#FDFDFD; border-radius:7px; aspect-ratio:9/17"><div style="position:absolute; inset:0; padding:13px; display:flex; flex-direction:column; gap:9px">
+                <div style="height:9px; width:52%; border-radius:3px; background:rgba(18,36,28,.22)"></div>
+                <div style="display:flex; flex-wrap:wrap; gap:5px">
+                  <span style="height:18px; width:34%; border-radius:3px; background:rgba(18,36,28,.14)"></span>
+                  <span style="height:18px; width:26%; border-radius:3px; background:rgba(18,36,28,.14)"></span>
+                  <span style="height:18px; width:44%; border-radius:3px; background:rgba(18,36,28,.14)"></span>
+                  <span style="height:18px; width:30%; border-radius:3px; background:rgba(18,36,28,.14)"></span>
+                </div>
+                <div style="height:1px; background:rgba(18,36,28,.12); margin:4px 0"></div>
+                <div style="height:34px; border-radius:5px; border:1px dashed rgba(18,36,28,.28)"></div>
+                <div style="margin-top:auto; height:26px; border-radius:5px; background:rgba(18,36,28,.24)"></div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Confirm the fields</div>
+          </div>
+          <div>
+            <div style="background:#EFEDE7; border:1px solid rgba(18,36,28,.14); border-radius:10px; padding:14px">
+              <div style="position:relative; background:#FDFDFD; border-radius:7px; aspect-ratio:9/17"><div style="position:absolute; inset:0; padding:13px; display:flex; flex-direction:column; gap:9px">
+                <div style="height:9px; width:38%; border-radius:3px; background:rgba(18,36,28,.22)"></div>
+                <div style="border:1px solid rgba(18,36,28,.16); border-radius:5px; padding:9px; display:grid; gap:6px">
+                  <div style="height:40px; border-radius:4px; background:rgba(18,36,28,.1)"></div>
+                  <div style="height:6px; width:70%; border-radius:3px; background:rgba(18,36,28,.16)"></div>
+                  <div style="height:6px; width:48%; border-radius:3px; background:rgba(18,36,28,.1)"></div>
+                </div>
+                <div style="border:1px solid rgba(18,36,28,.12); border-radius:5px; padding:9px; display:grid; gap:6px; opacity:.55">
+                  <div style="height:40px; border-radius:4px; background:rgba(18,36,28,.1)"></div>
+                  <div style="height:6px; width:62%; border-radius:3px; background:rgba(18,36,28,.16)"></div>
+                </div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Possible matches</div>
+          </div>
+          <div>
+            <div style="background:#EFEDE7; border:1px solid rgba(18,36,28,.14); border-radius:10px; padding:14px">
+              <div style="position:relative; background:#FDFDFD; border-radius:7px; aspect-ratio:9/17"><div style="position:absolute; inset:0; padding:13px; display:flex; flex-direction:column; gap:9px">
+                <div style="height:9px; width:46%; border-radius:3px; background:rgba(18,36,28,.22)"></div>
+                <div style="height:52px; border-radius:5px; background:rgba(18,36,28,.08); border:1px dashed rgba(18,36,28,.24)"></div>
+                <div style="display:flex; gap:6px; justify-content:center; margin-top:4px">
+                  <span style="width:24px; height:30px; border-radius:4px; background:rgba(18,36,28,.18)"></span>
+                  <span style="width:24px; height:30px; border-radius:4px; background:rgba(18,36,28,.18)"></span>
+                  <span style="width:24px; height:30px; border-radius:4px; background:rgba(18,36,28,.18)"></span>
+                  <span style="width:24px; height:30px; border-radius:4px; background:rgba(18,36,28,.18)"></span>
+                </div>
+                <div style="margin-top:auto; height:26px; border-radius:5px; background:rgba(18,36,28,.24)"></div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Handover code</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 15 DESIGN SYSTEM ══ -->
+  <section data-sec="15" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">15 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Visual language</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Borrowed from the auto, not from Silicon Valley</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 30px; max-width:68ch">A soft purple gradient app would look like it came from somewhere else. Mumbai autos are already a design system: black and yellow, painted signage, high contrast because it has to be legible in the sun. I took the palette from the vehicle.</p>
+
+        <div style="display:flex; flex-wrap:wrap; gap:20px 28px; align-items:center; background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(20px,2.6vw,26px); margin-bottom:16px">
+          <div style="flex:0 1 220px; min-width:min(180px,100%); border-radius:5px; overflow:hidden; background:#16130E">
+            <img loading="lazy" decoding="async" src="images/auto-rickshaw.jpg" alt="Mumbai auto rickshaw" style="width:100%; height:auto">
+          </div>
+          <div style="flex:1 1 260px; min-width:min(240px,100%)">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:10px">Where the palette came from</div>
+            <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.7); margin:0 0 14px">Yellow body, black canopy, painted number plate. I did not choose these colours, I inherited them from the object the product lives inside.</p>
+            <div style="display:flex; gap:7px">
+              <span style="width:30px; height:30px; border-radius:4px; background:#F5C518"></span>
+              <span style="width:30px; height:30px; border-radius:4px; background:#16130E"></span>
+              <span style="width:30px; height:30px; border-radius:4px; background:#FDFBF4; border:1px solid rgba(18,36,28,.14)"></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px); margin-bottom:16px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:20px">Palette, and what each colour is for</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr)); gap:22px">
+            <div>
+              <div style="height:74px; border-radius:5px; background:#F5C518; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Auto yellow</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#F5C518</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Primary actions, the brand</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#16130E; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Auto black</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#16130E</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Headers, text, the frame</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#FDFBF4; border:1px solid rgba(18,36,28,.12); margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Paper</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#FDFBF4</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Every screen ground</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#0F6E56; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Recovered</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#0F6E56</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Success states only</div>
+            </div>
+            <div>
+              <div style="height:74px; border-radius:5px; background:#C93A2A; margin-bottom:10px"></div>
+              <div style="font-size:13px; font-weight:600">Alert</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">#C93A2A</div>
+              <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Expiry, disputes</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:14px">
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:22px 24px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:14px">Bilingual by default</div>
+            <div style="background:#F2EFE8; border-radius:5px; padding:14px 16px; margin-bottom:12px">
+              <div style="font-family:'Noto Sans Devanagari',sans-serif; font-size:19px; font-weight:700; color:#16130E; line-height:1.3">कुछ मिला?</div>
+              <div style="font-size:13px; color:rgba(18,36,28,.6); margin-top:4px">Found something?</div>
+            </div>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Devanagari first where the driver reads, English second. Not a language toggle buried in settings.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:22px 24px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:14px">Hit targets, sun legible</div>
+            <div style="display:grid; gap:8px; margin-bottom:12px">
+              <span style="display:block; text-align:center; font-size:14px; font-weight:700; color:#16130E; background:#F5C518; border-radius:5px; padding:15px 0">FOUND SOMETHING</span>
+              <span style="display:block; text-align:center; font-size:13px; font-weight:600; color:#16130E; background:transparent; border:1.5px solid #16130E; border-radius:5px; padding:12px 0">Not now</span>
+            </div>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Nothing under 48px, heavy weights, maximum contrast. This gets used outdoors, one handed.</p>
+          </div>
+          <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:22px 24px">
+            <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:14px">No decoration</div>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0 0 12px">No illustrations, no gradients, no rounded pastel cards. The signage reference is functional, and copying its restraint matters more than copying its look.</p>
+            <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Every screen answers one question and offers one action.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 16 HI-FI SCREENS ══ -->
+  <section data-sec="16" style="background:#FDFDFD; margin-top:clamp(56px,7vw,96px); padding:clamp(64px,8vw,110px) 0">
+    <div style="max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,56px)">
+      <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+        <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">16 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Screens</div></div>
+        <div>
+          <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">The passenger side</h2>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr)); gap:16px">
+
+            <div>
+              <div style="background:#16130E; border-radius:22px; padding:8px; box-shadow:0 20px 46px rgba(18,36,28,.18)">
+                <div style="position:relative; background:#FDFBF4; border-radius:16px; overflow:hidden; aspect-ratio:9/18"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                  <div style="background:#F5C518; padding:13px 14px">
+                    <div style="font-family:'Noto Sans Devanagari',sans-serif; font-size:16px; font-weight:700; color:#16130E">मिलेगा</div>
+                    <div style="font-size:9px; font-weight:600; letter-spacing:.1em; color:rgba(22,19,14,.6); margin-top:2px">MILEGA</div>
+                  </div>
+                  <div style="padding:15px 14px; display:flex; flex-direction:column; gap:11px; flex:1">
+                    <div style="font-size:13px; font-weight:700; color:#16130E; line-height:1.35">What did you lose?</div>
+                    <div style="background:#fff; border:1.5px solid #16130E; border-radius:6px; padding:11px 12px; min-height:74px">
+                      <div style="font-size:10.5px; line-height:1.6; color:rgba(18,36,28,.8)">black shopping bag, auto near Linking Road, had a red blouse and jewellery box</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px; font-size:10px; color:rgba(18,36,28,.55)">
+                      <span style="width:22px; height:22px; border-radius:50%; border:1.5px solid #16130E; display:flex; align-items:center; justify-content:center; font-size:10px">◉</span>
+                      Or speak instead
+                    </div>
+                    <div style="margin-top:auto; text-align:center; font-size:11.5px; font-weight:700; color:#16130E; background:#F5C518; border-radius:6px; padding:13px 0">CONTINUE</div>
+                  </div>
+                </div></div>
+              </div>
+              <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">01 · Describe</div>
+            </div>
+
+            <div>
+              <div style="background:#16130E; border-radius:22px; padding:8px; box-shadow:0 20px 46px rgba(18,36,28,.18)">
+                <div style="position:relative; background:#FDFBF4; border-radius:16px; overflow:hidden; aspect-ratio:9/18"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                  <div style="background:#16130E; padding:13px 14px; color:#FDFBF4">
+                    <div style="font-size:11px; font-weight:600">Is this right?</div>
+                    <div style="font-size:9px; color:rgba(253,251,244,.55); margin-top:3px">Tap any chip to change it</div>
+                  </div>
+                  <div style="padding:14px; display:flex; flex-direction:column; gap:9px; flex:1">
+                    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px; background:#fff; border:1px solid rgba(18,36,28,.14); border-radius:5px; padding:9px 11px"><span style="font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.45)">Item</span><span style="font-size:11px; font-weight:600">Shopping bag</span></div>
+                    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px; background:#fff; border:1px solid rgba(18,36,28,.14); border-radius:5px; padding:9px 11px"><span style="font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.45)">Colour</span><span style="font-size:11px; font-weight:600">Black</span></div>
+                    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px; background:#fff; border:1px solid rgba(18,36,28,.14); border-radius:5px; padding:9px 11px"><span style="font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.45)">Area</span><span style="font-size:11px; font-weight:600">Linking Road</span></div>
+                    <div style="background:rgba(245,197,24,.16); border:1px solid rgba(184,140,0,.4); border-radius:5px; padding:9px 11px">
+                      <div style="font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:#8A6A00; margin-bottom:5px">Private, for verifying</div>
+                      <div style="font-size:10px; line-height:1.5; color:rgba(18,36,28,.75)">Red blouse, jewellery box, two sarees</div>
+                    </div>
+                    <div style="margin-top:auto; text-align:center; font-size:11.5px; font-weight:700; color:#16130E; background:#F5C518; border-radius:6px; padding:13px 0">SUBMIT REPORT</div>
+                  </div>
+                </div></div>
+              </div>
+              <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">02 · Confirm</div>
+            </div>
+
+            <div>
+              <div style="background:#16130E; border-radius:22px; padding:8px; box-shadow:0 20px 46px rgba(18,36,28,.18)">
+                <div style="position:relative; background:#FDFBF4; border-radius:16px; overflow:hidden; aspect-ratio:9/18"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                  <div style="background:#16130E; padding:13px 14px; color:#FDFBF4">
+                    <div style="font-size:11px; font-weight:600">1 possible match</div>
+                  </div>
+                  <div style="padding:14px; display:flex; flex-direction:column; gap:10px; flex:1">
+                    <div style="background:#fff; border:1.5px solid #F5C518; border-radius:6px; overflow:hidden">
+                      <div style="height:66px; background:linear-gradient(135deg,rgba(22,19,14,.16),rgba(22,19,14,.06)); display:flex; align-items:center; justify-content:center; font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5)">Photo, blurred</div>
+                      <div style="padding:10px 11px">
+                        <div style="font-size:11px; font-weight:700; color:#16130E; line-height:1.35; margin-bottom:5px">Black bag found near Bandra</div>
+                        <div style="font-size:9.5px; line-height:1.55; color:rgba(18,36,28,.6)">Clothing and a jewellery box<br>Reported 18 minutes ago</div>
+                        <div style="display:inline-flex; align-items:center; gap:5px; margin-top:8px; font-size:8.5px; font-weight:700; letter-spacing:.06em; color:#8A6A00; background:rgba(245,197,24,.2); border-radius:3px; padding:4px 7px">STRONG MATCH</div>
+                      </div>
+                    </div>
+                    <div style="margin-top:auto; text-align:center; font-size:11.5px; font-weight:700; color:#16130E; background:#F5C518; border-radius:6px; padding:13px 0">THIS IS MINE</div>
+                    <div style="text-align:center; font-size:10px; color:rgba(18,36,28,.5)">Not mine</div>
+                  </div>
+                </div></div>
+              </div>
+              <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">03 · Match</div>
+            </div>
+
+            <div>
+              <div style="background:#16130E; border-radius:22px; padding:8px; box-shadow:0 20px 46px rgba(18,36,28,.18)">
+                <div style="position:relative; background:#FDFBF4; border-radius:16px; overflow:hidden; aspect-ratio:9/18"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                  <div style="background:#0F6E56; padding:13px 14px; color:#FDFBF4">
+                    <div style="font-size:11px; font-weight:600">Verified. It is yours</div>
+                  </div>
+                  <div style="padding:14px; display:flex; flex-direction:column; gap:11px; flex:1">
+                    <div style="font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.5)">Show this code at handover</div>
+                    <div style="display:flex; gap:6px">
+                      <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:500; color:#16130E; background:#fff; border:1.5px solid #16130E; border-radius:5px; padding:11px 0">4</span>
+                      <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:500; color:#16130E; background:#fff; border:1.5px solid #16130E; border-radius:5px; padding:11px 0">9</span>
+                      <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:500; color:#16130E; background:#fff; border:1.5px solid #16130E; border-radius:5px; padding:11px 0">2</span>
+                      <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:17px; font-weight:500; color:#16130E; background:#fff; border:1.5px solid #16130E; border-radius:5px; padding:11px 0">7</span>
+                    </div>
+                    <div style="background:#fff; border:1px solid rgba(18,36,28,.14); border-radius:5px; padding:11px">
+                      <div style="font-size:8.5px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:6px">Collect from</div>
+                      <div style="font-size:10.5px; line-height:1.55; color:rgba(18,36,28,.78)">Bandra West auto stand<br>Today until 9 pm</div>
+                    </div>
+                    <div style="margin-top:auto; font-size:9.5px; line-height:1.6; color:rgba(18,36,28,.5)">Neither of you sees the other's number. The code is the only thing shared.</div>
+                  </div>
+                </div></div>
+              </div>
+              <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">04 · Handover</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 17 RECOVERY FLOW ══ -->
+  <section data-sec="17" style="max-width:1180px; margin:0 auto; padding:clamp(64px,8vw,110px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">17 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Recovery</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">Lost to recovered, end to end</h2>
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(22px,3vw,32px)">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); gap:3px; margin-bottom:18px">
+            <div><div style="height:7px; border-radius:4px 0 0 4px; background:#F5C518"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin:10px 0 5px">01</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Reported</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">A sentence becomes structured fields</p></div>
+            <div><div style="height:7px; background:#F5C518"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin:10px 0 5px">02</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Matched</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Item, colour, area and time against found reports</p></div>
+            <div><div style="height:7px; background:#F5C518"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin:10px 0 5px">03</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Verified</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Owner names the contents nobody else can see</p></div>
+            <div><div style="height:7px; border-radius:0 4px 4px 0; background:#0F6E56"></div><div style="font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#0F6E56; margin:10px 0 5px">04</div><div style="font-size:13.5px; font-weight:600; line-height:1.35">Recovered</div><p style="font-size:12.5px; line-height:1.6; color:rgba(18,36,28,.6); margin:6px 0 0">Four digit code exchanged at a neutral stand</p></div>
+          </div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.65); margin:0; max-width:70ch">The colour changes only at the end. Everything before recovery is provisional, and the interface says so, because a false "found it" is worse than a slow one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 18 DRIVER EXPERIENCE ══ -->
+  <section data-sec="18" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">18 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>The driver</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Four taps, no app, no account</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 30px; max-width:68ch">This is the part the whole concept depends on. Every step I add here is a reason for the driver to do nothing, so the sticker in the auto does the identifying and the phone does the rest.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr)); gap:14px; margin-bottom:20px">
+          <div>
+            <div style="background:#16130E; border-radius:20px; padding:7px">
+              <div style="position:relative; background:#1D1A15; border-radius:14px; overflow:hidden; aspect-ratio:9/17"><div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:16px">
+              <span style="position:absolute; inset:0; background:repeating-linear-gradient(180deg, rgba(255,255,255,.045) 0 1px, transparent 1px 22px)"></span>
+              <span style="position:absolute; left:0; right:0; top:26%; height:1px; background:rgba(255,255,255,.07)"></span>
+              <div style="position:relative; width:100%; background:#F5C518; border-radius:5px; padding:14px 13px 13px; box-shadow:0 10px 26px rgba(0,0,0,.4)">
+                <div style="text-align:center; font-family:'Noto Sans Devanagari',sans-serif; font-size:15px; font-weight:700; color:#16130E; line-height:1.2; letter-spacing:-.01em">कुछ मिला?</div>
+                <div style="text-align:center; font-size:9px; font-weight:700; letter-spacing:.1em; color:rgba(22,19,14,.6); margin:3px 0 11px">FOUND SOMETHING?</div>
+                <div style="width:76px; height:76px; margin:0 auto; background:#FDFBF4; border-radius:3px; padding:7px; box-sizing:border-box">
+                  <div style="width:100%; height:100%; display:grid; grid-template-columns:repeat(7,1fr); grid-template-rows:repeat(7,1fr); gap:1px">
+                    <span style="grid-area:1/1/3/3; border:2px solid #16130E"></span>
+                    <span style="grid-area:1/6/3/8; border:2px solid #16130E"></span>
+                    <span style="grid-area:6/1/8/3; border:2px solid #16130E"></span>
+                    <span style="grid-area:1/4/2/5; background:#16130E"></span>
+                    <span style="grid-area:2/5/3/6; background:#16130E"></span>
+                    <span style="grid-area:3/3/4/4; background:#16130E"></span>
+                    <span style="grid-area:3/7/4/8; background:#16130E"></span>
+                    <span style="grid-area:4/2/5/3; background:#16130E"></span>
+                    <span style="grid-area:4/4/5/5; background:#16130E"></span>
+                    <span style="grid-area:4/6/5/7; background:#16130E"></span>
+                    <span style="grid-area:5/3/6/4; background:#16130E"></span>
+                    <span style="grid-area:5/5/6/6; background:#16130E"></span>
+                    <span style="grid-area:6/4/7/5; background:#16130E"></span>
+                    <span style="grid-area:6/6/7/7; background:#16130E"></span>
+                    <span style="grid-area:7/5/8/6; background:#16130E"></span>
+                    <span style="grid-area:7/7/8/8; background:#16130E"></span>
+                  </div>
+                </div>
+                <div style="text-align:center; font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:500; color:#16130E; margin-top:9px">MH-02-4471</div>
+                <div style="border-top:1px solid rgba(22,19,14,.25); margin-top:9px; padding-top:8px; text-align:center; font-size:8px; line-height:1.4; color:rgba(22,19,14,.62)">Scan with any camera<br>No app needed</div>
+              </div>
+            </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Sticker in the auto</div>
+          </div>
+
+          <div>
+            <div style="background:#16130E; border-radius:20px; padding:7px">
+              <div style="position:relative; background:#FDFBF4; border-radius:14px; overflow:hidden; aspect-ratio:9/17"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                <div style="background:#F5C518; padding:12px 13px"><div style="font-family:'Noto Sans Devanagari',sans-serif; font-size:14px; font-weight:700; color:#16130E">मिलेगा</div></div>
+                <div style="padding:14px 13px; display:flex; flex-direction:column; gap:10px; flex:1">
+                  <div style="font-size:12px; font-weight:700; color:#16130E; line-height:1.4">Auto MH-02-4471</div>
+                  <div style="font-size:10px; line-height:1.6; color:rgba(18,36,28,.6)">Did you find something in this auto?</div>
+                  <div style="margin-top:auto; display:grid; gap:8px">
+                    <span style="text-align:center; font-size:12px; font-weight:700; color:#16130E; background:#F5C518; border-radius:5px; padding:15px 0">YES, I FOUND SOMETHING</span>
+                    <span style="text-align:center; font-size:11px; font-weight:600; color:rgba(18,36,28,.6); padding:9px 0">No, I lost something</span>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Tap 01</div>
+          </div>
+
+          <div>
+            <div style="background:#16130E; border-radius:20px; padding:7px">
+              <div style="position:relative; background:#FDFBF4; border-radius:14px; overflow:hidden; aspect-ratio:9/17"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                <div style="background:#16130E; padding:12px 13px; color:#FDFBF4"><div style="font-size:11px; font-weight:600">Take a photo</div></div>
+                <div style="padding:14px 13px; display:flex; flex-direction:column; gap:10px; flex:1">
+                  <div style="flex:1; border-radius:6px; border:1.5px dashed rgba(18,36,28,.3); background:rgba(18,36,28,.04); display:flex; align-items:center; justify-content:center; font-size:26px; color:rgba(18,36,28,.3)">◻</div>
+                  <span style="text-align:center; font-size:12px; font-weight:700; color:#16130E; background:#F5C518; border-radius:5px; padding:15px 0">OPEN CAMERA</span>
+                </div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Tap 02</div>
+          </div>
+
+          <div>
+            <div style="background:#16130E; border-radius:20px; padding:7px">
+              <div style="position:relative; background:#FDFBF4; border-radius:14px; overflow:hidden; aspect-ratio:9/17"><div style="position:absolute; inset:0; display:flex; flex-direction:column">
+                <div style="background:#0F6E56; padding:12px 13px; color:#FDFBF4"><div style="font-size:11px; font-weight:600">Thank you</div></div>
+                <div style="padding:14px 13px; display:flex; flex-direction:column; gap:10px; flex:1; align-items:center; justify-content:center; text-align:center">
+                  <div style="width:46px; height:46px; border-radius:50%; background:rgba(15,110,86,.12); color:#0F6E56; display:flex; align-items:center; justify-content:center; font-size:21px">✓</div>
+                  <div style="font-size:12px; font-weight:700; color:#16130E; line-height:1.4">Reported</div>
+                  <div style="font-size:10px; line-height:1.6; color:rgba(18,36,28,.6)">If someone claims it, we will send you one message with a collection code. Nothing else.</div>
+                </div>
+              </div></div>
+            </div>
+            <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.5); padding:9px 2px">Done</div>
+          </div>
+        </div>
+
+        <div style="background:rgba(15,110,86,.06); border:1px solid rgba(15,110,86,.22); border-radius:6px; padding:20px 22px; max-width:74ch">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:10px">The decision that makes it work</div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.75); margin:0">The QR is per auto, not per driver. It answers "which vehicle" without anyone signing up, and it survives the driver changing phones, losing the number, or never installing anything. A sticker is also something a union or a stand can hand out at scale for the price of printing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 19 TRUST & SAFETY ══ -->
+  <section data-sec="19" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">19 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Trust</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">Proving it is yours, without publishing what it is</h2>
+        <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 30px; max-width:68ch">An open list of valuables with locations and times is a gift to the wrong person. Three mechanisms keep it useful without making it exploitable.</p>
+
+        <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(22px,3vw,30px); margin-bottom:16px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:8px">First question people ask</div>
+          <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2.1vw,24px); font-weight:500; letter-spacing:-.015em; line-height:1.3; margin-bottom:10px">If a driver posts what they found, can everyone see it?</div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.68); margin:0 0 24px; max-width:70ch">No. A found post is never browsable. It goes into the register and is only ever surfaced to people whose own lost report already matches it. If you have not reported losing something, there is nothing for you to look at.</p>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:12px">
+            <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+                <span style="width:7px; height:7px; border-radius:50%; background:rgba(18,36,28,.3)"></span>
+                <span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:rgba(18,36,28,.5)">Nobody sees</span>
+              </div>
+              <div style="display:grid; gap:7px; font-size:13px; line-height:1.5; color:rgba(18,36,28,.7)">
+                <div>The public has no browse or search</div>
+                <div>No map of found items</div>
+                <div>No listings page at all</div>
+              </div>
+            </div>
+            <div style="background:#F2EFE8; border:1px solid rgba(184,140,0,.4); border-radius:6px; padding:18px 20px">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+                <span style="width:7px; height:7px; border-radius:50%; background:#B88C00"></span>
+                <span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:#8A6A00">A matched claimant sees</span>
+              </div>
+              <div style="display:grid; gap:7px; font-size:13px; line-height:1.5; color:rgba(18,36,28,.7)">
+                <div>Category and colour, no more</div>
+                <div>The area, not the exact spot</div>
+                <div>A blurred photo</div>
+              </div>
+            </div>
+            <div style="background:#F2EFE8; border:1px solid rgba(15,110,86,.35); border-radius:6px; padding:18px 20px">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px">
+                <span style="width:7px; height:7px; border-radius:50%; background:#0F6E56"></span>
+                <span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:#0F6E56">After verifying</span>
+              </div>
+              <div style="display:grid; gap:7px; font-size:13px; line-height:1.5; color:rgba(18,36,28,.7)">
+                <div>The clear photo</div>
+                <div>A collection point and time</div>
+                <div>A four digit handover code</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid rgba(18,36,28,.1); margin-top:20px; padding-top:16px; font-size:13.5px; line-height:1.7; color:rgba(18,36,28,.62); max-width:70ch">The cost of this choice: if nobody ever reports the loss, the found item sits in the register unseen. I would rather lose those cases than run a public list of where valuables were last seen.</div>
+        </div>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden">
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:18px 34px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">The contents are the password</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">A listing shows the category and colour only. To claim it you have to name what is inside, which only the owner and the finder know.</p>
+            </div>
+            <div style="flex:1 1 210px; min-width:min(200px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <div style="font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:8px">Public sees</div>
+              <div style="font-size:13px; font-weight:600; color:#12241C; margin-bottom:12px">Black bag, Bandra</div>
+              <div style="font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:#8A6A00; margin-bottom:8px">Never public</div>
+              <div style="font-size:13px; color:rgba(18,36,28,.6)">Jewellery box, two sarees</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:18px 34px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Photos are blurred until verification</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Enough to recognise a shape and a colour, not enough to describe the contents back to us convincingly.</p>
+            </div>
+            <div style="flex:1 1 210px; min-width:min(200px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px; display:flex; gap:10px; align-items:center">
+              <span style="flex:1; height:56px; border-radius:5px; background:linear-gradient(135deg,rgba(22,19,14,.2),rgba(22,19,14,.06))"></span>
+              <span style="font-size:15px; color:rgba(18,36,28,.35)">→</span>
+              <span style="flex:1; height:56px; border-radius:5px; background:linear-gradient(135deg,rgba(22,19,14,.5),rgba(22,19,14,.2))"></span>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:18px 34px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">A handover code, not phone numbers</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Four digits, exchanged at a public stand. Neither person gets the other's contact details, and both get a record that the handover happened. Anyone in India who has taken a delivery already knows this pattern.</p>
+            </div>
+            <div style="flex:1 1 210px; min-width:min(200px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <div style="display:flex; gap:6px; margin-bottom:10px">
+                <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:16px; color:#16130E; background:#FDFDFD; border:1.5px solid #16130E; border-radius:4px; padding:9px 0">4</span>
+                <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:16px; color:#16130E; background:#FDFDFD; border:1.5px solid #16130E; border-radius:4px; padding:9px 0">9</span>
+                <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:16px; color:#16130E; background:#FDFDFD; border:1.5px solid #16130E; border-radius:4px; padding:9px 0">2</span>
+                <span style="flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:16px; color:#16130E; background:#FDFDFD; border:1.5px solid #16130E; border-radius:4px; padding:9px 0">7</span>
+              </div>
+              <div style="font-size:12px; line-height:1.6; color:rgba(18,36,28,.6)">The only thing the two people share</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 20 TESTING ══ -->
+  <section id="outcome" data-sec="20" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">20 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Testing</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">What I would test, and what would kill it</h2>
+
+        <div style="background:rgba(245,197,24,.1); border:1px solid rgba(184,140,0,.35); border-radius:6px; padding:22px 24px; margin-bottom:30px">
+          <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:#8A6A00; margin-bottom:10px">Not yet tested</div>
+          <p style="font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.78); margin:0; max-width:70ch">No prototype has been in front of a user. Rather than invent results, here is the test plan and the specific outcome that would make me abandon each part.</p>
+        </div>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden">
+          <div style="background:#FDFDFD; padding:24px 26px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:7px">Can a driver complete the found flow unaided?</div>
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Hand a phone to ten drivers at a stand with no instruction beyond the sticker.</p>
+            </div>
+            <div style="flex:1 1 220px; min-width:min(200px,100%); background:rgba(201,58,42,.06); border-left:2px solid rgba(201,58,42,.4); border-radius:4px; padding:13px 15px">
+              <div style="font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:#C93A2A; margin-bottom:6px">Kills it if</div>
+              <div style="font-size:13.5px; line-height:1.6; color:rgba(18,36,28,.75)">Fewer than eight finish, or anyone abandons at the camera step.</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:24px 26px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:7px">Does the extraction survive real language?</div>
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Feed it fifty real descriptions in mixed Hindi, Marathi and English and check every field by hand.</p>
+            </div>
+            <div style="flex:1 1 220px; min-width:min(200px,100%); background:rgba(201,58,42,.06); border-left:2px solid rgba(201,58,42,.4); border-radius:4px; padding:13px 15px">
+              <div style="font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:#C93A2A; margin-bottom:6px">Kills it if</div>
+              <div style="font-size:13.5px; line-height:1.6; color:rgba(18,36,28,.75)">Confidently wrong more often than obviously blank. Wrong is worse than empty here.</div>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:24px 26px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-size:15.5px; font-weight:600; margin-bottom:7px">Can someone game the verification?</div>
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Give five people a listing and ask them to claim an item that is not theirs.</p>
+            </div>
+            <div style="flex:1 1 220px; min-width:min(200px,100%); background:rgba(201,58,42,.06); border-left:2px solid rgba(201,58,42,.4); border-radius:4px; padding:13px 15px">
+              <div style="font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:#C93A2A; margin-bottom:6px">Kills it if</div>
+              <div style="font-size:13.5px; line-height:1.6; color:rgba(18,36,28,.75)">Any one of them succeeds. A lost and found that can be farmed is worse than none.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 21 FINAL SOLUTION ══ -->
+  <section data-sec="21" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">21 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>The solution</div></div>
+      <div>
+        <div style="background:#16130E; border-radius:6px; padding:clamp(28px,4vw,48px); color:#FDFBF4">
+          <div style="font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:rgba(253,251,244,.5); margin-bottom:24px">Where the concept landed</div>
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(20px,2.4vw,30px); font-weight:400; line-height:1.4; letter-spacing:-.02em; margin:0 0 30px; max-width:38ch">A shared register with two front doors: a sentence for the person searching, a sticker and four taps for the person who found it.</p>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr)); gap:26px 34px">
+            <div>
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#F5C518; margin-bottom:9px">The insight</div>
+              <div style="font-size:14.5px; line-height:1.7; color:rgba(253,251,244,.75)">Both sides already want to help. The product only has to remove the reasons not to.</div>
+            </div>
+            <div>
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#F5C518; margin-bottom:9px">The mechanic</div>
+              <div style="font-size:14.5px; line-height:1.7; color:rgba(253,251,244,.75)">A per auto QR gives an anonymous ride an identity for the price of a sticker.</div>
+            </div>
+            <div>
+              <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#F5C518; margin-bottom:9px">The AI</div>
+              <div style="font-size:14.5px; line-height:1.7; color:rgba(253,251,244,.75)">One job. It turns how people speak into something a database can match, then gets out of the way.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 22 LEARNINGS ══ -->
+  <section data-sec="22" style="max-width:1180px; margin:0 auto; padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px) 0">
+    <div style="display:grid; grid-template-columns:minmax(0,190px) minmax(0,1fr); gap:clamp(24px,5vw,64px)">
+      <div><div style="font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#0F6E56; position:sticky; top:110px">22 <span style="color:rgba(18,36,28,.35)">/ 22</span><br>Learnings</div></div>
+      <div>
+        <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 26px; max-width:26ch">What a concept can and cannot prove</h2>
+
+        <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:34px">
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Designing for two tolerances is the whole job</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">One user will do anything, the other will do almost nothing. Averaging them produces a product that fails both. Splitting the experience was the only honest answer.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Asymmetric users need asymmetric interfaces.</p>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">The persona wording changed the design</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">"Not educated" would have led me to simplify words. "Low friction tolerance" led me to delete steps. Same user, completely different product.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">How you describe a user is a design decision.</p>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">AI was most useful in the smallest role</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">I could have made this an AI product. Confining it to one translation step, from sentence to fields, is what keeps the rest of the design accountable and understandable.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Give it one job it is genuinely better at.</p>
+            </div>
+          </div>
+          <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
+              <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">The limits of what this is worth</div>
+              <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">No users, no data, no proof that a single driver would scan the sticker. What this shows is how I frame a problem, choose constraints and design against them. Not that the product works.</p>
+            </div>
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
+              <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">A concept shows reasoning, never results.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-left:2px solid #B88C00; padding:4px 0 4px 24px; max-width:62ch; margin-bottom:48px">
+          <p style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(19px,2.1vw,25px); font-weight:400; font-style:italic; line-height:1.5; color:#12241C; margin:0">The hardest constraint was not technical. It was accepting that one of my two users would never open the app, and designing as if that were fine.</p>
+        </div>
+
+        <div style="border-top:1px solid rgba(18,36,28,.14); padding-top:36px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap">
+          <a href="index.html#work" style="font-size:13px; color:rgba(18,36,28,.6)">← All work</a>
+          <a href="pooja_kurade_casestudy_jiobp.html" style="display:flex; align-items:baseline; gap:14px">
+            <span style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Next case study</span>
+            <span style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(22px,2.6vw,32px); font-weight:500; letter-spacing:-.02em; color:#12241C">JIO-BP Fuel Booking →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:clamp(56px,7vw,88px)"></div>
+</div>
+
+<script>
+(function () {
+  var nav = document.querySelector('[data-nav]');
+  function fit() { if (nav) nav.style.display = window.innerWidth > 1000 ? 'flex' : 'none'; }
+  window.addEventListener('resize', fit, { passive: true });
+  fit();
+
+  document.querySelectorAll('[data-scroller]').forEach(function (el) {
+    var frame = el.parentElement;
+    if (!frame) return;
+    frame.style.position = 'relative';
+    frame.style.overflow = 'hidden';
+    frame.style.cursor = 'ns-resize';
+    el.style.transition = 'transform 9s linear';
+    frame.addEventListener('mouseenter', function () {
+      var over = el.offsetHeight - frame.offsetHeight;
+      if (over > 0) el.style.transform = 'translateY(-' + over + 'px)';
+    });
+    frame.addEventListener('mouseleave', function () { el.style.transform = 'translateY(0)'; });
+  });
+
+})();
+</script>
+<script src="scroll.js" defer></script>
+</body>
+</html>

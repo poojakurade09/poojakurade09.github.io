@@ -4,14 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digital asset management audit — Pooja Kurade</title>
-<meta name="description" content="Four years of a digital asset platform with no taxonomy, governance or lifecycle. An end-to-end audit, and a prioritised plan the team owned.">
+<meta name="description" content="Four years of a digital asset platform with no taxonomy, governance or lifecycle. An audit and a prioritised plan.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
 <link rel="icon" href="images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
 <style>
 
   body { margin: 0; background: #F2EFE8; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -28,38 +29,38 @@
   @keyframes bnType { 0%{width:0} 8%{width:0} 24%{width:104px} 100%{width:104px} }
   @media (prefers-reduced-motion: reduce) { *{animation:none !important} }
 
-.h1:hover{color:#0F6E56 !important}
-.h2:hover{color:#0F6E56 !important}
-.h3:hover{color:#0F6E56 !important}
-.h4:hover{color:#0F6E56 !important}
-.h5:hover{color:#0F6E56 !important}
-.h6:hover{color:#0F6E56 !important}
-.h7:hover{color:#0F6E56 !important}
+.x1:hover{color:#0F6E56 !important}
+.x2:hover{color:#0F6E56 !important}
+.x3:hover{color:#0F6E56 !important}
+.x4:hover{color:#0F6E56 !important}
+.x5:hover{color:#0F6E56 !important}
+.x6:hover{color:#0F6E56 !important}
+.x7:hover{color:#0F6E56 !important}
 </style>
 </head>
 <body>
 <div style="background:#F2EFE8; color:#12241C">
 
   <!-- sticky utility bar -->
-  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.92); backdrop-filter:blur(10px); border-bottom:1px solid rgba(18,36,28,.1)">
-    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:0%; background:#0F6E56"></div></div>
+  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.97); border-bottom:1px solid rgba(18,36,28,.1)">
+    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:100%; background:#0F6E56; transform:scaleX(0); transform-origin:left center; will-change:transform"></div></div>
     <div style="max-width:1180px; margin:0 auto; padding:12px clamp(20px,5vw,56px); display:flex; align-items:center; gap:clamp(14px,2vw,28px)">
       <a href="index.html" style="display:flex; align-items:center; gap:10px; color:inherit; white-space:nowrap">
-        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
+        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img decoding="async" src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
         <span style="font-family:'Source Serif 4',Georgia,serif; font-size:16px; font-weight:600; letter-spacing:-.01em">Pooja Kurade.</span>
       </a>
       <div style="width:1px; height:20px; background:rgba(18,36,28,.16); flex-shrink:0"></div>
       <span style="font-size:13px; color:rgba(18,36,28,.6); white-space:nowrap">DAM ecosystem audit</span>
       <div style="margin-left:auto; display:flex; align-items:center; gap:clamp(14px,1.6vw,24px)">
         <div style="display:none; gap:clamp(12px,1.4vw,20px); font-size:12px; letter-spacing:.02em; color:rgba(18,36,28,.55); white-space:nowrap" data-nav="1">
-          <a href="#brief" data-spy="brief" style="color:inherit; transition:color .2s" class="h1">Brief</a>
-          <a href="#users" data-spy="users" style="color:inherit; transition:color .2s" class="h2">Who I spoke to</a>
-          <a href="#structure" data-spy="structure" style="color:inherit; transition:color .2s" class="h3">The flow</a>
-          <a href="#decisions" data-spy="decisions" style="color:inherit; transition:color .2s" class="h4">Decisions</a>
-          <a href="#flows" data-spy="flows" style="color:inherit; transition:color .2s" class="h5">Recommendations</a>
-          <a href="#foundations" data-spy="foundations" style="color:inherit; transition:color .2s" class="h6">Workshop</a>
+          <a href="#brief" data-spy="brief" style="color:inherit; transition:color .2s" class="x1">Brief</a>
+          <a href="#users" data-spy="users" style="color:inherit; transition:color .2s" class="x2">Who I spoke to</a>
+          <a href="#structure" data-spy="structure" style="color:inherit; transition:color .2s" class="x3">The flow</a>
+          <a href="#decisions" data-spy="decisions" style="color:inherit; transition:color .2s" class="x4">Decisions</a>
+          <a href="#flows" data-spy="flows" style="color:inherit; transition:color .2s" class="x5">Recommendations</a>
+          <a href="#foundations" data-spy="foundations" style="color:inherit; transition:color .2s" class="x6">Workshop</a>
         </div>
-        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="h7">All work</a>
+        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="x7">All work</a>
       </div>
     </div>
   </div>
@@ -69,10 +70,14 @@
     <div style="display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(18,36,28,.55); margin-bottom:26px">
       <span>Case study 03</span><span style="width:22px; height:1px; background:rgba(18,36,28,.25)"></span><span>Research · Enterprise B2B</span>
     </div>
+    <div style="display:inline-flex; align-items:center; gap:14px; background:rgba(11,111,180,.08); border:1px solid rgba(11,111,180,.35); border-radius:5px; padding:11px 17px; margin-bottom:26px; flex-wrap:wrap">
+      <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:#0B6FB4; flex:0 0 auto">Client project · research only</span><span style="font-size:13px; color:rgba(18,36,28,.72); flex:1 1 auto; min-width:0">An audit and a prioritised plan, no interface. Client kept anonymous.</span>
+    </div>
+
     <h1 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(38px,6.4vw,76px); font-weight:500; letter-spacing:-.03em; line-height:1.02; margin:0 0 24px; max-width:19ch; text-wrap:pretty">A platform nobody trusted, and nobody owned</h1>
     <p style="font-size:clamp(17px,1.6vw,21px); line-height:1.65; color:rgba(18,36,28,.68); margin:0 0 44px; max-width:58ch; text-wrap:pretty">Four years of a digital asset platform with no taxonomy, no governance and no lifecycle. People had quietly stopped using it. No interface to redesign here: the work was finding out why the flow failed, and what to fix first.</p>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
       <div>
         <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Role</div>
         <div style="font-size:14px; font-weight:600">UX Researcher</div>
@@ -96,7 +101,7 @@
     </div>
 
     <!-- animated banner: the failure loop -->
-    <div style="position:relative; border-radius:6px; overflow:hidden; background:#062A47; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
+    <div style="position:relative; border-radius:6px; overflow:hidden; background:#062A47; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
       <div style="position:absolute; inset:0; background:radial-gradient(90% 70% at 78% 20%, rgba(0,118,206,.32), transparent 68%); animation:bnGlow 9s ease-in-out infinite; pointer-events:none"></div>
 
       <div style="position:relative">
@@ -306,7 +311,7 @@
           <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:16px">Two systems, one asset</div>
           <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.62); margin:0 0 26px; max-width:60ch">I mapped both flows separately. The damage lived in the gap between them.</p>
 
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr)); gap:14px">
             <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
               <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:14px">Content studio</div>
               <div style="display:grid; gap:8px">
@@ -496,7 +501,7 @@
 
         <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:44px">
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
-            <div style="flex:1 1 220px; min-width:200px">
+            <div style="flex:1 1 220px; min-width:min(200px,100%)">
               <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
                 <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">01</span>
                 
@@ -504,14 +509,14 @@
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Taxonomy and naming</div>
               <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">A structure obvious enough to follow without a manual, enforced where the file enters.</p>
             </div>
-            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+            <div style="flex:1 1 260px; min-width:min(220px,100%); display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Top level folders by content type</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Brand, campaign, asset type, version</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Legacy folders archived, not deleted</div>
             </div>
           </div>
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
-            <div style="flex:1 1 220px; min-width:200px">
+            <div style="flex:1 1 220px; min-width:min(200px,100%)">
               <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
                 <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">02</span>
                 
@@ -519,14 +524,14 @@
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Metadata schema</div>
               <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">Fewer fields, mostly picked from a list. Make tagging faster than skipping it.</p>
             </div>
-            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+            <div style="flex:1 1 260px; min-width:min(220px,100%); display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Fourteen fields down to six required</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Controlled lists, not free text</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Date, uploader and format automatic</div>
             </div>
           </div>
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
-            <div style="flex:1 1 220px; min-width:200px">
+            <div style="flex:1 1 220px; min-width:min(200px,100%)">
               <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
                 <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">03</span>
                 <span style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#0F6E56; white-space:nowrap">Everything else depends on this</span>
@@ -534,14 +539,14 @@
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Governance and ownership</div>
               <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">Someone accountable for quality, with the time to actually do it.</p>
             </div>
-            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+            <div style="flex:1 1 260px; min-width:min(220px,100%); display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">A named owner with real capacity</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Upload, review and archive workflow</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">A regular audit that gets reported</div>
             </div>
           </div>
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:20px 36px; align-items:flex-start">
-            <div style="flex:1 1 220px; min-width:200px">
+            <div style="flex:1 1 220px; min-width:min(200px,100%)">
               <div style="display:flex; align-items:center; gap:10px; margin-bottom:9px; flex-wrap:wrap">
                 <span style="font-family:'Source Serif 4',Georgia,serif; font-size:13px; font-weight:600; color:#0F6E56; background:rgba(15,110,86,.1); border-radius:4px; padding:3px 9px">04</span>
                 
@@ -549,7 +554,7 @@
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:20px; font-weight:600; letter-spacing:-.015em; margin-bottom:8px">Training and adoption</div>
               <p style="font-size:14px; line-height:1.65; color:rgba(18,36,28,.62); margin:0; max-width:38ch">People had working alternatives. Change management, not configuration.</p>
             </div>
-            <div style="flex:1 1 260px; min-width:220px; display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
+            <div style="flex:1 1 260px; min-width:min(220px,100%); display:flex; flex-wrap:wrap; gap:8px; align-content:flex-start">
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Separate guides for creators and consumers</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">Hands on sessions per team</div>
               <div style="font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.75); background:#F2EFE8; border:1px solid rgba(18,36,28,.1); border-radius:4px; padding:10px 13px; flex:0 1 auto">A one page naming reference</div>
@@ -563,7 +568,7 @@
         </div>
         <p style="font-size:15px; line-height:1.75; color:rgba(18,36,28,.68); margin:0 0 24px; max-width:66ch">The long work needs headcount and patience, which is easier to ask for once people can feel something improving. So the plan front loads the changes that cost almost nothing.</p>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr)); gap:24px">
           <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:28px 30px">
             <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:18px">Weeks, not quarters</div>
             <div style="display:grid; gap:14px; font-size:14.5px; line-height:1.65; color:rgba(18,36,28,.75)">
@@ -607,7 +612,7 @@
             <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Workshop output, impact against effort</div>
             <div style="font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:rgba(18,36,28,.4)">High impact above, low effort left</div>
           </div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:14px">
             <div style="border:1px solid rgba(15,110,86,.35); background:rgba(15,110,86,.05); border-radius:5px; padding:20px 22px">
               <div style="font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#0F6E56; font-weight:600; margin-bottom:14px">Do first</div>
               <div style="display:grid; gap:9px; font-size:14px; line-height:1.55; color:rgba(18,36,28,.78)">
@@ -660,7 +665,7 @@
         <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">The state worth building towards</h2>
         <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 30px; max-width:68ch">A plan needs a destination, not just a list of fixes. Four plain tests for whether any piece of work moves them towards it.</p>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:52px">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr)); gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:52px">
           <div style="background:#FDFDFD; padding:26px 28px">
             <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#0F6E56; margin-bottom:12px">One route in</div>
             <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">An asset leaves the studio and enters the library through a single handover, tagged at that moment, so the two systems stop drifting apart.</p>
@@ -683,7 +688,7 @@
         <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 20px; max-width:68ch">Technology gets blamed for problems that are organisational. The platform could already do everything these teams needed. Nobody had ever been made responsible for setting it up that way, and four years of that compounds into something that looks like a software failure.</p>
         <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 40px; max-width:68ch">Finding the problems was not the hard part, the audit made those undeniable. The hard part was getting people past the quick fix, because renaming a few folders feels like progress and takes an afternoon. Making the case for the ownership work meant showing that every symptom they hated sat downstream of it.</p>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:28px 36px; max-width:80ch; margin-bottom:48px">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:28px 36px; max-width:80ch; margin-bottom:48px">
           <div>
             <div style="font-size:15.5px; font-weight:600; margin-bottom:8px">Workshop earlier</div>
             <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">The prioritisation session surfaced constraints that would have changed which interviews I ran and which parts of the library I audited first.</p>
@@ -714,24 +719,6 @@
 
 <script>
 (function () {
-  var links = [].slice.call(document.querySelectorAll('[data-spy]'));
-  var sections = links.map(function (a) { return document.getElementById(a.getAttribute('data-spy')); });
-  var bar = document.querySelector('[data-progress]');
-
-  function onScroll() {
-    var mx = document.documentElement.scrollHeight - window.innerHeight;
-    if (bar) bar.style.width = (mx > 0 ? (window.scrollY / mx) * 100 : 0).toFixed(2) + '%';
-    var mid = window.scrollY + window.innerHeight * 0.36, active = -1;
-    sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) active = i; });
-    links.forEach(function (a, i) {
-      var on = i === active;
-      a.style.color = on ? '#0F6E56' : 'rgba(18,36,28,.55)';
-      a.style.fontWeight = on ? '600' : '400';
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   var nav = document.querySelector('[data-nav]');
   function fit() { if (nav) nav.style.display = window.innerWidth > 1000 ? 'flex' : 'none'; }
   window.addEventListener('resize', fit, { passive: true });
@@ -751,31 +738,8 @@
     frame.addEventListener('mouseleave', function () { el.style.transform = 'translateY(0)'; });
   });
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  var target = window.scrollY, current = target, running = false;
-  function max() { return document.documentElement.scrollHeight - window.innerHeight; }
-  function frame() {
-    current += (target - current) * 0.085;
-    if (Math.abs(target - current) < 0.35) { current = target; running = false; }
-    window.scrollTo(0, current);
-    if (running) requestAnimationFrame(frame);
-  }
-  function resync() { if (!running) { target = current = window.scrollY; } }
-  ['keydown', 'mousedown', 'touchstart'].forEach(function (t) { window.addEventListener(t, resync, { passive: true }); });
-  window.addEventListener('scroll', resync, { passive: true });
-
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="#"]');
-    if (!a) return;
-    var el = document.querySelector(a.getAttribute('href'));
-    if (!el) return;
-    e.preventDefault();
-    target = Math.max(0, Math.min(max(), el.getBoundingClientRect().top + window.scrollY - 78));
-    if (!running) { running = true; requestAnimationFrame(frame); }
-  });
 })();
 </script>
+<script src="scroll.js" defer></script>
 </body>
 </html>

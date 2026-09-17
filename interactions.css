@@ -100,7 +100,8 @@ nav.scrolled, #nav.scrolled { box-shadow: 0 6px 26px rgba(0,0,0,.22); }
 /* ─────────────────────────────────────────────
    7 · TOOLTIP (data-tooltip): used by back-to-top; opt-in elsewhere
 ───────────────────────────────────────────── */
-[data-tooltip] { position: relative; }
+/* the back-to-top button is already position:fixed, which anchors its tooltip */
+[data-tooltip]:not(.back-to-top) { position: relative; }
 [data-tooltip]::before {
   content: attr(data-tooltip);
   position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px);

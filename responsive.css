@@ -1,0 +1,34 @@
+/*
+ * responsive.css - phone layout for the inline-styled pages (About + case studies).
+ * Those pages are written with inline styles, which cannot hold media queries,
+ * so the small-screen overrides live here.
+ */
+@media (max-width: 760px) {
+  /* "label | content" section grids stack: label on top, content full width */
+  [style*="grid-template-columns:minmax(0,150px) minmax(0,1fr)"],
+  [style*="grid-template-columns:minmax(0,190px) minmax(0,1fr)"],
+  [style*="grid-template-columns:minmax(0,200px) minmax(0,1fr)"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  /* section labels only need to stick when they sit beside the content */
+  [style*="position:sticky; top:110px"] {
+    position: static !important;
+  }
+}
+
+@media (max-width: 400px) {
+  /* label/value rows (e.g. "Item … Shopping bag") wrap instead of spilling off screen */
+  [style*="display:flex; align-items:baseline; justify-content:space-between"] {
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* case study top bar: keep logo + "All work", drop the divider and page title */
+  div[style*="position:sticky; top:0"] > div > div[style*="width:1px; height:20px"],
+  div[style*="position:sticky; top:0"] > div > div[style*="width:1px; height:20px"] + span {
+    display: none !important;
+  }
+}

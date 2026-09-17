@@ -1,66 +1,66 @@
 <svg viewBox="0 0 420 590" xmlns="http://www.w3.org/2000/svg" style="font-family:monospace">
-<rect width="420" height="590" fill="#FFFFFF"/>
-<rect x="0" y="0" width="420" height="36" fill="#F4F4F4" stroke="#D2D2D2" stroke-width="1" opacity="0.5"/>
-<rect x="10" y="11" width="54" height="14" fill="#D2D2D2" rx="3" opacity="0.5"/>
-<rect x="396" y="10" width="14" height="16" fill="#E8E8E8" stroke="#D2D2D2" stroke-width="1" rx="2" opacity="0.5"/>
+<rect width="420" height="590" fill="#FFFFFF"></rect>
+<rect x="0" y="0" width="420" height="36" fill="#F4F4F4" stroke="#D2D2D2" stroke-width="1" opacity="0.5"></rect>
+<rect x="10" y="11" width="54" height="14" fill="#D2D2D2" rx="3" opacity="0.5"></rect>
+<rect x="396" y="10" width="14" height="16" fill="#E8E8E8" stroke="#D2D2D2" stroke-width="1" rx="2" opacity="0.5"></rect>
 
-<!-- Dimmed PDP background -->
-<rect x="4" y="42" width="52" height="10" fill="#F4F4F4" stroke="#D2D2D2" stroke-width="1" rx="2" opacity="0.6"/>
+
+<rect x="4" y="42" width="52" height="10" fill="#F4F4F4" stroke="#D2D2D2" stroke-width="1" rx="2" opacity="0.6"></rect>
 <text x="8" y="50.5" font-size="5.5" fill="#aaa" opacity="0.7">PDP (dimmed)</text>
-<rect x="0" y="44" width="420" height="546" fill="#F4F4F4" opacity="0.5"/>
-<rect x="16" y="70" width="150" height="150" fill="#E8E8E8" opacity="0.5" stroke="#D2D2D2" stroke-width="1"/>
-<rect x="180" y="70" width="220" height="10" fill="rgba(190,190,190,0.5)" rx="2"/>
-<rect x="180" y="88" width="160" height="14" fill="rgba(190,190,190,0.4)" rx="2"/>
-<rect x="180" y="112" width="120" height="20" fill="rgba(190,190,190,0.4)" rx="2"/>
+<rect x="0" y="44" width="420" height="546" fill="#F4F4F4" opacity="0.5"></rect>
+<rect x="16" y="70" width="150" height="150" fill="#E8E8E8" opacity="0.5" stroke="#D2D2D2" stroke-width="1"></rect>
+<rect x="180" y="70" width="220" height="10" fill="rgba(190,190,190,0.5)" rx="2"></rect>
+<rect x="180" y="88" width="160" height="14" fill="rgba(190,190,190,0.4)" rx="2"></rect>
+<rect x="180" y="112" width="120" height="20" fill="rgba(190,190,190,0.4)" rx="2"></rect>
 
-<!-- Modal scrim -->
-<rect x="0" y="44" width="420" height="546" fill="#000000" opacity="0.22"/>
 
-<!-- Modal card -->
-<rect x="4" y="150" width="46" height="10" fill="#F4F4F4" stroke="#D2D2D2" stroke-width="1" rx="2"/>
+<rect x="0" y="44" width="420" height="546" fill="#000000" opacity="0.22"></rect>
+
+
+<rect x="4" y="150" width="46" height="10" fill="#F4F4F4" stroke="#D2D2D2" stroke-width="1" rx="2"></rect>
 <text x="8" y="158.5" font-size="5.5" fill="#888">MODAL</text>
-<rect x="90" y="154" width="240" height="230" fill="#FFFFFF" stroke="#D2D2D2" stroke-width="1.5"/>
+<rect x="90" y="154" width="240" height="230" fill="#FFFFFF" stroke="#D2D2D2" stroke-width="1.5"></rect>
 
-<!-- close icon -->
-<circle cx="308" cy="172" r="8" fill="none" stroke="#BDBDBD" stroke-width="1"/>
-<line x1="305" y1="169" x2="311" y2="175" stroke="#BDBDBD" stroke-width="1"/>
-<line x1="311" y1="169" x2="305" y2="175" stroke="#BDBDBD" stroke-width="1"/>
 
-<!-- title -->
-<rect x="112" y="172" width="150" height="10" fill="#333" rx="2"/>
+<circle cx="308" cy="172" r="8" fill="none" stroke="#BDBDBD" stroke-width="1"></circle>
+<line x1="305" y1="169" x2="311" y2="175" stroke="#BDBDBD" stroke-width="1"></line>
+<line x1="311" y1="169" x2="305" y2="175" stroke="#BDBDBD" stroke-width="1"></line>
 
-<!-- table header -->
-<rect x="112" y="200" width="90" height="6" fill="#999" rx="1"/>
-<rect x="230" y="200" width="80" height="6" fill="#999" rx="1"/>
-<line x1="112" y1="212" x2="308" y2="212" stroke="#D2D2D2" stroke-width="1"/>
 
-<!-- table rows -->
-<rect x="112" y="222" width="70" height="6" fill="#BDBDBD" rx="1"/>
-<rect x="230" y="222" width="60" height="6" fill="#BDBDBD" rx="1"/>
-<line x1="112" y1="236" x2="308" y2="236" stroke="#EAEAEA" stroke-width="1"/>
+<rect x="112" y="172" width="150" height="10" fill="#333" rx="2"></rect>
 
-<rect x="112" y="246" width="70" height="6" fill="#BDBDBD" rx="1"/>
-<rect x="230" y="246" width="60" height="6" fill="#BDBDBD" rx="1"/>
-<line x1="112" y1="260" x2="308" y2="260" stroke="#EAEAEA" stroke-width="1"/>
 
-<rect x="112" y="270" width="70" height="6" fill="#BDBDBD" rx="1"/>
-<rect x="230" y="270" width="60" height="6" fill="#BDBDBD" rx="1"/>
-<line x1="112" y1="284" x2="308" y2="284" stroke="#EAEAEA" stroke-width="1"/>
+<rect x="112" y="200" width="90" height="6" fill="#999" rx="1"></rect>
+<rect x="230" y="200" width="80" height="6" fill="#999" rx="1"></rect>
+<line x1="112" y1="212" x2="308" y2="212" stroke="#D2D2D2" stroke-width="1"></line>
 
-<rect x="112" y="294" width="70" height="6" fill="#BDBDBD" rx="1"/>
-<rect x="230" y="294" width="60" height="6" fill="#BDBDBD" rx="1"/>
-<line x1="112" y1="308" x2="308" y2="308" stroke="#EAEAEA" stroke-width="1"/>
 
-<!-- small icon markers next to "ideal for" column -->
-<circle cx="232" cy="225" r="2.4" fill="#C93A2A" opacity="0.5"/>
-<circle cx="232" cy="249" r="2.4" fill="#C93A2A" opacity="0.5"/>
-<circle cx="232" cy="273" r="2.4" fill="#C93A2A" opacity="0.5"/>
-<circle cx="232" cy="297" r="2.4" fill="#C93A2A" opacity="0.5"/>
+<rect x="112" y="222" width="70" height="6" fill="#BDBDBD" rx="1"></rect>
+<rect x="230" y="222" width="60" height="6" fill="#BDBDBD" rx="1"></rect>
+<line x1="112" y1="236" x2="308" y2="236" stroke="#EAEAEA" stroke-width="1"></line>
 
-<!-- Rest of dimmed PDP below modal -->
-<rect x="16" y="410" width="384" height="24" fill="rgba(190,190,190,0.35)" rx="3"/>
-<rect x="16" y="446" width="90" height="90" fill="rgba(190,190,190,0.3)"/>
-<rect x="116" y="446" width="90" height="90" fill="rgba(190,190,190,0.3)"/>
-<rect x="216" y="446" width="90" height="90" fill="rgba(190,190,190,0.3)"/>
-<rect x="316" y="446" width="84" height="90" fill="rgba(190,190,190,0.3)"/>
+<rect x="112" y="246" width="70" height="6" fill="#BDBDBD" rx="1"></rect>
+<rect x="230" y="246" width="60" height="6" fill="#BDBDBD" rx="1"></rect>
+<line x1="112" y1="260" x2="308" y2="260" stroke="#EAEAEA" stroke-width="1"></line>
+
+<rect x="112" y="270" width="70" height="6" fill="#BDBDBD" rx="1"></rect>
+<rect x="230" y="270" width="60" height="6" fill="#BDBDBD" rx="1"></rect>
+<line x1="112" y1="284" x2="308" y2="284" stroke="#EAEAEA" stroke-width="1"></line>
+
+<rect x="112" y="294" width="70" height="6" fill="#BDBDBD" rx="1"></rect>
+<rect x="230" y="294" width="60" height="6" fill="#BDBDBD" rx="1"></rect>
+<line x1="112" y1="308" x2="308" y2="308" stroke="#EAEAEA" stroke-width="1"></line>
+
+
+<circle cx="232" cy="225" r="2.4" fill="#C93A2A" opacity="0.5"></circle>
+<circle cx="232" cy="249" r="2.4" fill="#C93A2A" opacity="0.5"></circle>
+<circle cx="232" cy="273" r="2.4" fill="#C93A2A" opacity="0.5"></circle>
+<circle cx="232" cy="297" r="2.4" fill="#C93A2A" opacity="0.5"></circle>
+
+
+<rect x="16" y="410" width="384" height="24" fill="rgba(190,190,190,0.35)" rx="3"></rect>
+<rect x="16" y="446" width="90" height="90" fill="rgba(190,190,190,0.3)"></rect>
+<rect x="116" y="446" width="90" height="90" fill="rgba(190,190,190,0.3)"></rect>
+<rect x="216" y="446" width="90" height="90" fill="rgba(190,190,190,0.3)"></rect>
+<rect x="316" y="446" width="84" height="90" fill="rgba(190,190,190,0.3)"></rect>
 </svg>

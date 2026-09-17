@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Building this portfolio with AI — Pooja Kurade</title>
-<meta name="description" content="I built this portfolio with AI. The design decisions were mine: one system across five pages, colour and type held by hand, and what each call cost.">
+<title>Designing with AI — Pooja Kurade</title>
+<meta name="description" content="How I built this portfolio by describing it, and what a designer has to hold onto when the drafts arrive for free.">
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
 <style>
 
   body { margin:0; background:#F2EFE8; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased }
@@ -27,35 +28,35 @@
   @keyframes aiChip { 0%,68%{opacity:0; transform:translateY(6px)} 76%{opacity:1; transform:translateY(0)} 94%{opacity:1; transform:translateY(0)} 100%{opacity:0; transform:translateY(0)} }
   @media (prefers-reduced-motion: reduce) { *{animation:none !important} }
 
-.h1:hover{color:#0F6E56 !important}
-.h2:hover{color:#0F6E56 !important}
-.h3:hover{color:#0F6E56 !important}
-.h4:hover{color:#0F6E56 !important}
-.h5:hover{color:#0F6E56 !important}
-.h6:hover{color:#0F6E56 !important}
+.x1:hover{color:#0F6E56 !important}
+.x2:hover{color:#0F6E56 !important}
+.x3:hover{color:#0F6E56 !important}
+.x4:hover{color:#0F6E56 !important}
+.x5:hover{color:#0F6E56 !important}
+.x6:hover{color:#0F6E56 !important}
 </style>
 </head>
 <body>
 <div style="background:#F2EFE8; color:#12241C">
 
-  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.92); backdrop-filter:blur(10px); border-bottom:1px solid rgba(18,36,28,.1)">
-    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:0%; background:#0F6E56"></div></div>
+  <div style="position:sticky; top:0; z-index:20; background:rgba(242,239,232,.97); border-bottom:1px solid rgba(18,36,28,.1)">
+    <div style="height:2px; background:rgba(18,36,28,.08)"><div data-progress="1" style="height:100%; width:100%; background:#0F6E56; transform:scaleX(0); transform-origin:left center; will-change:transform"></div></div>
     <div style="max-width:1180px; margin:0 auto; padding:12px clamp(20px,5vw,56px); display:flex; align-items:center; gap:clamp(14px,2vw,28px)">
       <a href="index.html" style="display:flex; align-items:center; gap:10px; color:inherit; white-space:nowrap">
-        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
+        <span style="width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0; background:rgba(15,110,86,.12)"><img decoding="async" src="images/pooja-photo-edited.jpg" alt="Pooja Kurade" style="width:100%; height:100%; object-fit:cover; object-position:center 18%"></span>
         <span style="font-family:'Source Serif 4',Georgia,serif; font-size:16px; font-weight:600; letter-spacing:-.01em">Pooja Kurade.</span>
       </a>
       <div style="width:1px; height:20px; background:rgba(18,36,28,.16); flex-shrink:0"></div>
       <span style="font-size:13px; color:rgba(18,36,28,.6); white-space:nowrap">This portfolio</span>
       <div style="margin-left:auto; display:flex; align-items:center; gap:clamp(14px,1.6vw,24px)">
         <div style="display:none; gap:clamp(12px,1.4vw,20px); font-size:12px; letter-spacing:.02em; color:rgba(18,36,28,.55); white-space:nowrap" data-nav="1">
-          <a href="#brief" data-spy="brief" style="color:inherit; transition:color .2s" class="h1">Brief</a>
-          <a href="#constraint" data-spy="constraint" style="color:inherit; transition:color .2s" class="h2">Constraint</a>
-          <a href="#decisions" data-spy="decisions" style="color:inherit; transition:color .2s" class="h3">Decisions</a>
-          <a href="#system" data-spy="system" style="color:inherit; transition:color .2s" class="h4">System</a>
-          <a href="#outcome" data-spy="outcome" style="color:inherit; transition:color .2s" class="h5">Outcome</a>
+          <a href="#brief" data-spy="brief" style="color:inherit; transition:color .2s" class="x1">Brief</a>
+          <a href="#constraint" data-spy="constraint" style="color:inherit; transition:color .2s" class="x2">Constraint</a>
+          <a href="#decisions" data-spy="decisions" style="color:inherit; transition:color .2s" class="x3">Decisions</a>
+          <a href="#system" data-spy="system" style="color:inherit; transition:color .2s" class="x4">System</a>
+          <a href="#outcome" data-spy="outcome" style="color:inherit; transition:color .2s" class="x5">Outcome</a>
         </div>
-        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="h6">All work</a>
+        <a href="index.html#work" style="font-size:12.5px; color:rgba(18,36,28,.6); white-space:nowrap" class="x6">All work</a>
       </div>
     </div>
   </div>
@@ -65,10 +66,14 @@
     <div style="display:flex; align-items:center; gap:12px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:rgba(18,36,28,.55); margin-bottom:26px">
       <span>Case study 04</span><span style="width:22px; height:1px; background:rgba(18,36,28,.25)"></span><span>Web · Self-directed</span>
     </div>
+    <div style="display:inline-flex; align-items:center; gap:14px; background:rgba(217,119,87,.1); border:1px solid rgba(217,119,87,.4); border-radius:5px; padding:11px 17px; margin-bottom:26px; flex-wrap:wrap">
+      <span style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:#B0512F; flex:0 0 auto">Self-directed · this website</span><span style="font-size:13px; color:rgba(18,36,28,.72); flex:1 1 auto; min-width:0">Every page you are reading was built this way, including this one.</span>
+    </div>
+
     <h1 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(38px,6.4vw,76px); font-weight:500; letter-spacing:-.03em; line-height:1.02; margin:0 0 24px; max-width:22ch; text-wrap:pretty">I built this portfolio with AI. The design decisions were mine.</h1>
     <p style="font-size:clamp(17px,1.6vw,21px); line-height:1.65; color:rgba(18,36,28,.68); margin:0 0 44px; max-width:58ch; text-wrap:pretty">You are reading the product. I had three case studies designed in Figma and no website, because building one was a job I kept losing to. A hiring manager gives you about four minutes; my Figma boards needed forty. So I treated my own portfolio as a design problem, with a real user and no engineer.</p>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr)); gap:24px 32px; padding:26px 0; border-top:1px solid rgba(18,36,28,.14); border-bottom:1px solid rgba(18,36,28,.14); margin-bottom:44px">
       <div>
         <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:7px">Role</div>
         <div style="font-size:14px; font-weight:600">Designer, and the client</div>
@@ -92,7 +97,7 @@
     </div>
 
     <!-- animated banner -->
-    <div style="position:relative; border-radius:6px; overflow:hidden; background:#1F1A17; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
+    <div style="position:relative; border-radius:6px; overflow:hidden; background:#211C18; border:1px solid rgba(18,36,28,.12); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:clamp(28px,4vw,64px); align-items:center; padding:clamp(32px,5vw,64px) clamp(26px,4vw,56px)">
       <div style="position:absolute; inset:0; background:radial-gradient(90% 70% at 78% 20%, rgba(217,119,87,.26), transparent 68%); animation:aiGlow 9s ease-in-out infinite; pointer-events:none"></div>
 
       <div style="position:relative">
@@ -151,7 +156,7 @@
             </div>
           </div>
         </div>
-        <div style="position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); display:flex; align-items:center; gap:9px; background:rgba(23,19,16,.94); border:1px solid rgba(217,119,87,.5); border-radius:999px; padding:9px 16px; white-space:nowrap; animation:aiChip 11s linear infinite">
+        <div style="position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); display:flex; align-items:center; gap:9px; background:rgba(25,21,18,.94); border:1px solid rgba(217,119,87,.5); border-radius:999px; padding:9px 16px; white-space:nowrap; animation:aiChip 11s linear infinite">
           <span style="width:7px; height:7px; border-radius:50%; background:#D97757"></span>
           <span style="font-size:12px; font-weight:600; color:#FDFDFD">One palette, five pages</span>
         </div>
@@ -170,15 +175,15 @@
 
         <div style="margin-bottom:34px">
           <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:14px">Where I started, three Figma boards</div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:20px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); gap:14px; margin-bottom:20px">
             <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(18,36,28,.12); background:#FDFDFD; height:260px">
-              <img src="images/old-figma-jiobp-sm.jpg" alt="Old Figma board, JIO-BP" style="width:100%; height:auto">
+              <img loading="lazy" decoding="async" src="images/old-figma-jiobp-sm.jpg" alt="Old Figma board, JIO-BP" style="width:100%; height:auto">
             </div>
             <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(18,36,28,.12); background:#FDFDFD; height:260px">
-              <img src="images/old-figma-ttk-sm.jpg" alt="Old Figma board, TTK Prestige" style="width:100%; height:auto">
+              <img loading="lazy" decoding="async" src="images/old-figma-ttk-sm.jpg" alt="Old Figma board, TTK Prestige" style="width:100%; height:auto">
             </div>
             <div style="border-radius:8px; overflow:hidden; border:1px solid rgba(18,36,28,.12); background:#FDFDFD; height:260px">
-              <img src="images/old-figma-dam-sm.jpg" alt="Old Figma board, DAM audit" style="width:100%; height:auto">
+              <img loading="lazy" decoding="async" src="images/old-figma-dam-sm.jpg" alt="Old Figma board, DAM audit" style="width:100%; height:auto">
             </div>
           </div>
           <p style="font-size:15px; line-height:1.75; color:rgba(18,36,28,.65); margin:0; max-width:66ch">Presentable one at a time, in a meeting, with me talking over them. Useless to someone deciding on their own in four minutes.</p>
@@ -222,7 +227,7 @@
         <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 20px; max-width:26ch">No engineer, so I designed in words</h2>
         <p style="font-size:16.5px; line-height:1.8; color:rgba(18,36,28,.72); margin:0 0 34px; max-width:68ch">Every previous attempt died in the build. Handing that part to AI was not a novelty, it was the only way the project had a chance of existing. What it changed is where my hours went.</p>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-bottom:34px">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr)); gap:14px; margin-bottom:34px">
           <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
             <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:16px">Before</div>
             <div style="display:grid; gap:10px">
@@ -257,20 +262,20 @@
           <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:18px">Working inside it, four habits that mattered</div>
           <div style="display:grid; gap:16px">
             <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline">
-              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Describe the intent, not the CSS.</strong> Naming the feeling landed. Naming a hex value got me that hex value and nothing else.</div>
-              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">editorial, warm paper,<br>not a tech landing page</div>
+              <div style="flex:1 1 260px; min-width:min(240px,100%); font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Describe the intent, not the CSS.</strong> Naming the feeling landed. Naming a hex value got me that hex value and nothing else.</div>
+              <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">editorial, warm paper,<br>not a tech landing page</div>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; padding-top:16px; border-top:1px solid rgba(18,36,28,.09)">
-              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Look before reading.</strong> I judged the shape of the page from across the room first. Rhythm is visible at that distance. Wording is not.</div>
-              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">this section is louder than<br>the one above it</div>
+              <div style="flex:1 1 260px; min-width:min(240px,100%); font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Look before reading.</strong> I judged the shape of the page from across the room first. Rhythm is visible at that distance. Wording is not.</div>
+              <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">this section is louder than<br>the one above it</div>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; padding-top:16px; border-top:1px solid rgba(18,36,28,.09)">
-              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">One correction at a time.</strong> Five fixes at once got me four good ones and a new problem I had to find.</div>
-              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">only the card padding.<br>leave the rest alone</div>
+              <div style="flex:1 1 260px; min-width:min(240px,100%); font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">One correction at a time.</strong> Five fixes at once got me four good ones and a new problem I had to find.</div>
+              <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">only the card padding.<br>leave the rest alone</div>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline; padding-top:16px; border-top:1px solid rgba(18,36,28,.09)">
-              <div style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Say what is settled.</strong> Anything I did not declare final drifted, helpfully, into something slightly different on the next page.</div>
-              <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">the header is final.<br>reuse it exactly</div>
+              <div style="flex:1 1 260px; min-width:min(240px,100%); font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.72)"><strong style="font-weight:600; color:#12241C">Say what is settled.</strong> Anything I did not declare final drifted, helpfully, into something slightly different on the next page.</div>
+              <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:5px; padding:11px 13px; font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; color:rgba(18,36,28,.65)">the header is final.<br>reuse it exactly</div>
             </div>
           </div>
         </div>
@@ -290,7 +295,7 @@
           <!-- 01 one shell -->
           <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
             <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
-              <div style="flex:1 1 330px; min-width:280px">
+              <div style="flex:1 1 330px; min-width:min(280px,100%)">
                 <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 01 · Consistency</div>
                 <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">One shell for five pages, not five designs</h3>
                 <div style="display:grid; gap:16px; max-width:60ch">
@@ -312,7 +317,7 @@
                   </div>
                 </div>
               </div>
-              <div style="flex:1 1 250px; min-width:230px; background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+              <div style="flex:1 1 250px; min-width:min(230px,100%); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
                 <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">The drift I had to catch</div>
                 <div style="display:grid; gap:9px; margin-bottom:16px">
                   <div style="display:flex; align-items:center; gap:11px">
@@ -339,7 +344,7 @@
           <!-- 02 decisions over screens -->
           <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
             <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
-              <div style="flex:1 1 330px; min-width:280px">
+              <div style="flex:1 1 330px; min-width:min(280px,100%)">
                 <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 02 · Content</div>
                 <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">Decisions with their cost, not a wall of screens</h3>
                 <div style="display:grid; gap:16px; max-width:60ch">
@@ -361,7 +366,7 @@
                   </div>
                 </div>
               </div>
-              <div style="flex:1 1 250px; min-width:230px; background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
+              <div style="flex:1 1 250px; min-width:min(230px,100%); background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px">
                 <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:14px">Cut from the first drafts</div>
                 <div style="display:grid; gap:9px">
                   <div style="display:flex; gap:10px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)"><span style="color:#C93A2A; flex-shrink:0">✕</span> A persona I never interviewed</div>
@@ -378,7 +383,7 @@
           <!-- 03 reference over adjectives -->
           <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px; margin-bottom:52px">
             <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
-              <div style="flex:1 1 330px; min-width:280px">
+              <div style="flex:1 1 330px; min-width:min(280px,100%)">
                 <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 03 · Direction</div>
                 <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">Print that happens to scroll</h3>
                 <div style="display:grid; gap:16px; max-width:60ch">
@@ -400,7 +405,7 @@
                   </div>
                 </div>
               </div>
-              <div style="flex:1 1 250px; min-width:230px; display:grid; gap:12px">
+              <div style="flex:1 1 250px; min-width:min(230px,100%); display:grid; gap:12px">
                 <div style="background:#F2EFE8; border:1px solid rgba(201,58,42,.3); border-radius:6px; padding:16px 18px">
                   <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">Ruled out</div>
                   <div style="display:grid; gap:8px; font-size:13.5px; line-height:1.5; color:rgba(18,36,28,.65)">
@@ -424,7 +429,7 @@
           <!-- 04 what I had to correct -->
           <div style="border-top:1px solid rgba(18,36,28,.16); padding-top:34px">
             <div style="display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,48px); align-items:flex-start">
-              <div style="flex:1 1 330px; min-width:280px">
+              <div style="flex:1 1 330px; min-width:min(280px,100%)">
                 <div style="font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.45); margin-bottom:12px">Decision 04 · Craft</div>
                 <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(23px,2.6vw,31px); font-weight:500; letter-spacing:-.02em; line-height:1.2; margin:0 0 22px; max-width:24ch">Hold the details nothing else was watching</h3>
                 <div style="display:grid; gap:16px; max-width:60ch">
@@ -446,7 +451,7 @@
                   </div>
                 </div>
               </div>
-              <div style="flex:1 1 250px; min-width:230px; display:grid; gap:12px">
+              <div style="flex:1 1 250px; min-width:min(230px,100%); display:grid; gap:12px">
                 <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:16px 18px">
                   <div style="font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:#C93A2A; margin-bottom:12px">Cap the words, not the box</div>
                   <div style="border:1px solid rgba(201,58,42,.35); border-radius:4px; padding:10px; margin-bottom:8px; width:74%">
@@ -497,7 +502,7 @@
             <div style="font-size:12px; color:rgba(18,36,28,.45)">Same sentence, three times</div>
           </div>
 
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:26px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:16px; margin-bottom:26px">
             <div style="background:#F2EFE8; border:1px solid rgba(18,36,28,.12); border-radius:6px; padding:18px 20px; position:relative">
               <span style="position:absolute; top:-1px; right:14px; font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; color:rgba(18,36,28,.6); background:rgba(18,36,28,.09); border-radius:0 0 3px 3px; padding:3px 8px">Ruled out</span>
               <div style="font-family:'Inter',sans-serif; font-size:23px; font-weight:700; letter-spacing:-.02em; line-height:1.15; color:rgba(18,36,28,.72); margin-bottom:10px">Fuel booking, solved</div>
@@ -541,7 +546,7 @@
         <!-- palette -->
         <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px); margin-bottom:24px">
           <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:20px">Palette, and what each colour is allowed to mean</div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:22px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(130px,100%),1fr)); gap:22px">
             <div>
               <div style="height:74px; border-radius:5px; background:#F2EFE8; border:1px solid rgba(18,36,28,.12); margin-bottom:10px"></div>
               <div style="font-size:13px; font-weight:600">Paper</div>
@@ -567,7 +572,7 @@
               <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Breaks and gaps, never decoration</div>
             </div>
             <div>
-              <div style="height:74px; border-radius:5px; background:#1F1A17; margin-bottom:10px"></div>
+              <div style="height:74px; border-radius:5px; background:#211C18; margin-bottom:10px"></div>
               <div style="font-size:13px; font-weight:600">Dark grounds</div>
               <div style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(18,36,28,.5)">one per subject</div>
               <div style="font-size:12px; line-height:1.5; color:rgba(18,36,28,.55); margin-top:5px">Banners only, never the shell</div>
@@ -581,7 +586,7 @@
             <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5)">Each banner carries its subject's colour, the shell never changes</div>
             <div style="font-size:12px; color:rgba(18,36,28,.45)">Same layout, four grounds</div>
           </div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr)); gap:14px">
             <div>
               <div style="border-radius:6px; overflow:hidden; background:#0D2B1E; padding:16px 17px 18px">
                 <div style="height:6px; width:34px; border-radius:3px; background:#2FBE8E; margin-bottom:14px"></div>
@@ -594,7 +599,7 @@
               </div>
             </div>
             <div>
-              <div style="border-radius:6px; overflow:hidden; background:#1A1210; padding:16px 17px 18px">
+              <div style="border-radius:6px; overflow:hidden; background:#2E1310; padding:16px 17px 18px">
                 <div style="height:6px; width:34px; border-radius:3px; background:#C93A2A; margin-bottom:14px"></div>
                 <div style="height:7px; width:82%; border-radius:4px; background:rgba(255,255,255,.5); margin-bottom:7px"></div>
                 <div style="height:7px; width:58%; border-radius:4px; background:rgba(255,255,255,.22)"></div>
@@ -616,7 +621,7 @@
               </div>
             </div>
             <div>
-              <div style="border-radius:6px; overflow:hidden; background:#1F1A17; padding:16px 17px 18px">
+              <div style="border-radius:6px; overflow:hidden; background:#211C18; padding:16px 17px 18px">
                 <div style="height:6px; width:34px; border-radius:3px; background:#D97757; margin-bottom:14px"></div>
                 <div style="height:7px; width:82%; border-radius:4px; background:rgba(255,255,255,.5); margin-bottom:7px"></div>
                 <div style="height:7px; width:58%; border-radius:4px; background:rgba(255,255,255,.22)"></div>
@@ -633,7 +638,7 @@
         <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:clamp(24px,3vw,34px)">
           <div style="font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:rgba(18,36,28,.5); margin-bottom:18px">One rhythm, every page</div>
           <div style="display:flex; flex-wrap:wrap; gap:24px 32px; align-items:flex-start">
-            <div style="flex:1 1 220px; min-width:200px">
+            <div style="flex:1 1 220px; min-width:min(200px,100%)">
               <div style="display:flex; gap:10px; margin-bottom:12px">
                 <div style="width:34px; flex-shrink:0"><span style="display:block; height:5px; border-radius:3px; background:rgba(15,110,86,.5)"></span></div>
                 <div style="flex:1; display:grid; gap:5px">
@@ -650,7 +655,7 @@
                 </div>
               </div>
             </div>
-            <p style="flex:1 1 260px; min-width:240px; font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.68); margin:0">Numbered label on the left, content on the right, identical width on every page and every section. Boring on purpose: a reader on their second case study should already know where to look.</p>
+            <p style="flex:1 1 260px; min-width:min(240px,100%); font-size:14.5px; line-height:1.75; color:rgba(18,36,28,.68); margin:0">Numbered label on the left, content on the right, identical width on every page and every section. Boring on purpose: a reader on their second case study should already know where to look.</p>
           </div>
         </div>
       </div>
@@ -664,7 +669,7 @@
       <div>
         <h2 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(28px,3.6vw,44px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:0 0 34px; max-width:26ch">It exists, and it passes its own test</h2>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:40px">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr)); gap:14px; margin-bottom:40px">
           <div style="background:#FDFDFD; border:1px solid rgba(18,36,28,.14); border-radius:6px; padding:24px 26px">
             <div style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(30px,3.4vw,40px); font-weight:500; letter-spacing:-.02em; line-height:1; margin-bottom:10px">5</div>
             <div style="font-size:14px; line-height:1.6; color:rgba(18,36,28,.68)">Pages live, from three unbuilt Figma boards</div>
@@ -687,29 +692,29 @@
         <h3 style="font-family:'Source Serif 4',Georgia,serif; font-size:clamp(21px,2.2vw,27px); font-weight:500; letter-spacing:-.02em; margin:0 0 26px">What I would carry into a team</h3>
         <div style="display:grid; gap:1px; background:rgba(18,36,28,.14); border:1px solid rgba(18,36,28,.14); border-radius:6px; overflow:hidden; margin-bottom:44px">
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
-            <div style="flex:1 1 240px; min-width:220px">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Execution stopped being the constraint</div>
               <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Trying a layout used to cost an afternoon, so I tried one. Here it cost a sentence, so I tried four and chose. What is scarce now is knowing which of the four is right.</p>
             </div>
-            <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:6px; padding:15px 17px">
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
               <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Everything got faster except deciding.</p>
             </div>
           </div>
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
-            <div style="flex:1 1 240px; min-width:220px">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Nothing else was looking at the whole</div>
               <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">Each page came back locally excellent and globally adrift. Systems thinking was the entire contribution, and it is the difference between five pages and one site.</p>
             </div>
-            <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:6px; padding:15px 17px">
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
               <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Consistency is a decision, not an output.</p>
             </div>
           </div>
           <div style="background:#FDFDFD; padding:26px 28px; display:flex; flex-wrap:wrap; gap:16px 32px; align-items:flex-start">
-            <div style="flex:1 1 240px; min-width:220px">
+            <div style="flex:1 1 240px; min-width:min(220px,100%)">
               <div style="font-family:'Source Serif 4',Georgia,serif; font-size:19px; font-weight:600; letter-spacing:-.01em; margin-bottom:8px">Editing became the job</div>
               <p style="font-size:14.5px; line-height:1.7; color:rgba(18,36,28,.65); margin:0">When a section costs nothing to add, restraint is the only thing keeping a portfolio readable. Most of my instructions were deletions.</p>
             </div>
-            <div style="flex:1 1 200px; min-width:190px; background:#F2EFE8; border-radius:6px; padding:15px 17px">
+            <div style="flex:1 1 200px; min-width:min(190px,100%); background:#F2EFE8; border-radius:6px; padding:15px 17px">
               <p style="font-size:14px; line-height:1.7; color:rgba(18,36,28,.7); margin:0">Cheap to add is not worth adding.</p>
             </div>
           </div>
@@ -735,68 +740,27 @@
 
 <script>
 (function () {
-  var links = [].slice.call(document.querySelectorAll('[data-spy]'));
-  var sections = links.map(function (a) { return document.getElementById(a.getAttribute('data-spy')); });
-  var bar = document.querySelector('[data-progress]');
-
-  function onScroll() {
-    var mx = document.documentElement.scrollHeight - window.innerHeight;
-    if (bar) bar.style.width = (mx > 0 ? (window.scrollY / mx) * 100 : 0).toFixed(2) + '%';
-    var mid = window.scrollY + window.innerHeight * 0.36, active = -1;
-    sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) active = i; });
-    links.forEach(function (a, i) {
-      var on = i === active;
-      a.style.color = on ? '#0F6E56' : 'rgba(18,36,28,.55)';
-      a.style.fontWeight = on ? '600' : '400';
-    });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
   var nav = document.querySelector('[data-nav]');
   function fit() { if (nav) nav.style.display = window.innerWidth > 1000 ? 'flex' : 'none'; }
   window.addEventListener('resize', fit, { passive: true });
   fit();
 
-  document.querySelectorAll('img[src*="old-figma"]').forEach(function (img) {
-    var frame = img.parentElement;
+  document.querySelectorAll('[data-scroller]').forEach(function (el) {
+    var frame = el.parentElement;
     if (!frame) return;
     frame.style.position = 'relative';
     frame.style.overflow = 'hidden';
     frame.style.cursor = 'ns-resize';
-    img.style.transition = 'transform 9s linear';
+    el.style.transition = 'transform 9s linear';
     frame.addEventListener('mouseenter', function () {
-      var over = img.offsetHeight - frame.offsetHeight;
-      if (over > 0) img.style.transform = 'translateY(-' + over + 'px)';
+      var over = el.offsetHeight - frame.offsetHeight;
+      if (over > 0) el.style.transform = 'translateY(-' + over + 'px)';
     });
-    frame.addEventListener('mouseleave', function () { img.style.transform = 'translateY(0)'; });
+    frame.addEventListener('mouseleave', function () { el.style.transform = 'translateY(0)'; });
   });
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  var target = window.scrollY, current = target, running = false;
-  function max() { return document.documentElement.scrollHeight - window.innerHeight; }
-  function frame() {
-    current += (target - current) * 0.085;
-    if (Math.abs(target - current) < 0.35) { current = target; running = false; }
-    window.scrollTo(0, current);
-    if (running) requestAnimationFrame(frame);
-  }
-  function resync() { if (!running) { target = current = window.scrollY; } }
-  ['keydown', 'mousedown', 'touchstart'].forEach(function (t) { window.addEventListener(t, resync, { passive: true }); });
-  window.addEventListener('scroll', resync, { passive: true });
-
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href^="#"]');
-    if (!a) return;
-    var el = document.querySelector(a.getAttribute('href'));
-    if (!el) return;
-    e.preventDefault();
-    target = Math.max(0, Math.min(max(), el.getBoundingClientRect().top + window.scrollY - 78));
-    if (!running) { running = true; requestAnimationFrame(frame); }
-  });
 })();
 </script>
+<script src="scroll.js" defer></script>
 </body>
 </html>
