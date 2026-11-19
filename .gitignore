@@ -1,2 +1,7 @@
 .DS_Store
 .vscode/
+
+# Source material and exports — keep these out of the published site
+*.zip
+site/
+_mockup-*.html
