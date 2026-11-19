@@ -693,6 +693,8 @@ footer { padding: 32px var(--pad) }
 .wr-card { display:block; width:auto; color:inherit }
 @media (max-height:760px){
   .wr-title { font-size:clamp(22px,2.4vw,30px); margin:22px 0 10px }
+  .wr-client { margin-top:22px }
+  .wr-client + .wr-title { margin-top:8px }
   .wr-desc { font-size:14px; line-height:1.65; margin-bottom:16px }
   .wr-tags span { padding:6px 14px }
 }
@@ -703,6 +705,8 @@ footer { padding: 32px var(--pad) }
 .wr-card .pw-web { left:6%; right:6%; top:10% }
 .wr-title { font-family:var(--ff-display); font-size:clamp(26px,3.2vw,42px); font-weight:500; letter-spacing:-.025em; color:var(--ink); line-height:1.1; margin:34px 0 14px; transition:color .3s var(--ease) }
 .wr-card:hover .wr-title { color:#0F6E56 }
+.wr-client { font-family:var(--ff-m); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-mid); margin-top:34px }
+.wr-client + .wr-title { margin-top:10px }
 .wr-desc { font-size:15px; line-height:1.8; color:var(--ink-mid); margin-bottom:22px; max-width:44ch }
 .wr-tags { display:flex; flex-wrap:wrap; gap:8px }
 .wr-tags span { font-family:var(--ff-m); font-size:12px; color:rgba(18,36,28,.62); border:1px solid rgba(18,36,28,.16); border-radius:999px; padding:7px 18px }
@@ -990,7 +994,8 @@ footer { padding: 32px var(--pad) }
           </div>
           <span class="pw-ring"></span><span class="pw-cursor"></span>
         </div>
-        <h3 class="wr-title">JIO-BP Fuel Booking App</h3>
+        <div class="wr-client">Jio-bp</div>
+        <h3 class="wr-title">Book fuel before you reach the pump</h3>
         <p class="wr-desc">Booking fuel in three taps: nearby stations, live slots and a payment flow drivers could finish one-handed at the pump.</p>
         <div class="wr-tags"><span>Product Design</span><span>Mobile App</span></div>
       </a>
@@ -1006,7 +1011,8 @@ footer { padding: 32px var(--pad) }
           </div>
           <span class="pw-ring"></span><span class="pw-cursor"></span>
         </div>
-        <h3 class="wr-title">Asset Discovery Platform: DAM</h3>
+        <div class="wr-client">Dell · via UST Global</div>
+        <h3 class="wr-title">Helping teams find the right file, fast</h3>
         <p class="wr-desc">An audit of the asset lifecycle in a global DAM ecosystem, turning scattered libraries into search people actually trust.</p>
         <div class="wr-tags"><span>UX Research</span><span>B2B Enterprise</span></div>
       </a>
@@ -1023,7 +1029,8 @@ footer { padding: 32px var(--pad) }
           </div>
           <span class="pw-ring"></span><span class="pw-cursor"></span>
         </div>
-        <h3 class="wr-title">TTK Prestige Website Revamp</h3>
+        <div class="wr-client">TTK Prestige</div>
+        <h3 class="wr-title">Making it easy to buy Prestige online</h3>
         <p class="wr-desc">A kitchen-appliance storefront rebuilt from wireframes up: buying guides, clearer PDPs and a checkout that stopped losing carts.</p>
         <div class="wr-tags"><span>UI/UX Design</span><span>E-commerce</span></div>
       </a>
@@ -1068,7 +1075,8 @@ footer { padding: 32px var(--pad) }
           </div>
           <span class="pw-ring"></span><span class="pw-cursor"></span>
         </div>
-        <h3 class="wr-title">Milega: Auto Lost &amp; Found</h3>
+        <div class="wr-client">Milega · Personal concept</div>
+        <h3 class="wr-title">Lost something in an auto?</h3>
         <p class="wr-desc">A concept for Mumbai autos: describe what you lost in one sentence, and a QR sticker lets the driver report a find in four taps.</p>
         <div class="wr-tags"><span>Concept</span><span>AI-assisted</span></div>
       </a>
